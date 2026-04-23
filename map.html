@@ -69,7 +69,6 @@
 </style>
 </head>
 <body>
-
 <header id="hdr">
   <div style="display:flex;align-items:center;gap:0.9rem;">
     <a href="index.html" class="back">&#8592; Back to Dictionary</a>
@@ -78,14 +77,13 @@
       Indonesian Restaurants in the Netherlands
     </div>
   </div>
-  <div class="hsource">Sources: TripAdvisor &amp; local guides 2025</div>
+  <div class="hsource">Sources: TripAdvisor 2025 &amp; local guides</div>
 </header>
-
 <div id="ctrl">
   <span class="clabel">City:</span>
   <button class="cbtn active" data-city="all">All Cities</button>
   <button class="cbtn" data-city="Amsterdam">Amsterdam</button>
-  <button class="cbtn" data-city="Den Haag">The Hague</button>
+  <button class="cbtn" data-city="The Hague">The Hague</button>
   <button class="cbtn" data-city="Rotterdam">Rotterdam</button>
   <button class="cbtn" data-city="Leiden">Leiden</button>
   <div class="sep"></div>
@@ -96,7 +94,6 @@
   <div class="sep"></div>
   <div class="spill">Showing: <strong id="sc">0</strong></div>
 </div>
-
 <div id="wrap">
   <div id="map"></div>
   <div id="panel">
@@ -112,117 +109,134 @@
     <div id="dc"></div>
   </div>
 </div>
-
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-var CITY_COLORS={Amsterdam:'#1A6B8A','Den Haag':'#5C3317',Rotterdam:'#2D6A2D',Leiden:'#7A4A8A'};
-var CITY_LABELS={Amsterdam:'Amsterdam','Den Haag':'The Hague',Rotterdam:'Rotterdam',Leiden:'Leiden'};
-
+var CITY_COLORS={'Amsterdam':'#1A6B8A','The Hague':'#5C3317','Rotterdam':'#2D6A2D','Leiden':'#7A4A8A'};
 var ALL=[
-  // AMSTERDAM — TripAdvisor 2025
+  // AMSTERDAM — TripAdvisor ranked
   {id:1,rank:1,city:'Amsterdam',name:'Satay Club',rating:5.0,reviews:87,type:'modern',lat:52.3738,lng:4.8910,
-   desc:'Premium satay restaurant praised for near-Michelin quality. Widely regarded as one of the best satay experiences in the city.',
+   desc:'Premium satay restaurant in Amsterdam with near-Michelin quality. Widely regarded as one of the finest satay venues in the city, drawing both locals and international visitors.',
    menu:'Chicken satay, beef satay, peanut sauce, lontong',
    url:'https://www.tripadvisor.ie/Restaurant_Review-g188590-d33020385-Reviews-Satay_Club-Amsterdam_North_Holland_Province.html'},
   {id:2,rank:2,city:'Amsterdam',name:'MAX Amsterdam',rating:4.6,reviews:2539,type:'modern',lat:52.3600,lng:4.8850,
-   desc:'TripAdvisor\'s top-rated rijsttafel in Amsterdam. Contemporary Indonesian fine dining. Travellers Choice Award 2025.',
-   menu:'Premium rijsttafel, Indonesian desserts, specialty nasi goreng',
+   desc:'Best rijsttafel in Amsterdam according to TripAdvisor. A contemporary restaurant with a refined, multi-course Indonesian dining experience. Travellers Choice Award 2025.',
+   menu:'Premium rijsttafel, Indonesian desserts, special nasi goreng',
    url:'https://www.tripadvisor.ie/Restaurant_Review-g188590-d2292732-Reviews-MAX_Amsterdam-Amsterdam_North_Holland_Province.html'},
   {id:3,rank:3,city:'Amsterdam',name:'Blue Pepper Restaurant',rating:4.6,reviews:1099,type:'modern',lat:52.3680,lng:4.8780,
-   desc:'Indonesian fine dining with optional candlelight canal cruise. Travellers Choice Award 2025. Specialises in seafood and rijsttafel.',
-   menu:'Rijsttafel, Indonesian seafood, candlelight dinner',
+   desc:'Indonesian fine dining with an optional candlelight canal cruise. Seafood and rijsttafel specialist. Travellers Choice Award 2025.',
+   menu:'Rijsttafel, Indonesian seafood, candlelight dinner menu',
    url:'https://www.tripadvisor.ie/Restaurant_Review-g188590-d697058-Reviews-Blue_Pepper_Restaurant_And_Candlelight_Cruises-Amsterdam_North_Holland_Province.html'},
   {id:4,rank:4,city:'Amsterdam',name:'JUN Indonesian Cuisine',rating:4.5,reviews:683,type:'traditional',lat:52.3720,lng:4.9050,
-   desc:'Authentic Indonesian cooking with warm, efficient service. A popular choice for family dinners and special occasions.',
+   desc:'Authentic Indonesian cuisine with warm and efficient service. A popular choice for family dinners and visitors seeking genuine flavours.',
    menu:'Rijsttafel, nasi goreng, rendang, gado-gado',
    url:'https://www.tripadvisor.ie/Restaurant_Review-g188590-d4703686-Reviews-JUN_Indonesian_Cuisine-Amsterdam_North_Holland_Province.html'},
   {id:5,rank:5,city:'Amsterdam',name:'Kartika',rating:4.4,reviews:1454,type:'traditional',lat:52.3650,lng:4.8960,
-   desc:'Classic Indonesian restaurant serving rijsttafel tapas-style — many small dishes. Travellers Choice 2025. One of Amsterdam\'s oldest Indonesian establishments.',
-   menu:'Ramayana rijsttafel, satay, rendang, vegetable dishes',
+   desc:'Classic Indonesian restaurant serving rijsttafel tapas-style — many small dishes across one generous spread. Travellers Choice 2025. One of the oldest in Amsterdam.',
+   menu:'Rijsttafel Ramayana, satay, rendang, sayur lodeh',
    url:'https://www.tripadvisor.ie/Restaurant_Review-g188590-d1047813-Reviews-Kartika-Amsterdam_North_Holland_Province.html'},
   {id:6,rank:6,city:'Amsterdam',name:'Restaurant Blauw',rating:4.3,reviews:1441,type:'modern',lat:52.3580,lng:4.8830,
-   desc:'Highly popular modern Indonesian restaurant known for its quality rice table. Travellers Choice 2025.',
-   menu:'Rijsttafel, nasi goreng, Balinese duck, braised pork',
+   desc:'Highly popular modern Indonesian restaurant known for its premium rice table experience. Travellers Choice 2025.',
+   menu:'Rijsttafel, nasi goreng, bebek betutu, babi kecap',
    url:'https://www.tripadvisor.ie/Restaurant_Review-g188590-d1986573-Reviews-Restaurant_Blauw_Amsterdam-Amsterdam_North_Holland_Province.html'},
   {id:7,rank:7,city:'Amsterdam',name:'Sampurna',rating:4.0,reviews:1422,type:'traditional',lat:52.3660,lng:4.8920,
-   desc:'Cosy Indonesian restaurant near Amsterdam\'s old flower market. Authentic rijsttafel with friendly service. Travellers Choice 2025.',
+   desc:'Cosy Indonesian restaurant near the old flower market in Amsterdam. Authentic rijsttafel and friendly staff. Travellers Choice 2025.',
    menu:'Rijsttafel, chicken satay, nasi kuning, gado-gado',
    url:'https://www.tripadvisor.ie/Restaurant_Review-g188590-d1053304-Reviews-Sampurna-Amsterdam_North_Holland_Province.html'},
   {id:8,rank:8,city:'Amsterdam',name:'Restaurant Long Pura',rating:4.1,reviews:944,type:'traditional',lat:52.3710,lng:4.8870,
-   desc:'Strongly Balinese atmosphere with authentic decor. Rice table and satay are the top choices. Travellers Choice 2025.',
+   desc:'Strong Balinese atmosphere with authentic decor. Rice table and satay are the standout choices among diners. Travellers Choice 2025.',
    menu:'Rijsttafel, chicken satay, nasi goreng, rendang',
    url:'https://www.tripadvisor.ie/Restaurant_Review-g188590-d887341-Reviews-Restaurant_Long_Pura-Amsterdam_North_Holland_Province.html'},
   {id:9,rank:9,city:'Amsterdam',name:'Indrapura',rating:4.0,reviews:1471,type:'traditional',lat:52.3690,lng:4.9010,
-   desc:'Recommended by Amsterdam hotels. Healthy Indonesian cuisine in a relaxed, welcoming setting with attentive staff.',
-   menu:'Rijsttafel, nasi goreng, Balinese chicken, vegetable soup',
+   desc:'Recommended by Amsterdam hotels. Healthy Indonesian cooking in a relaxed, welcoming setting with attentive staff.',
+   menu:'Rijsttafel, nasi goreng, Balinese spiced chicken, vegetable stew',
    url:'https://www.tripadvisor.ie/Restaurant_Review-g188590-d1200726-Reviews-Indrapura-Amsterdam_North_Holland_Province.html'},
-  // THE HAGUE — TripAdvisor & local sources
-  {id:20,rank:1,city:'Den Haag',name:'Bogor Roemah Makan',rating:4.7,reviews:312,type:'traditional',lat:52.0750,lng:4.3120,
-   desc:'Organic authentic Indonesian food ranging from sweet to spicy. A firm local favourite in The Hague, praised for its quality and relaxed atmosphere.',
-   menu:'Nasi rames, rendang, gado-gado, vegetable soup',
-   url:'https://www.tripadvisor.com/Restaurants-g188633-c10690-The_Hague_South_Holland_Province.html'},
-  {id:21,rank:2,city:'Den Haag',name:'Toko Frederik',rating:4.5,reviews:890,type:'traditional',lat:52.0790,lng:4.3090,
-   desc:'A Den Haag culinary institution since 1984. Refined West Javanese cuisine suited to Western palates. A timeless classic with rijsttafel as its centrepiece.',
+  // THE HAGUE — TripAdvisor ranked
+  {id:20,rank:1,city:'The Hague',name:'Keraton Damai',rating:4.5,reviews:385,type:'traditional',lat:52.0820,lng:4.2980,
+   desc:'Consistently cited as the best rijsttafel in The Hague. East Javanese restaurant near the Peace Palace. Warm atmosphere and home-style dishes prepared with genuine care. Travellers Choice 2025.',
+   menu:'Rijsttafel, lamb satay, soto ayam, rendang',
+   url:'https://www.tripadvisor.com/Restaurant_Review-g188633-d2543351-Reviews-Keraton_Damai-The_Hague_South_Holland_Province.html'},
+  {id:21,rank:2,city:'The Hague',name:'Istana',rating:4.2,reviews:349,type:'traditional',lat:52.0750,lng:4.3180,
+   desc:'Well-regarded Indonesian restaurant in the heart of The Hague. Diners praise the chicken satay, pork dishes, gado-gado, and welcoming service.',
+   menu:'Chicken satay, gado-gado, babi dishes, rijsttafel',
+   url:'https://www.tripadvisor.com/Restaurant_Review-g188633-d1048200-Reviews-Istana-The_Hague_South_Holland_Province.html'},
+  {id:22,rank:3,city:'The Hague',name:'Kopi Kopi',rating:4.1,reviews:142,type:'modern',lat:52.0770,lng:4.3100,
+   desc:'Popular Indonesian restaurant in the centre of The Hague. Bright, casual atmosphere evoking the feel of a genuine Indonesian warung. Affordable and reliable.',
+   menu:'Nasi goreng, soto, gado-gado, Indonesian snacks',
+   url:'https://www.tripadvisor.com/Restaurant_Review-g188633-d11725524-Reviews-Kopi_Kopi-The_Hague_South_Holland_Province.html'},
+  {id:23,rank:4,city:'The Hague',name:'Indonesian Restaurant Poentjak',rating:3.8,reviews:296,type:'traditional',lat:52.0760,lng:4.3140,
+   desc:'A classic Indonesian restaurant in an old building in the centre of The Hague. Rich in nostalgia for the colonial era, serving traditional rijsttafel and rice dishes.',
+   menu:'Rijsttafel Sumatra, rendang, sate kambing',
+   url:'https://www.tripadvisor.com/Restaurant_Review-g188633-d3361606-Reviews-Indonesian_Restaurant_Poentjak-The_Hague_South_Holland_Province.html'},
+  {id:24,rank:5,city:'The Hague',name:'Toko Frederik',rating:3.9,reviews:259,type:'traditional',lat:52.0790,lng:4.3090,
+   desc:'A Den Haag culinary institution since 1984. Refined West Javanese cuisine well suited to international palates. Spot frequently frequented by Dutch political figures.',
    menu:'Rijsttafel, nasi rames, gado-gado, chicken satay',
    url:'https://www.tripadvisor.com/Restaurant_Review-g188633-d4046909-Reviews-Indonesisch_Rijsttafel_Restaurant_Toko_Frederik-The_Hague_South_Holland_Province.html'},
-  {id:22,rank:3,city:'Den Haag',name:'Soeboer',rating:4.4,reviews:520,type:'traditional',lat:52.0800,lng:4.3050,
-   desc:'Authentic Javanese living room restaurant operating for over 60 years. A favourite of former Dutch PM Mark Rutte. Reservations strongly advised.',
-   menu:'Traditional Javanese dishes, rijsttafel, nasi rames',
-   url:'https://www.tripadvisor.com/Restaurants-g188633-c10690-The_Hague_South_Holland_Province.html'},
-  {id:23,rank:4,city:'Den Haag',name:'Keraton Damai',rating:4.4,reviews:445,type:'traditional',lat:52.0820,lng:4.2980,
-   desc:'Widely acclaimed as the best rijsttafel in The Hague. East Javanese restaurant near the Peace Palace. Warm atmosphere and home-style cooking.',
-   menu:'Rijsttafel, lamb satay, chicken soto, rendang',
-   url:'https://www.tripadvisor.com/Restaurant_Review-g188633-d2543351-Reviews-Keraton_Damai-The_Hague_South_Holland_Province.html'},
-  {id:24,rank:5,city:'Den Haag',name:'Garoeda',rating:4.2,reviews:680,type:'modern',lat:52.0770,lng:4.3140,
-   desc:'One of the Netherlands\' first Indonesian restaurants. Authentic flavours presented in a creative, modern style. Famous for pairing dishes with Bintang beer.',
-   menu:'Rijsttafel, Indonesian street food, nasi goreng, satay',
-   url:'https://www.tripadvisor.com/Restaurants-g188633-c10690-The_Hague_South_Holland_Province.html'},
-  {id:25,rank:6,city:'Den Haag',name:'Waroeng Padan',rating:4.3,reviews:290,type:'traditional',lat:52.0730,lng:4.3200,
-   desc:'The only Padang Sumatran restaurant in Europe. Specialist in authentic Minangkabau cuisine with a legendary tjendol dessert drink.',
-   menu:'Nasi Padang, rendang, gulai, tjendol',
-   url:'https://www.tripadvisor.com/Restaurants-g188633-c10690-The_Hague_South_Holland_Province.html'},
-  {id:26,rank:7,city:'Den Haag',name:'Indisch Geluk',rating:4.2,reviews:380,type:'traditional',lat:52.0680,lng:4.3170,
-   desc:'Authentic Indonesian cuisine using fresh, high-quality produce. Modern, atmospheric setting. The satay from the grill is highly recommended.',
-   menu:'Rijsttafel, grilled satay, nasi rames',
-   url:'https://www.tripadvisor.com/Restaurants-g188633-c10690-The_Hague_South_Holland_Province.html'},
-  // ROTTERDAM — TripAdvisor & local sources
-  {id:40,rank:1,city:'Rotterdam',name:'Minang Kabau',rating:4.5,reviews:520,type:'traditional',lat:51.9350,lng:4.5100,
-   desc:'Iconic restaurant overlooking Kralingse Plas lake with panoramic city views. Housed in an authentic Minangkabau longhouse from Sumatra. Specialises in East Javanese cuisine.',
-   menu:'Rijsttafel, lamb satay, lemper, soto madura',
-   url:'https://www.tripadvisor.com/Restaurants-g188632-c10690-Rotterdam_South_Holland_Province.html'},
-  {id:41,rank:2,city:'Rotterdam',name:'Warung Mini',rating:4.3,reviews:890,type:'traditional',lat:51.9200,lng:4.4750,
-   desc:'A legendary warung on Witte de Withstraat, open for over 35 years. Indonesian, Javanese, and Surinamese cuisine. Open until the early hours.',
+  {id:25,rank:6,city:'The Hague',name:'Sayang',rating:4.3,reviews:78,type:'traditional',lat:52.0730,lng:4.3200,
+   desc:'Informal Indonesian restaurant with a reasonable a la carte menu and strong rijsttafel offering. A local favourite for its generous portions and home-style cooking.',
+   menu:'Rijsttafel, prawn satay, nasi goreng, chicken dishes',
+   url:'https://www.tripadvisor.com/Restaurant_Review-g188633-d8468566-Reviews-Sayang-The_Hague_South_Holland_Province.html'},
+  {id:26,rank:7,city:'The Hague',name:'Waroeng Padang Lapek',rating:4.0,reviews:94,type:'traditional',lat:52.0680,lng:4.3060,
+   desc:'Authentic Padang cuisine from West Sumatra — widely described as a piece of West Sumatra in Western Europe. Specialises in nasi Padang and traditional Minangkabau dishes.',
+   menu:'Nasi Padang, rendang, bakso, satay, gulai',
+   url:'https://www.tripadvisor.com/Restaurant_Review-g188633-d19142051-Reviews-Waroeng_Padang_Lapek-The_Hague_South_Holland_Province.html'},
+  {id:27,rank:8,city:'The Hague',name:'Trio Eethuis',rating:4.6,reviews:29,type:'traditional',lat:52.0800,lng:4.3050,
+   desc:'A favourite among the Indonesian community in The Hague. Owner-operated with authentic home cooking and a warm, personal atmosphere. Highly praised by diners.',
+   menu:'Nasi rames, rendang, Indonesian home-style dishes',
+   url:'https://www.tripadvisor.com/Restaurant_Review-g188633-d12831249-Reviews-Trio_Eethuis_den_haag-The_Hague_South_Holland_Province.html'},
+  {id:28,rank:9,city:'The Hague',name:'Mekar Sari',rating:4.4,reviews:44,type:'traditional',lat:52.0710,lng:4.3130,
+   desc:'Truly authentic Indonesian restaurant with a Dutch touch. Friendly staff and fantastic food. A hidden gem among The Hague regulars.',
+   menu:'Nasi goreng, satay, Indonesian stews, rijsttafel',
+   url:'https://www.tripadvisor.com/Restaurant_Review-g188633-d3668993-Reviews-Mekar_Sari-The_Hague_South_Holland_Province.html'},
+  {id:29,rank:10,city:'The Hague',name:'Bogor',rating:3.7,reviews:234,type:'traditional',lat:52.0660,lng:4.3170,
+   desc:'A well-known Indonesian restaurant in The Hague with decades of history. Diners appreciate its broad menu spanning numerous regional Indonesian dishes.',
+   menu:'Rijsttafel, nasi goreng, gado-gado, soto',
+   url:'https://www.tripadvisor.com/Restaurant_Review-g188633-d3671389-Reviews-Bogor-The_Hague_South_Holland_Province.html'},
+  // ROTTERDAM — TripAdvisor ranked
+  {id:40,rank:1,city:'Rotterdam',name:'Mijn Boemboe',rating:4.8,reviews:64,type:'traditional',lat:51.9420,lng:4.4820,
+   desc:'Highest-rated Indonesian restaurant in Rotterdam on TripAdvisor. Seafood and Indonesian cuisine in Schiebroek. Exceptional quality and warm service from the owner-chef.',
+   menu:'Indonesian-Dutch seafood dishes, rijsttafel, nasi goreng',
+   url:'https://www.tripadvisor.co.id/Restaurant_Review-g188632-d12164366-Reviews-Mijn_Boemboe-Rotterdam_South_Holland_Province.html'},
+  {id:41,rank:2,city:'Rotterdam',name:'Ap Halen',rating:4.8,reviews:11,type:'traditional',lat:51.9150,lng:4.4700,
+   desc:'Small neighbourhood takeaway praised as one of the best Indonesian food spots outside Indonesia. Exceptional home cooking at very affordable prices.',
+   menu:'Indonesian home cooking, nasi rames, daily specials',
+   url:'https://www.tripadvisor.co.id/Restaurant_Review-g188632-d10168017-Reviews-Ap_Halen-Rotterdam_South_Holland_Province.html'},
+  {id:42,rank:3,city:'Rotterdam',name:'Small Asia',rating:4.5,reviews:54,type:'traditional',lat:51.9260,lng:4.4780,
+   desc:'A hidden gem in Rotterdam with outstanding Indonesian and Asian dishes. Five-star reviews highlight the quality, friendly service, and excellent value for money.',
+   menu:'Indonesian staples, nasi goreng, satay, vegetarian options',
+   url:'https://www.tripadvisor.co.id/Restaurant_Review-g188632-d7599827-Reviews-Small_Asia-Rotterdam_South_Holland_Province.html'},
+  {id:43,rank:4,city:'Rotterdam',name:'Samalain',rating:4.3,reviews:10,type:'modern',lat:51.9300,lng:4.5300,
+   desc:'Renewed Indonesian-Asian restaurant near Alexandrium. Following a fire and reopening, it offers a fresh interior and menu rooted in Indonesian culinary heritage.',
+   menu:'Indonesian rice dishes, satay, nasi goreng, Asian fusion',
+   url:'https://www.tripadvisor.co.id/Restaurant_Review-g188632-d26854624-Reviews-Samalain-Rotterdam_South_Holland_Province.html'},
+  {id:44,rank:5,city:'Rotterdam',name:'Warung Jantje',rating:4.4,reviews:10,type:'traditional',lat:51.9240,lng:4.4860,
+   desc:'Authentic Indonesian warung in Rotterdam with loyal local following. Praised for its genuinely Indonesian home-style cooking and relaxed, welcoming atmosphere.',
+   menu:'Nasi rames, Indonesian daily dishes, takeaway specials',
+   url:'https://www.tripadvisor.co.id/Restaurant_Review-g188632-d12112015-Reviews-Warung_Jantje-Rotterdam_South_Holland_Province.html'},
+  {id:45,rank:6,city:'Rotterdam',name:'Minang Kabau Baru',rating:3.6,reviews:159,type:'traditional',lat:51.9350,lng:4.5100,
+   desc:'Indonesian restaurant on the shores of Kralingse Plas with panoramic views of the Rotterdam skyline. Set in a building inspired by Minangkabau architecture from West Sumatra.',
+   menu:'Rijsttafel, satay kambing, soto madura, lemper',
+   url:'https://www.tripadvisor.co.id/Restaurant_Review-g188632-d3819809-Reviews-Minang_Kabau_Baru-Rotterdam_South_Holland_Province.html'},
+  {id:46,rank:7,city:'Rotterdam',name:'Warung Mini Rotterdam',rating:3.7,reviews:159,type:'traditional',lat:51.9200,lng:4.4760,
+   desc:'A Rotterdam institution on Witte de Withstraat, serving Indonesian, Javanese, and Surinamese cuisine. Open until the early hours, popular with students and night-owls.',
    menu:'Nasi goreng, bami goreng, satay, Javanese-Surinamese dishes',
-   url:'https://www.tripadvisor.com/Restaurants-g188632-c10690-Rotterdam_South_Holland_Province.html'},
-  {id:42,rank:3,city:'Rotterdam',name:'Dewi Sri',rating:4.4,reviews:340,type:'modern',lat:51.9450,lng:4.5000,
-   desc:'A Rotterdam culinary landmark since 1980. Combines traditional Javanese-Sumatran rijsttafel with an innovative Peranakan approach. Based in Hillegersberg.',
-   menu:'Rijsttafel, Peranakan cuisine, nasi goreng',
-   url:'https://www.tripadvisor.com/Restaurants-g188632-c10690-Rotterdam_South_Holland_Province.html'},
-  {id:43,rank:4,city:'Rotterdam',name:'TIWYA',rating:4.2,reviews:210,type:'modern',lat:51.9220,lng:4.4680,
-   desc:'Chic Indonesian restaurant with a disco-dining concept near Rotterdam Centraal. Experienced chefs working from authentic family recipes.',
-   menu:'Rendang, lemper ayam, Indonesian cocktails',
-   url:'https://www.tripadvisor.com/Restaurants-g188632-c10690-Rotterdam_South_Holland_Province.html'},
-  {id:44,rank:5,city:'Rotterdam',name:'Papaya',rating:4.1,reviews:450,type:'traditional',lat:51.9180,lng:4.4820,
-   desc:'Indonesian brasserie and takeaway since 1997. All dishes prepared from fresh, natural ingredients. A popular choice across Rotterdam.',
+   url:'https://www.tripadvisor.co.id/Restaurant_Review-g188632-d7616602-Reviews-Warung_Mini_Rotterdam-Rotterdam_South_Holland_Province.html'},
+  {id:47,rank:8,city:'Rotterdam',name:'Papaya Rotterdam',rating:3.6,reviews:54,type:'traditional',lat:51.9180,lng:4.4820,
+   desc:'Indonesian brasserie and takeaway since 1997. All dishes prepared from fresh, natural ingredients. A long-standing name in the Rotterdam Indonesian dining scene.',
    menu:'Nasi goreng, satay, gado-gado, rijsttafel',
-   url:'https://www.tripadvisor.com/Restaurants-g188632-c10690-Rotterdam_South_Holland_Province.html'},
-  {id:45,rank:6,city:'Rotterdam',name:'Restaurant Indonesia',rating:4.0,reviews:380,type:'traditional',lat:51.9190,lng:4.4850,
-   desc:'Authentic rice table with acclaimed beef curries. Generous portions — leftovers are packed to take home. Simple setting, outstanding food.',
-   menu:'Rijsttafel, beef curry, sambal trassi, nasi rames',
-   url:'https://www.tripadvisor.com/Restaurant_Review-g188632-d17168714-Reviews-Restaurant_Indonesia-Rotterdam_South_Holland_Province.html'},
-  // LEIDEN — local sources
-  {id:60,rank:1,city:'Leiden',name:'Warung De Lombok',rating:4.4,reviews:195,type:'traditional',lat:52.1580,lng:4.4920,
-   desc:'Specialises in cuisine from Lombok and Nusa Tenggara. One of the most authentically regional Indonesian eateries in the Leiden area.',
-   menu:'Ayam taliwang, plecing kangkung, beberuk terong',
-   url:'https://www.tripadvisor.com/Restaurants-g188577-c10690-Leiden_South_Holland_Province.html'},
-  {id:61,rank:2,city:'Leiden',name:'Toko Leiden',rating:4.2,reviews:148,type:'traditional',lat:52.1600,lng:4.4870,
-   desc:'Small Indonesian toko and restaurant near Leiden city centre. Popular among Leiden University students and the local Indonesian diaspora community.',
-   menu:'Nasi rames, satay, braised pork, spring rolls',
-   url:'https://www.tripadvisor.com/Restaurants-g188577-c10690-Leiden_South_Holland_Province.html'},
-  {id:62,rank:3,city:'Leiden',name:'Resto Nusantara Leiden',rating:4.1,reviews:112,type:'traditional',lat:52.1550,lng:4.4960,
-   desc:'Family-run Indonesian restaurant serving dishes from across the archipelago. Warm atmosphere and student-friendly prices.',
-   menu:'Mini rijsttafel, nasi goreng, rendang, gado-gado',
-   url:'https://www.tripadvisor.com/Restaurants-g188577-c10690-Leiden_South_Holland_Province.html'}
+   url:'https://www.tripadvisor.co.id/Restaurant_Review-g188632-d4026497-Reviews-Papaya_Rotterdam-Rotterdam_South_Holland_Province.html'},
+  // LEIDEN — TripAdvisor ranked
+  {id:60,rank:1,city:'Leiden',name:'Surakarta',rating:4.0,reviews:208,type:'traditional',lat:52.1600,lng:4.4920,
+   desc:'The top-ranked Indonesian restaurant in Leiden on TripAdvisor. Named after the royal city of Solo in Java, serving authentic Indonesian cuisine in a pleasant setting.',
+   menu:'Rijsttafel, nasi goreng, Indonesian rice dishes, satay',
+   url:'https://www.tripadvisor.co.id/Restaurant_Review-g188630-d1163165-Reviews-Surakarta-Leiden_South_Holland_Province.html'},
+  {id:61,rank:2,city:'Leiden',name:'Sumatra House',rating:4.1,reviews:180,type:'traditional',lat:52.1580,lng:4.4870,
+   desc:'Authentic and well-reviewed Indonesian restaurant in Leiden. Reviewers consistently describe the food as genuinely Indonesian — popular with both locals and Leiden University students.',
+   menu:'Sumatran dishes, rijsttafel, nasi goreng, rendang',
+   url:'https://www.tripadvisor.co.id/Restaurant_Review-g188630-d2109309-Reviews-Sumatra_House-Leiden_South_Holland_Province.html'},
+  {id:62,rank:3,city:'Leiden',name:'BungaMas',rating:3.8,reviews:9,type:'traditional',lat:52.1620,lng:4.4960,
+   desc:'Small Indonesian toko and takeaway restaurant in central Leiden. Known for quick, affordable Indonesian food, popular among local residents and students.',
+   menu:'Indonesian daily dishes, nasi goreng, takeaway specials',
+   url:'https://www.tripadvisor.co.id/Restaurant_Review-g188630-d11732202-Reviews-BungaMas-Leiden_South_Holland_Province.html'}
 ];
 
 var TC={traditional:'#B5451B',modern:'#C49A2A'};
@@ -230,10 +244,7 @@ var TL={traditional:'Traditional',modern:'Modern / Fusion'};
 var TB={traditional:'rgba(181,69,27,0.1)',modern:'rgba(196,154,42,0.12)'};
 var activeCity='all',activeType='all',map,MM={};
 
-function stH(r){
-  var s='';for(var i=0;i<Math.floor(r);i++)s+='&#9733;';
-  return '<span style="color:#C49A2A">'+s+'</span> <span style="color:#6B4F2A;font-size:0.88em">'+r.toFixed(1)+'</span>';
-}
+function stH(r){var s='';for(var i=0;i<Math.floor(r);i++)s+='&#9733;';return '<span style="color:#C49A2A">'+s+'</span> <span style="color:#6B4F2A;font-size:0.9em">'+r.toFixed(1)+'</span>';}
 
 function mkIcon(p,faded){
   var c=faded?'#ccc':TC[p.type],op=faded?'0.25':'1';
@@ -254,17 +265,17 @@ function visible(){
 function initMap(){
   map=L.map('map',{zoomControl:true}).setView([52.1,4.7],8);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom:18
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18
   }).addTo(map);
   ALL.forEach(function(p){
     var m=L.marker([p.lat,p.lng],{icon:mkIcon(p,false)}).addTo(map);
     m.bindPopup(
-      '<div class="pc">'+CITY_LABELS[p.city]+' &middot; #'+p.rank+' &middot; '+TL[p.type]+'</div>'
+      '<div class="pc">'+p.city+' &middot; Rank #'+p.rank+' &middot; '+TL[p.type]+'</div>'
       +'<div class="pn">'+p.name+'</div>'
       +'<div class="ps">'+stH(p.rating)+' <span style="color:#6B4F2A;font-size:10px;">('+p.reviews.toLocaleString()+' reviews)</span></div>'
+      +'<span class="pb" style="background:'+TB[p.type]+';color:'+TC[p.type]+'">'+TL[p.type]+'</span>'
       +'<div class="pd">'+p.desc+'</div>',
-      {maxWidth:250}
+      {maxWidth:260}
     );
     m.on('click',function(){showDetail(p);hlItem(p.id);});
     MM[p.id]=m;
@@ -286,19 +297,17 @@ function render(){
   vis.forEach(function(p){if(cities.indexOf(p.city)===-1)cities.push(p.city);});
   cities.forEach(function(city){
     var hdr=document.createElement('div');
-    hdr.style.cssText='padding:0.4rem 1.1rem;background:'+CITY_COLORS[city]+'18;border-bottom:1px solid var(--parchment);font-family:"JetBrains Mono",monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:'+CITY_COLORS[city]+';font-weight:500;';
-    hdr.textContent=CITY_LABELS[city];
+    hdr.style.cssText='padding:0.4rem 1.1rem;background:'+CITY_COLORS[city]+'15;border-bottom:1px solid var(--parchment);font-family:JetBrains Mono,monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:'+CITY_COLORS[city]+';font-weight:500;';
+    hdr.textContent=city;
     list.appendChild(hdr);
     vis.filter(function(p){return p.city===city;}).forEach(function(p){
       var item=document.createElement('div');
       item.className='ri';item.dataset.id=p.id;
       item.innerHTML='<div class="rnk">#'+p.rank+'</div>'
         +'<div class="rinfo"><div class="rname">'+p.name+'</div>'
-        +'<div class="rmeta">'
-        +'<span class="rrat">&#9733; '+p.rating.toFixed(1)+'</span>'
+        +'<div class="rmeta"><span class="rrat">&#9733; '+p.rating.toFixed(1)+'</span>'
         +'<span class="rrev">('+p.reviews.toLocaleString()+')</span>'
-        +'<span class="rtype" style="background:'+TB[p.type]+';color:'+TC[p.type]+'">'+TL[p.type]+'</span>'
-        +'</div></div>';
+        +'<span class="rtype" style="background:'+TB[p.type]+';color:'+TC[p.type]+'">'+TL[p.type]+'</span></div></div>';
       item.addEventListener('click',function(){
         map.setView([p.lat,p.lng],15,{animate:true});
         MM[p.id].openPopup();showDetail(p);hlItem(p.id);
@@ -319,11 +328,11 @@ function showDetail(p){
   var card=document.getElementById('dc');
   card.innerHTML='<span class="dcls" id="cdc">&times;</span>'
     +'<div class="dn">'+p.name+'</div>'
-    +'<div class="dr">'+CITY_LABELS[p.city]+' &mdash; #'+p.rank+' &middot; '+TL[p.type]+'</div>'
+    +'<div class="dr">'+p.city+' &mdash; Rank #'+p.rank+' &middot; '+TL[p.type]+'</div>'
     +'<div style="margin-bottom:0.45rem">'+stH(p.rating)+' <span style="color:var(--ink-light);font-size:0.76rem;">('+p.reviews.toLocaleString()+' reviews)</span></div>'
-    +'<div class="dsl">About</div><div class="ddesc">'+p.desc+'</div>'
+    +'<div class="dsl">Description</div><div class="ddesc">'+p.desc+'</div>'
     +'<div class="dsl">Signature Dishes</div><div class="dmenu">'+p.menu+'</div>'
-    +'<a class="dlink" href="'+p.url+'" target="_blank">View source &#8599;</a>';
+    +'<a class="dlink" href="'+p.url+'" target="_blank">View on TripAdvisor &#8599;</a>';
   card.classList.add('visible');
   document.getElementById('cdc').addEventListener('click',function(){
     card.classList.remove('visible');
