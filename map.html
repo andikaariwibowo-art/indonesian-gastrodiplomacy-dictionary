@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indonesian Restaurants in the Netherlands — Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --cream: #F7F2E8;
+    --parchment: #EDE4D0;
+    --warm-white: #FDFAF4;
+    --ink: #1A1208;
+    --ink-mid: #3D2B0F;
+    --ink-light: #6B4F2A;
+    --spice: #B5451B;
+    --gold: #C49A2A;
+    --gold-light: #E2B84A;
+    --clove: #5C3317;
+    --sage: #7A8C6E;
+    --shadow-warm: rgba(90,50,10,0.12);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { height:100%; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  #site-header {
+    background: var(--clove);
+    color: var(--cream);
+    padding: 1.2rem 2rem;
+    border-bottom: 4px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .header-left { display: flex; align-items: center; gap: 1rem; }
+
+  .back-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--gold-light);
+    text-decoration: none;
+    border: 1px solid rgba(226,184,74,0.4);
+    padding: 0.35rem 0.8rem;
+    border-radius: 2px;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .back-btn:hover { background: rgba(226,184,74,0.1); }
+
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+  .header-title span {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+  }
+
+  /* CONTROLS BAR */
+  #controls-bar {
+    background: var(--warm-white);
+    border-bottom: 1.5px solid var(--parchment);
+    padding: 0.75rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px var(--shadow-warm);
+  }
+
+  .controls-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .filter-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.85rem;
+    border-radius: 20px;
+    border: 1.5px solid var(--parchment);
+    background: var(--warm-white);
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: var(--spice); color: var(--spice); }
+  .filter-btn.active { background: var(--spice); color: var(--cream); border-color: var(--spice); }
+
+  .divider { width: 1px; height: 20px; background: var(--parchment); }
+
+  .stats-row {
+    display: flex;
+    gap: 1.2rem;
+    margin-left: auto;
+    align-items: center;
+  }
+  .stat-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--ink-light);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .stat-pill strong {
+    font-size: 0.9rem;
+    color: var(--spice);
+    font-weight: 700;
+  }
+
+  /* MAIN */
+  #main-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* MAP */
+  #map {
+    flex: 1;
+    min-height: 500px;
+    z-index: 1;
+  }
+
+  /* SIDEBAR PANEL */
+  #side-panel {
+    width: 320px;
+    background: var(--warm-white);
+    border-left: 2px solid var(--parchment);
+    overflow-y: auto;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .panel-header {
+    padding: 1.2rem 1.5rem 1rem;
+    border-bottom: 1px solid var(--parchment);
+    background: var(--cream);
+    flex-shrink: 0;
+  }
+  .panel-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--clove);
+    margin-bottom: 0.2rem;
+  }
+  .panel-header p {
+    font-size: 0.75rem;
+    color: var(--ink-light);
+    font-style: italic;
+  }
+
+  /* Restaurant list */
+  #restaurant-list { flex: 1; overflow-y: auto; }
+
+  .rest-item {
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid var(--parchment);
+    cursor: pointer;
+    transition: background 0.12s;
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+  }
+  .rest-item:hover { background: rgba(181,69,27,0.04); }
+  .rest-item.active { background: rgba(181,69,27,0.08); border-left: 3px solid var(--spice); padding-left: calc(1.5rem - 3px); }
+
+  .rest-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .rest-info { flex: 1; min-width: 0; }
+  .rest-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--clove);
+    margin-bottom: 0.15rem;
+    line-height: 1.2;
+  }
+  .rest-city {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.3rem;
+  }
+  .rest-type-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.06em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  /* Detail card */
+  #detail-card {
+    display: none;
+    padding: 1.5rem;
+    border-top: 2px solid var(--parchment);
+    background: var(--cream);
+    flex-shrink: 0;
+  }
+  #detail-card.visible { display: block; }
+
+  .detail-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--clove);
+    margin-bottom: 0.2rem;
+  }
+  .detail-city {
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    margin-bottom: 0.6rem;
+    font-style: italic;
+  }
+  .detail-section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.3rem;
+    margin-top: 0.8rem;
+  }
+  .detail-desc {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--ink-mid);
+    font-weight: 300;
+  }
+  .detail-menu {
+    font-size: 0.8rem;
+    color: var(--ink-mid);
+    background: rgba(237,228,208,0.5);
+    padding: 0.5rem 0.75rem;
+    border-left: 2px solid var(--gold);
+    border-radius: 0 2px 2px 0;
+    font-style: italic;
+  }
+  .detail-close {
+    float: right;
+    font-size: 1.1rem;
+    color: var(--ink-light);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 0 0.3rem 0.5rem;
+  }
+  .detail-close:hover { color: var(--spice); }
+
+  /* Legend */
+  #legend {
+    padding: 0.8rem 1.5rem;
+    border-top: 1px solid var(--parchment);
+    background: var(--warm-white);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-light);
+  }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* Leaflet popup override */
+  .leaflet-popup-content-wrapper {
+    border-radius: 4px !important;
+    box-shadow: 0 4px 20px rgba(26,18,8,0.18) !important;
+    border: 1px solid var(--parchment) !important;
+    font-family: 'Source Serif 4', Georgia, serif !important;
+  }
+  .leaflet-popup-content { margin: 14px 16px !important; }
+  .popup-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #5C3317; margin-bottom: 2px; }
+  .popup-city { font-size: 11px; color: #6B4F2A; margin-bottom: 6px; }
+  .popup-badge { font-size: 10px; padding: 2px 7px; border-radius: 2px; display: inline-block; margin-bottom: 7px; }
+  .popup-desc { font-size: 12px; color: #3D2B0F; line-height: 1.55; margin-bottom: 6px; font-weight: 300; }
+  .popup-menu { font-size: 11px; color: #6B4F2A; font-style: italic; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    #main-content { flex-direction: column; }
+    #side-panel { width: 100%; border-left: none; border-top: 2px solid var(--parchment); max-height: 280px; }
+    #map { min-height: 350px; }
+    .stats-row { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="header-left">
+    <a href="index.html" class="back-btn">&#8592; Dictionary</a>
+    <div class="header-title">
+      <span>Indonesian Gastrodiplomacy</span>
+      Restoran Indonesia di Belanda
+    </div>
+  </div>
+</header>
+
+<div id="controls-bar">
+  <span class="controls-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">Semua</button>
+  <button class="filter-btn" data-filter="tradisional">Tradisional</button>
+  <button class="filter-btn" data-filter="modern">Modern / Fusion</button>
+  <button class="filter-btn" data-filter="festival">Festival / Pasar</button>
+  <div class="divider"></div>
+  <div class="stats-row">
+    <div class="stat-pill"><strong id="stat-count">15</strong> lokasi</div>
+    <div class="stat-pill"><strong id="stat-cities">8</strong> kota</div>
+  </div>
+</div>
+
+<div id="main-content">
+  <div id="map"></div>
+
+  <div id="side-panel">
+    <div class="panel-header">
+      <h3>Daftar Restoran</h3>
+      <p>Data ilustratif untuk prototipe penelitian</p>
+    </div>
+    <div id="restaurant-list"></div>
+    <div id="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#B5451B"></div> Tradisional</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#C49A2A"></div> Modern / Fusion</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#5C3317"></div> Festival / Pasar</div>
+    </div>
+    <div id="detail-card"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+var PLACES = [
+  { id:1, name:"Blauw", city:"Amsterdam", type:"modern", lat:52.3632, lng:4.8960, desc:"Restoran fine dining Indonesia modern, terkenal sebagai salah satu terbaik di Belanda. Menyajikan rijsttafel kontemporer dengan presentasi elegan.", menu:"Rijsttafel modern, nasi goreng truffle, gado-gado kontemporer" },
+  { id:2, name:"Tempo Doeloe", city:"Amsterdam", type:"tradisional", lat:52.3650, lng:4.9020, desc:"Salah satu restoran Indonesia tertua di Amsterdam. Dikenal dengan masakan autentik dan sistem level kepedasan yang bisa dipilih tamu.", menu:"Rendang, sambal goreng, gado-gado, sate ayam" },
+  { id:3, name:"Kantjil & de Tijger", city:"Amsterdam", type:"tradisional", lat:52.3720, lng:4.8930, desc:"Restoran Indonesia populer di pusat Amsterdam sejak 1980-an. Favorit wisatawan dan warga lokal Belanda.", menu:"Rijsttafel, satay, nasi kuning, bami goreng" },
+  { id:4, name:"Warung Mini", city:"Amsterdam", type:"tradisional", lat:52.3580, lng:4.9150, desc:"Warung kecil autentik dengan masakan Jawa dan Sunda sehari-hari. Harga terjangkau dan loyal di kalangan diaspora.", menu:"Nasi rames, soto ayam, tempe mendoan, bakwan" },
+  { id:5, name:"Tong Tong Fair", city:"Den Haag", type:"festival", lat:52.0760, lng:4.3150, desc:"Festival budaya dan kuliner tahunan terbesar Eurasia di Eropa. Diadakan sejak 1959, menampilkan masakan dari seluruh Indonesia.", menu:"Semua masakan nusantara: Jawa, Padang, Palembang, Bali" },
+  { id:6, name:"Pasar Malam Indonesia", city:"Den Haag", type:"festival", lat:52.0800, lng:4.3080, desc:"Festival resmi diorganisir KBRI Den Haag. Menampilkan demo masak, food stall, dan pertunjukan budaya Indonesia.", menu:"Rendang, nasi goreng, jajan pasar, es cendol" },
+  { id:7, name:"Djakarta Bali", city:"Den Haag", type:"tradisional", lat:52.0705, lng:4.3100, desc:"Restoran legendaris Den Haag, melayani diaspora Indonesia sejak puluhan tahun. Salah satu pelopor restoran Indonesia di Belanda.", menu:"Babi guling, nasi bali, soto betawi, gado-gado" },
+  { id:8, name:"Warung Suri", city:"Den Haag", type:"tradisional", lat:52.0730, lng:4.3200, desc:"Warung keluarga khas Minang yang autentik dan konsisten. Populer di kalangan pekerja Indonesia di Den Haag.", menu:"Rendang, gulai kambing, ayam pop, dendeng balado" },
+  { id:9, name:"Sindang Reret", city:"Rotterdam", type:"tradisional", lat:51.9234, lng:4.4780, desc:"Masakan Sunda autentik di Rotterdam. Populer di kalangan diaspora Indonesia dan penggemar kuliner lokal.", menu:"Karedok, pepes ikan, nasi liwet, sayur asem" },
+  { id:10, name:"Indonesian Food Hub", city:"Rotterdam", type:"modern", lat:51.9200, lng:4.4820, desc:"Konsep street food Indonesia modern untuk pasar Rotterdam yang kosmopolitan dan beragam.", menu:"Nasi goreng, bao isi rendang, es cendol, pisang goreng" },
+  { id:11, name:"Saté House Utrecht", city:"Utrecht", type:"tradisional", lat:52.0920, lng:5.1180, desc:"Spesialis sate dari berbagai daerah Indonesia. Salah satu restoran Indonesia pertama di kota Utrecht.", menu:"Sate Madura, sate Padang, sate Lilit Bali, sate kambing" },
+  { id:12, name:"Nusa Indah", city:"Eindhoven", type:"tradisional", lat:51.4380, lng:5.4780, desc:"Restoran keluarga dengan masakan khas Jawa dan Bali. Melayani komunitas Indonesia dan warga lokal Eindhoven.", menu:"Opor ayam, nasi goreng, lawar Bali, pisang goreng" },
+  { id:13, name:"Batavia Indonesian", city:"Groningen", type:"modern", lat:53.2194, lng:6.5660, desc:"Restoran Indonesia modern di kota mahasiswa Groningen. Menu adaptasi untuk selera lokal dan komunitas internasional.", menu:"Nasi goreng fusion, satay wrap, es teh susu, tempeh burger" },
+  { id:14, name:"Warung Lombok", city:"Leiden", type:"tradisional", lat:52.1600, lng:4.4970, desc:"Masakan khas Lombok dan Nusa Tenggara. Salah satu warung paling autentik di kawasan Leiden.", menu:"Ayam taliwang, plecing kangkung, beberuk terong" },
+  { id:15, name:"Rempah Kitchen", city:"Maastricht", type:"modern", lat:50.8514, lng:5.6910, desc:"Fusion Indonesia-Eropa menggunakan rempah-rempah nusantara dalam konsep menu kontemporer.", menu:"Rendang ragout, tempeh burger, kunyit latte, rijsttafel modern" }
+];
+
+var TYPE_COLORS = { tradisional:'#B5451B', modern:'#C49A2A', festival:'#5C3317' };
+var TYPE_LABELS = { tradisional:'Tradisional', modern:'Modern / Fusion', festival:'Festival / Pasar' };
+var TYPE_BG = { tradisional:'rgba(181,69,27,0.1)', modern:'rgba(196,154,42,0.12)', festival:'rgba(92,51,23,0.1)' };
+
+var activeFilter = 'all';
+var map, markerMap = {};
+
+function makeMarkerIcon(type, faded) {
+  var c = faded ? '#ccc' : TYPE_COLORS[type];
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40">'
+    + '<path d="M15 0C6.72 0 0 6.72 0 15c0 10 15 25 15 25S30 25 30 15C30 6.72 23.28 0 15 0z" fill="' + c + '" opacity="' + (faded ? '0.35' : '1') + '"/>'
+    + '<circle cx="15" cy="15" r="7" fill="white" opacity="' + (faded ? '0.5' : '1') + '"/>'
+    + '</svg>';
+  return L.divIcon({ html: svg, className:'', iconSize:[30,40], iconAnchor:[15,40], popupAnchor:[0,-42] });
+}
+
+function initMap() {
+  map = L.map('map', { zoomControl:true }).setView([52.2, 5.1], 7);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 18
+  }).addTo(map);
+
+  PLACES.forEach(function(p) {
+    var m = L.marker([p.lat, p.lng], { icon: makeMarkerIcon(p.type, false) }).addTo(map);
+    m.bindPopup(
+      '<div class="popup-name">' + p.name + '</div>'
+      + '<div class="popup-city">' + p.city + ', Belanda</div>'
+      + '<span class="popup-badge" style="background:' + TYPE_BG[p.type] + ';color:' + TYPE_COLORS[p.type] + '">' + TYPE_LABELS[p.type] + '</span>'
+      + '<div class="popup-desc">' + p.desc + '</div>'
+      + '<div class="popup-menu"><b>Menu khas:</b> ' + p.menu + '</div>',
+      { maxWidth: 260 }
+    );
+    m.on('click', function() { showDetail(p); highlightListItem(p.id); });
+    markerMap[p.id] = m;
+  });
+
+  buildList();
+}
+
+function buildList() {
+  var list = document.getElementById('restaurant-list');
+  list.innerHTML = '';
+  var visible = activeFilter === 'all' ? PLACES : PLACES.filter(function(p){ return p.type === activeFilter; });
+  visible.forEach(function(p) {
+    var item = document.createElement('div');
+    item.className = 'rest-item';
+    item.dataset.id = p.id;
+    item.innerHTML =
+      '<div class="rest-dot" style="background:' + TYPE_COLORS[p.type] + '"></div>'
+      + '<div class="rest-info">'
+      + '<div class="rest-name">' + p.name + '</div>'
+      + '<div class="rest-city">' + p.city + '</div>'
+      + '<span class="rest-type-badge" style="background:' + TYPE_BG[p.type] + ';color:' + TYPE_COLORS[p.type] + '">' + TYPE_LABELS[p.type] + '</span>'
+      + '</div>';
+    item.addEventListener('click', function() {
+      var marker = markerMap[p.id];
+      map.setView([p.lat, p.lng], 14, { animate: true });
+      marker.openPopup();
+      showDetail(p);
+      highlightListItem(p.id);
+    });
+    list.appendChild(item);
+  });
+  updateStats(visible);
+}
+
+function updateStats(visible) {
+  if (!visible) visible = activeFilter === 'all' ? PLACES : PLACES.filter(function(p){ return p.type === activeFilter; });
+  var cities = {};
+  visible.forEach(function(p){ cities[p.city] = true; });
+  document.getElementById('stat-count').textContent = visible.length;
+  document.getElementById('stat-cities').textContent = Object.keys(cities).length;
+}
+
+function highlightListItem(id) {
+  document.querySelectorAll('.rest-item').forEach(function(el){
+    el.classList.toggle('active', parseInt(el.dataset.id) === id);
+  });
+  var active = document.querySelector('.rest-item[data-id="' + id + '"]');
+  if (active) active.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+function showDetail(p) {
+  var card = document.getElementById('detail-card');
+  card.innerHTML =
+    '<span class="detail-close" id="close-detail">&times;</span>'
+    + '<div class="detail-name">' + p.name + '</div>'
+    + '<div class="detail-city">' + p.city + ', Belanda &mdash; <span style="color:' + TYPE_COLORS[p.type] + '">' + TYPE_LABELS[p.type] + '</span></div>'
+    + '<div class="detail-section-label">Deskripsi</div>'
+    + '<div class="detail-desc">' + p.desc + '</div>'
+    + '<div class="detail-section-label">Menu Khas</div>'
+    + '<div class="detail-menu">' + p.menu + '</div>';
+  card.classList.add('visible');
+  document.getElementById('close-detail').addEventListener('click', function() {
+    card.classList.remove('visible');
+    document.querySelectorAll('.rest-item').forEach(function(el){ el.classList.remove('active'); });
+  });
+}
+
+function applyFilter(type) {
+  activeFilter = type;
+  PLACES.forEach(function(p) {
+    var show = type === 'all' || p.type === type;
+    markerMap[p.id].setIcon(makeMarkerIcon(p.type, !show));
+    markerMap[p.id].setZIndexOffset(show ? 0 : -1000);
+  });
+  buildList();
+  document.getElementById('detail-card').classList.remove('visible');
+  document.querySelectorAll('.rest-item').forEach(function(el){ el.classList.remove('active'); });
+}
+
+document.querySelectorAll('.filter-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    applyFilter(btn.dataset.filter);
+  });
+});
+
+window.addEventListener('load', initMap);
+</script>
+</body>
+</html>
