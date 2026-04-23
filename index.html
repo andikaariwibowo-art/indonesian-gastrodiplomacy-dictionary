@@ -18,17 +18,15 @@
     --spice-light: #D4603A;
     --gold: #C49A2A;
     --gold-light: #E2B84A;
-    --turmeric: #D4A017;
     --clove: #5C3317;
     --sage: #7A8C6E;
     --batik-border: #8B6914;
-    --shadow-warm: rgba(90, 50, 10, 0.12);
-    --shadow-deep: rgba(26, 18, 8, 0.22);
+    --shadow-warm: rgba(90,50,10,0.12);
+    --shadow-deep: rgba(26,18,8,0.22);
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
 
   body {
     font-family: 'Source Serif 4', Georgia, serif;
@@ -38,755 +36,374 @@
     overflow-x: hidden;
   }
 
-  /* ── HEADER ── */
+  /* HEADER */
   #site-header {
     background: var(--clove);
     background-image:
-      repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.015) 10px, rgba(255,255,255,0.015) 20px),
-      repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,0.015) 10px, rgba(255,255,255,0.015) 20px);
+      repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(255,255,255,0.015) 10px,rgba(255,255,255,0.015) 20px),
+      repeating-linear-gradient(-45deg,transparent,transparent 10px,rgba(255,255,255,0.015) 10px,rgba(255,255,255,0.015) 20px);
     color: var(--cream);
     padding: 2.5rem 3rem 2rem;
     border-bottom: 4px solid var(--gold);
     position: relative;
     overflow: hidden;
   }
-
   #site-header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at 80% 50%, rgba(196,154,42,0.12) 0%, transparent 60%);
-    pointer-events: none;
+    content:'';
+    position:absolute; top:0; left:0; right:0; bottom:0;
+    background:radial-gradient(ellipse at 80% 50%,rgba(196,154,42,0.12) 0%,transparent 60%);
+    pointer-events:none;
   }
-
   .header-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 1;
+    max-width:1280px; margin:0 auto;
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap:2rem; flex-wrap:wrap; position:relative; z-index:1;
   }
-
-  .header-title-block {}
-
   .header-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    margin-bottom: 0.5rem;
-    display: block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--gold-light); margin-bottom:0.5rem; display:block;
   }
-
   h1 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    font-weight: 700;
-    line-height: 1.15;
-    color: var(--cream);
-    letter-spacing: -0.01em;
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:700;
+    line-height:1.15; color:var(--cream); letter-spacing:-0.01em;
   }
-
-  h1 em {
-    color: var(--gold-light);
-    font-style: italic;
-    font-weight: 400;
-  }
-
+  h1 em { color:var(--gold-light); font-style:italic; font-weight:400; }
   .header-meta {
-    font-size: 0.82rem;
-    color: rgba(247,242,232,0.6);
-    margin-top: 0.6rem;
-    font-style: italic;
-    font-weight: 300;
+    font-size:0.82rem; color:rgba(247,242,232,0.6);
+    margin-top:0.6rem; font-style:italic; font-weight:300;
   }
-
-  /* Search */
-  .header-search {
-    flex-shrink: 0;
-  }
-
   #search-input {
-    font-family: 'Source Serif 4', serif;
-    font-size: 0.9rem;
-    padding: 0.65rem 1.1rem 0.65rem 2.8rem;
-    border: 1.5px solid rgba(196,154,42,0.5);
-    border-radius: 3px;
-    background: rgba(247,242,232,0.08);
-    color: var(--cream);
-    width: 280px;
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23C49A2A' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: 0.75rem center;
+    font-family:'Source Serif 4',serif; font-size:0.9rem;
+    padding:0.65rem 1.1rem 0.65rem 2.8rem;
+    border:1.5px solid rgba(196,154,42,0.5); border-radius:3px;
+    background:rgba(247,242,232,0.08); color:var(--cream);
+    width:280px; outline:none; transition:border-color 0.2s,background 0.2s;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23C49A2A' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:0.75rem center;
   }
+  #search-input::placeholder { color:rgba(247,242,232,0.45); }
+  #search-input:focus { border-color:var(--gold-light); background-color:rgba(247,242,232,0.12); }
 
-  #search-input::placeholder { color: rgba(247,242,232,0.45); }
-
-  #search-input:focus {
-    border-color: var(--gold-light);
-    background-color: rgba(247,242,232,0.12);
-  }
-
-  /* ── ALPHABET NAV ── */
+  /* ALPHABET NAV */
   #alpha-nav {
-    background: var(--parchment);
-    border-bottom: 2px solid var(--batik-border);
-    padding: 0.6rem 3rem;
-    overflow-x: auto;
-    white-space: nowrap;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 12px var(--shadow-warm);
+    background:var(--parchment); border-bottom:2px solid var(--batik-border);
+    padding:0.6rem 3rem; overflow-x:auto; white-space:nowrap;
+    position:sticky; top:0; z-index:100;
+    box-shadow:0 2px 12px var(--shadow-warm);
   }
-
   .alpha-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    display: flex;
-    gap: 0.15rem;
-    align-items: center;
-    flex-wrap: wrap;
+    max-width:1280px; margin:0 auto;
+    display:flex; gap:0.15rem; align-items:center; flex-wrap:wrap;
   }
-
   .alpha-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-    margin-right: 0.8rem;
+    font-family:'JetBrains Mono',monospace; font-size:0.65rem;
+    letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-light); margin-right:0.8rem;
   }
-
   .alpha-btn {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--ink-mid);
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.3rem 0.5rem;
-    border-radius: 2px;
-    transition: color 0.15s, background 0.15s;
-    line-height: 1;
+    font-family:'Playfair Display',serif; font-size:0.85rem; font-weight:600;
+    color:var(--ink-mid); background:none; border:none; cursor:pointer;
+    padding:0.3rem 0.5rem; border-radius:2px;
+    transition:color 0.15s,background 0.15s; line-height:1;
   }
+  .alpha-btn:hover,.alpha-btn.active { color:var(--spice); background:rgba(181,69,27,0.08); }
+  .alpha-btn.has-entries { color:var(--clove); font-weight:700; }
+  .alpha-btn.no-entries { color:var(--ink-light); opacity:0.45; cursor:default; }
 
-  .alpha-btn:hover, .alpha-btn.active {
-    color: var(--spice);
-    background: rgba(181,69,27,0.08);
-  }
-
-  .alpha-btn.has-entries { color: var(--clove); font-weight: 700; }
-  .alpha-btn.no-entries { color: var(--ink-light); opacity: 0.45; cursor: default; }
-
-  /* ── LAYOUT ── */
+  /* LAYOUT */
   #main-layout {
-    max-width: 1280px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 0;
-    min-height: calc(100vh - 160px);
+    max-width:1280px; margin:0 auto;
+    display:grid; grid-template-columns:240px 1fr;
+    min-height:calc(100vh - 160px);
   }
 
-  /* ── SIDEBAR ── */
+  /* SIDEBAR */
   #sidebar {
-    background: var(--warm-white);
-    border-right: 2px solid var(--parchment);
-    padding: 2rem 1.5rem;
-    position: sticky;
-    top: 56px;
-    height: calc(100vh - 56px);
-    overflow-y: auto;
+    background:var(--warm-white); border-right:2px solid var(--parchment);
+    padding:2rem 1.5rem; position:sticky; top:56px;
+    height:calc(100vh - 56px); overflow-y:auto;
   }
-
-  .sidebar-section { margin-bottom: 2rem; }
-
+  .sidebar-section { margin-bottom:2rem; }
   .sidebar-heading {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.4rem;
-    border-bottom: 1px solid var(--parchment);
+    font-family:'JetBrains Mono',monospace; font-size:0.6rem;
+    letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--ink-light); margin-bottom:0.75rem;
+    padding-bottom:0.4rem; border-bottom:1px solid var(--parchment);
   }
-
   .sidebar-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    width: 100%;
-    padding: 0.45rem 0.65rem;
-    background: none;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-family: 'Source Serif 4', serif;
-    font-size: 0.82rem;
-    color: var(--ink-mid);
-    text-align: left;
-    transition: background 0.15s, color 0.15s;
-    margin-bottom: 0.1rem;
+    display:flex; align-items:center; gap:0.6rem; width:100%;
+    padding:0.45rem 0.65rem; background:none; border:none;
+    border-radius:3px; cursor:pointer;
+    font-family:'Source Serif 4',serif; font-size:0.82rem;
+    color:var(--ink-mid); text-align:left;
+    transition:background 0.15s,color 0.15s; margin-bottom:0.1rem;
   }
-
-  .sidebar-btn:hover, .sidebar-btn.active {
-    background: rgba(181,69,27,0.08);
-    color: var(--spice);
-  }
-
+  .sidebar-btn:hover,.sidebar-btn.active { background:rgba(181,69,27,0.08); color:var(--spice); }
   .sidebar-btn .count {
-    margin-left: auto;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--ink-light);
-    background: var(--parchment);
-    padding: 0.1rem 0.4rem;
-    border-radius: 10px;
+    margin-left:auto; font-family:'JetBrains Mono',monospace;
+    font-size:0.65rem; color:var(--ink-light);
+    background:var(--parchment); padding:0.1rem 0.4rem; border-radius:10px;
   }
+  .category-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
 
-  .category-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
+  /* CONTENT */
+  #content-area { padding:2.5rem 3rem; background:var(--cream); }
 
-  /* ── CONTENT AREA ── */
-  #content-area {
-    padding: 2.5rem 3rem;
-    background: var(--cream);
-  }
-
-  /* Intro banner */
+  /* INTRO */
   #intro-section {
-    background: var(--warm-white);
-    border: 1.5px solid var(--parchment);
-    border-left: 5px solid var(--gold);
-    padding: 2rem 2.5rem;
-    margin-bottom: 2.5rem;
-    border-radius: 0 4px 4px 0;
-    box-shadow: 0 2px 16px var(--shadow-warm);
+    background:var(--warm-white); border:1.5px solid var(--parchment);
+    border-left:5px solid var(--gold); padding:2rem 2.5rem;
+    margin-bottom:2.5rem; border-radius:0 4px 4px 0;
+    box-shadow:0 2px 16px var(--shadow-warm);
   }
-
   #intro-section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--clove);
-    margin-bottom: 0.9rem;
+    font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700;
+    color:var(--clove); margin-bottom:0.9rem;
+  }
+  #intro-section p { font-size:0.93rem; line-height:1.75; color:var(--ink-mid); font-weight:300; }
+  .intro-stats { display:flex; gap:2rem; margin-top:1.4rem; padding-top:1.2rem; border-top:1px solid var(--parchment); flex-wrap:wrap; }
+  .stat-item { display:flex; flex-direction:column; gap:0.15rem; }
+  .stat-num { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; color:var(--spice); line-height:1; }
+  .stat-label { font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-light); }
+
+  /* SECTION HEADER */
+  .section-header { display:flex; align-items:baseline; gap:1rem; margin-bottom:1.8rem; }
+  .section-title { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--ink); }
+  .section-count { font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--ink-light); letter-spacing:0.08em; }
+
+  /* FILTER BAR */
+  #filter-bar { display:flex; align-items:center; gap:0.6rem; margin-bottom:1.8rem; flex-wrap:wrap; }
+  .filter-label { font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-light); }
+  .filter-chip {
+    font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.08em;
+    padding:0.3rem 0.75rem; border:1.5px solid var(--parchment); border-radius:2px;
+    background:var(--warm-white); color:var(--ink-mid); cursor:pointer; transition:all 0.15s;
+  }
+  .filter-chip:hover { border-color:var(--spice-light); color:var(--spice); }
+  .filter-chip.active { background:var(--spice); color:var(--cream); border-color:var(--spice); }
+
+  /* LETTER DIVIDER */
+  .letter-divider {
+    font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:700;
+    color:var(--parchment); padding:0.5rem 0 0.3rem; margin-bottom:0.8rem;
+    border-bottom:2px solid var(--parchment); line-height:1;
+    display:flex; align-items:baseline; gap:0.8rem;
+  }
+  .letter-divider span {
+    font-family:'JetBrains Mono',monospace; font-size:0.65rem;
+    letter-spacing:0.1em; color:var(--ink-light); font-weight:400; text-transform:uppercase;
   }
 
-  #intro-section p {
-    font-size: 0.93rem;
-    line-height: 1.75;
-    color: var(--ink-mid);
-    font-weight: 300;
-  }
-
-  .intro-stats {
-    display: flex;
-    gap: 2rem;
-    margin-top: 1.4rem;
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--parchment);
-    flex-wrap: wrap;
-  }
-
-  .stat-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-  }
-
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--spice);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-  }
-
-  /* Section header */
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  .section-count {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--ink-light);
-    letter-spacing: 0.08em;
-  }
-
-  /* Entry grid */
-  #entries-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  /* ── ENTRY CARD ── */
+  /* ENTRY CARD */
   .entry-card {
-    background: var(--warm-white);
-    border: 1.5px solid var(--parchment);
-    border-radius: 4px;
-    margin-bottom: 1.2rem;
-    overflow: hidden;
-    box-shadow: 0 1px 8px var(--shadow-warm);
-    transition: box-shadow 0.2s;
+    background:var(--warm-white); border:1.5px solid var(--parchment);
+    border-radius:4px; margin-bottom:1.2rem; overflow:hidden;
+    box-shadow:0 1px 8px var(--shadow-warm); transition:box-shadow 0.2s;
   }
-
-  .entry-card:hover { box-shadow: 0 4px 20px var(--shadow-deep); }
-
+  .entry-card:hover { box-shadow:0 4px 20px var(--shadow-deep); }
   .entry-header {
-    padding: 1.2rem 1.8rem 1rem;
-    cursor: pointer;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 1rem;
-    align-items: start;
-    user-select: none;
-    position: relative;
+    padding:1.2rem 1.8rem 1rem; cursor:pointer;
+    display:grid; grid-template-columns:1fr auto; gap:1rem;
+    align-items:start; user-select:none; position:relative;
   }
-
   .entry-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 1.8rem; right: 1.8rem;
-    height: 1px;
-    background: var(--parchment);
-    transition: opacity 0.2s;
+    content:''; position:absolute; bottom:0; left:1.8rem; right:1.8rem;
+    height:1px; background:var(--parchment); transition:opacity 0.2s;
   }
-
-  .entry-card.collapsed .entry-header::after { opacity: 0; }
-
+  .entry-card.collapsed .entry-header::after { opacity:0; }
   .entry-term {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--clove);
-    line-height: 1.2;
-    letter-spacing: -0.01em;
+    font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700;
+    color:var(--clove); line-height:1.2; letter-spacing:-0.01em;
   }
-
   .entry-term em {
-    display: block;
-    font-family: 'Source Serif 4', serif;
-    font-size: 0.8rem;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--ink-light);
-    margin-top: 0.15rem;
-    letter-spacing: 0.02em;
+    display:block; font-family:'Source Serif 4',serif; font-size:0.8rem;
+    font-weight:300; font-style:italic; color:var(--ink-light);
+    margin-top:0.15rem; letter-spacing:0.02em;
   }
-
-  .entry-header-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.4rem;
-  }
-
+  .entry-header-right { display:flex; flex-direction:column; align-items:flex-end; gap:0.4rem; }
   .category-badge {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.25rem 0.7rem;
-    border-radius: 2px;
-    font-weight: 500;
-    white-space: nowrap;
+    font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.12em;
+    text-transform:uppercase; padding:0.25rem 0.7rem; border-radius:2px; font-weight:500; white-space:nowrap;
   }
+  .expand-icon { font-size:1.2rem; color:var(--gold); transition:transform 0.25s; line-height:1; }
+  .entry-card:not(.collapsed) .expand-icon { transform:rotate(90deg); }
 
-  .expand-icon {
-    font-size: 1.2rem;
-    color: var(--gold);
-    transition: transform 0.25s;
-    line-height: 1;
-  }
+  .cat-concept { background:rgba(181,69,27,0.1); color:var(--spice); }
+  .cat-food    { background:rgba(212,160,23,0.15); color:#8B6000; }
+  .cat-actor   { background:rgba(92,51,23,0.1); color:var(--clove); }
+  .cat-practice{ background:rgba(122,140,110,0.15); color:#4A5E3A; }
+  .cat-institution { background:rgba(61,43,15,0.1); color:var(--ink-mid); }
+  .cat-place   { background:rgba(196,154,42,0.15); color:#7A6010; }
+  .cat-policy  { background:rgba(107,79,42,0.1); color:var(--ink-light); }
 
-  .entry-card:not(.collapsed) .expand-icon { transform: rotate(90deg); }
+  .entry-body { padding:1.4rem 1.8rem 1.6rem; display:none; }
+  .entry-card:not(.collapsed) .entry-body { display:block; }
 
-  /* Category colors */
-  .cat-concept { background: rgba(181,69,27,0.1); color: var(--spice); }
-  .cat-food { background: rgba(212,160,23,0.15); color: #8B6000; }
-  .cat-actor { background: rgba(92,51,23,0.1); color: var(--clove); }
-  .cat-practice { background: rgba(122,140,110,0.15); color: #4A5E3A; }
-  .cat-institution { background: rgba(61,43,15,0.1); color: var(--ink-mid); }
-  .cat-place { background: rgba(196,154,42,0.15); color: #7A6010; }
-  .cat-policy { background: rgba(107,79,42,0.1); color: var(--ink-light); }
-
-  /* Entry body */
-  .entry-body {
-    padding: 1.4rem 1.8rem 1.6rem;
-    display: none;
-  }
-
-  .entry-card:not(.collapsed) .entry-body { display: block; }
-
-  .entry-section {
-    margin-bottom: 1.3rem;
-  }
-
+  .entry-section { margin-bottom:1.3rem; }
   .entry-section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-    margin-bottom: 0.45rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--ink-light); margin-bottom:0.45rem;
+    display:flex; align-items:center; gap:0.5rem;
   }
-
-  .entry-section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--parchment);
-  }
+  .entry-section-label::after { content:''; flex:1; height:1px; background:var(--parchment); }
 
   .definition-text {
-    font-size: 0.93rem;
-    line-height: 1.72;
-    color: var(--ink);
-    font-weight: 400;
-    background: rgba(237,228,208,0.35);
-    padding: 0.9rem 1.1rem;
-    border-left: 3px solid var(--gold);
-    border-radius: 0 3px 3px 0;
+    font-size:0.93rem; line-height:1.72; color:var(--ink); font-weight:400;
+    background:rgba(237,228,208,0.35); padding:0.9rem 1.1rem;
+    border-left:3px solid var(--gold); border-radius:0 3px 3px 0;
   }
-
-  .explanation-text {
-    font-size: 0.9rem;
-    line-height: 1.78;
-    color: var(--ink-mid);
-    font-weight: 300;
-  }
-
+  .explanation-text { font-size:0.9rem; line-height:1.78; color:var(--ink-mid); font-weight:300; }
   .example-text {
-    font-size: 0.88rem;
-    line-height: 1.7;
-    color: var(--ink-mid);
-    background: rgba(181,69,27,0.04);
-    border: 1px solid rgba(181,69,27,0.12);
-    padding: 0.75rem 1rem;
-    border-radius: 3px;
-    font-style: italic;
+    font-size:0.88rem; line-height:1.7; color:var(--ink-mid);
+    background:rgba(181,69,27,0.04); border:1px solid rgba(181,69,27,0.12);
+    padding:0.75rem 1rem; border-radius:3px; font-style:italic;
   }
-
-  .example-text strong { font-style: normal; color: var(--spice); font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
-
+  .example-text strong {
+    font-style:normal; color:var(--spice); font-size:0.72rem;
+    font-family:'JetBrains Mono',monospace; letter-spacing:0.1em;
+    text-transform:uppercase; display:block; margin-bottom:0.3rem;
+  }
   .hist-text {
-    font-size: 0.87rem;
-    line-height: 1.7;
-    color: var(--ink-mid);
-    font-weight: 300;
-    font-style: italic;
-    border-top: 1px dashed var(--parchment);
-    padding-top: 0.75rem;
+    font-size:0.87rem; line-height:1.7; color:var(--ink-mid); font-weight:300;
+    font-style:italic; border-top:1px dashed var(--parchment); padding-top:0.75rem;
   }
 
-  /* Tags */
-  .tags-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.3rem;
-  }
-
+  .tags-row { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.3rem; }
   .tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.06em;
-    padding: 0.2rem 0.6rem;
-    background: var(--parchment);
-    color: var(--ink-mid);
-    border-radius: 2px;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
-    border: 1px solid transparent;
+    font-family:'JetBrains Mono',monospace; font-size:0.62rem; letter-spacing:0.06em;
+    padding:0.2rem 0.6rem; background:var(--parchment); color:var(--ink-mid);
+    border-radius:2px; cursor:pointer; transition:background 0.15s,color 0.15s;
   }
+  .tag:hover { background:var(--spice); color:var(--cream); }
 
-  .tag:hover {
-    background: var(--spice);
-    color: var(--cream);
-  }
-
-  /* Related terms */
-  .related-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.3rem;
-  }
-
+  .related-row { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.3rem; }
   .related-link {
-    font-size: 0.82rem;
-    color: var(--spice);
-    text-decoration: none;
-    border-bottom: 1px dotted var(--spice-light);
-    cursor: pointer;
-    transition: color 0.15s;
+    font-size:0.82rem; color:var(--spice); border-bottom:1px dotted var(--spice-light);
+    cursor:pointer; transition:color 0.15s;
   }
+  .related-link:hover { color:var(--clove); }
+  .related-link::after { content:','; color:var(--ink-light); margin-left:1px; }
+  .related-link:last-child::after { content:''; }
 
-  .related-link:hover { color: var(--clove); }
+  #no-results { display:none; text-align:center; padding:4rem 2rem; color:var(--ink-light); }
+  #no-results .nr-icon { font-size:3rem; margin-bottom:1rem; opacity:0.4; }
 
-  .related-link::after { content: ','; color: var(--ink-light); margin-left: 1px; }
-  .related-link:last-child::after { content: ''; }
+  mark { background:rgba(212,160,23,0.3); color:inherit; border-radius:2px; padding:0 1px; }
 
-  /* No results */
-  #no-results {
-    display: none;
-    text-align: center;
-    padding: 4rem 2rem;
-    color: var(--ink-light);
-  }
+  ::-webkit-scrollbar { width:6px; height:6px; }
+  ::-webkit-scrollbar-track { background:var(--parchment); }
+  ::-webkit-scrollbar-thumb { background:var(--batik-border); border-radius:3px; }
 
-  #no-results .nr-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.4; }
-  #no-results p { font-size: 0.95rem; }
-
-  /* Filter bar */
-  #filter-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 1.8rem;
-    flex-wrap: wrap;
-  }
-
-  .filter-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-    margin-right: 0.2rem;
-  }
-
-  .filter-chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    padding: 0.3rem 0.75rem;
-    border: 1.5px solid var(--parchment);
-    border-radius: 2px;
-    background: var(--warm-white);
-    color: var(--ink-mid);
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-
-  .filter-chip:hover { border-color: var(--spice-light); color: var(--spice); }
-  .filter-chip.active { background: var(--spice); color: var(--cream); border-color: var(--spice); }
-
-  /* FOOTER */
   footer {
-    background: var(--clove);
-    color: rgba(247,242,232,0.6);
-    text-align: center;
-    padding: 1.5rem 2rem;
-    font-size: 0.78rem;
-    font-family: 'Source Serif 4', serif;
-    border-top: 3px solid var(--gold);
-    font-style: italic;
+    background:var(--clove); color:rgba(247,242,232,0.6);
+    text-align:center; padding:1.5rem 2rem; font-size:0.78rem;
+    font-family:'Source Serif 4',serif; border-top:3px solid var(--gold); font-style:italic;
   }
+  footer strong { color:var(--gold-light); font-style:normal; }
 
-  footer strong { color: var(--gold-light); font-style: normal; }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: var(--parchment); }
-  ::-webkit-scrollbar-thumb { background: var(--batik-border); border-radius: 3px; }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    #main-layout { grid-template-columns: 1fr; }
-    #sidebar { position: static; height: auto; border-right: none; border-bottom: 2px solid var(--parchment); }
-    #content-area { padding: 1.5rem; }
-    #site-header { padding: 1.5rem; }
-    .header-inner { flex-direction: column; align-items: flex-start; }
-    #search-input { width: 100%; }
-    #alpha-nav { padding: 0.5rem 1rem; }
-  }
-
-  /* Highlight search match */
-  mark {
-    background: rgba(212,160,23,0.3);
-    color: inherit;
-    border-radius: 2px;
-    padding: 0 1px;
-  }
-
-  /* Letter divider */
-  .letter-divider {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--parchment);
-    padding: 0.5rem 0 0.3rem;
-    margin-bottom: 0.8rem;
-    border-bottom: 2px solid var(--parchment);
-    line-height: 1;
-    display: flex;
-    align-items: baseline;
-    gap: 0.8rem;
-  }
-
-  .letter-divider span {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    color: var(--ink-light);
-    font-weight: 400;
-    text-transform: uppercase;
+  @media (max-width:900px) {
+    #main-layout { grid-template-columns:1fr; }
+    #sidebar { position:static; height:auto; border-right:none; border-bottom:2px solid var(--parchment); }
+    #content-area { padding:1.5rem; }
+    #site-header { padding:1.5rem; }
+    .header-inner { flex-direction:column; align-items:flex-start; }
+    #search-input { width:100%; }
+    #alpha-nav { padding:0.5rem 1rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header id="site-header">
   <div class="header-inner">
-    <div class="header-title-block">
+    <div>
       <span class="header-label">Digital Reference — Gastronomy &amp; Diplomacy</span>
       <h1>Indonesian Gastrodiplomacy<br><em>Digital Dictionary</em></h1>
       <p class="header-meta">A structured lexicon of culinary culture, diplomatic practice, and transnational food identity in Indonesia</p>
     </div>
-    <div class="header-search">
+    <div>
       <input type="text" id="search-input" placeholder="Search terms, concepts, foods…" autocomplete="off" />
     </div>
   </div>
 </header>
 
-<!-- ALPHABET NAV -->
 <nav id="alpha-nav">
   <div class="alpha-inner">
     <span class="alpha-label">Browse</span>
   </div>
 </nav>
 
-<!-- MAIN LAYOUT -->
 <div id="main-layout">
-
-  <!-- SIDEBAR -->
   <aside id="sidebar">
     <div class="sidebar-section">
       <div class="sidebar-heading">All Entries</div>
-      <button class="sidebar-btn active" data-filter="all" onclick="filterByCategory('all', this)">
-        All Categories <span class="count" id="count-all">20</span>
+      <button class="sidebar-btn active" data-filter="all">
+        All Categories <span class="count" id="count-all">0</span>
       </button>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-heading">Thematic Clusters</div>
-      <button class="sidebar-btn" data-filter="Concept" onclick="filterByCategory('Concept', this)">
+      <button class="sidebar-btn" data-filter="Concept">
         <span class="category-dot" style="background:#B5451B"></span>
-        Concepts <span class="count" id="count-Concept">6</span>
+        Concepts <span class="count" id="count-Concept">0</span>
       </button>
-      <button class="sidebar-btn" data-filter="Food" onclick="filterByCategory('Food', this)">
+      <button class="sidebar-btn" data-filter="Food">
         <span class="category-dot" style="background:#C49A2A"></span>
-        Food Items <span class="count" id="count-Food">5</span>
+        Food Items <span class="count" id="count-Food">0</span>
       </button>
-      <button class="sidebar-btn" data-filter="Actor" onclick="filterByCategory('Actor', this)">
+      <button class="sidebar-btn" data-filter="Actor">
         <span class="category-dot" style="background:#5C3317"></span>
-        Actors <span class="count" id="count-Actor">2</span>
+        Actors <span class="count" id="count-Actor">0</span>
       </button>
-      <button class="sidebar-btn" data-filter="Practice" onclick="filterByCategory('Practice', this)">
+      <button class="sidebar-btn" data-filter="Practice">
         <span class="category-dot" style="background:#7A8C6E"></span>
-        Practices <span class="count" id="count-Practice">3</span>
+        Practices <span class="count" id="count-Practice">0</span>
       </button>
-      <button class="sidebar-btn" data-filter="Institution" onclick="filterByCategory('Institution', this)">
+      <button class="sidebar-btn" data-filter="Institution">
         <span class="category-dot" style="background:#3D2B0F"></span>
-        Institutions <span class="count" id="count-Institution">1</span>
+        Institutions <span class="count" id="count-Institution">0</span>
       </button>
-      <button class="sidebar-btn" data-filter="Place" onclick="filterByCategory('Place', this)">
+      <button class="sidebar-btn" data-filter="Place">
         <span class="category-dot" style="background:#8B6914"></span>
-        Regions &amp; Places <span class="count" id="count-Place">2</span>
+        Regions &amp; Places <span class="count" id="count-Place">0</span>
       </button>
-      <button class="sidebar-btn" data-filter="Policy" onclick="filterByCategory('Policy', this)">
+      <button class="sidebar-btn" data-filter="Policy">
         <span class="category-dot" style="background:#6B4F2A"></span>
-        Policy <span class="count" id="count-Policy">1</span>
+        Policy <span class="count" id="count-Policy">0</span>
       </button>
     </div>
   </aside>
 
-  <!-- CONTENT AREA -->
   <main id="content-area">
-
-    <!-- INTRO -->
     <section id="intro-section">
       <h2>About This Dictionary</h2>
-      <p>
-        This digital dictionary offers a structured, analytically grounded lexicon for scholars, practitioners, and curious readers engaging with Indonesian gastrodiplomacy. Gastrodiplomacy — the strategic use of culinary culture to advance national identity, foreign policy goals, and cultural outreach — has emerged as a significant dimension of Indonesia's international engagement. This dictionary maps its key concepts, agents, practices, institutions, and food objects, situating each within the broader field of cultural diplomacy and transnational food studies. Entries are organized thematically and alphabetically, combining definitional precision with contextual analysis. The dictionary draws on frameworks from cultural studies, political science, food anthropology, and international relations, offering an interdisciplinary portal into one of Southeast Asia's most gastronomically rich nations and its global culinary projection. It is designed as a living reference — expandable, revisable, and open to emerging scholarship.
-      </p>
+      <p>This digital dictionary offers a structured, analytically grounded lexicon for scholars, practitioners, and curious readers engaging with Indonesian gastrodiplomacy. Gastrodiplomacy — the strategic use of culinary culture to advance national identity, foreign policy goals, and cultural outreach — has emerged as a significant dimension of Indonesia's international engagement. This dictionary maps its key concepts, agents, practices, institutions, and food objects, situating each within the broader field of cultural diplomacy and transnational food studies. Entries combine definitional precision with contextual analysis, drawing on cultural studies, political science, food anthropology, and international relations. It is designed as a living reference — expandable, revisable, and open to emerging scholarship.</p>
       <div class="intro-stats">
-        <div class="stat-item">
-          <span class="stat-num" id="total-entries">20</span>
-          <span class="stat-label">Entries</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">7</span>
-          <span class="stat-label">Categories</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">5</span>
-          <span class="stat-label">Food Items</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">6</span>
-          <span class="stat-label">Core Concepts</span>
-        </div>
+        <div class="stat-item"><span class="stat-num" id="total-entries">0</span><span class="stat-label">Entries</span></div>
+        <div class="stat-item"><span class="stat-num">7</span><span class="stat-label">Categories</span></div>
+        <div class="stat-item"><span class="stat-num" id="food-count">0</span><span class="stat-label">Food Items</span></div>
+        <div class="stat-item"><span class="stat-num" id="concept-count">0</span><span class="stat-label">Core Concepts</span></div>
       </div>
     </section>
 
-    <!-- FILTER BAR -->
     <div id="filter-bar">
       <span class="filter-label">Sort:</span>
-      <button class="filter-chip active" onclick="sortEntries('alpha', this)">A–Z</button>
-      <button class="filter-chip" onclick="sortEntries('category', this)">By Category</button>
+      <button class="filter-chip active" data-sort="alpha">A&#8211;Z</button>
+      <button class="filter-chip" data-sort="category">By Category</button>
     </div>
 
-    <!-- SECTION HEADER -->
     <div class="section-header">
       <h2 class="section-title" id="section-title">All Entries</h2>
-      <span class="section-count" id="section-count">Showing 20 of 20</span>
+      <span class="section-count" id="section-count">Showing 0 of 0</span>
     </div>
 
-    <!-- ENTRIES -->
     <div id="entries-container"></div>
     <div id="no-results">
-      <div class="nr-icon">⌕</div>
+      <div class="nr-icon">&#x2315;</div>
       <p>No entries match your search. Try a different term or browse by category.</p>
     </div>
-
   </main>
 </div>
 
@@ -795,526 +412,644 @@
   Entries reflect conceptual frameworks grounded in academic literature; no citations are fabricated.
 </footer>
 
+<script id="dict-data" type="application/json">
+[
+  {
+    "term": "Gastrodiplomacy",
+    "altTerm": null,
+    "category": "Concept",
+    "letter": "G",
+    "definition": "Gastrodiplomacy is the deliberate deployment of a nation's culinary culture as an instrument of public diplomacy, cultural outreach, and soft power projection. It encompasses state-sponsored and non-state-driven initiatives that use food — its preparation, presentation, narrative, and consumption — to foster foreign public appreciation, national recognition, and geopolitical goodwill. Distinct from culinary diplomacy, gastrodiplomacy operates at a broader societal scale, targeting mass audiences rather than elite diplomatic actors alone.",
+    "explanation": "Gastrodiplomacy emerged as a recognized diplomatic practice in the early twenty-first century, most prominently articulated by Thailand's Global Thai Programme (2002), which institutionalized the opening of Thai restaurants abroad as a form of state-backed cultural promotion. Indonesia has pursued analogous strategies through its promotional campaigns, culinary tourism initiatives, and diaspora engagement programs, though Indonesian gastrodiplomacy remains comparatively decentralized. Analytically, gastrodiplomacy sits at the intersection of soft power theory and food studies, particularly scholarship on the political economy of taste and national cuisine as symbolic capital. For Indonesia, the practice carries additional complexity: the nation's extraordinary culinary diversity, rooted in seventeen thousand islands, hundreds of ethnic groups, and millennia of spice trade, makes the selection and promotion of any single Indonesian cuisine inherently a political act of homogenization and representation. The strategic choice of which foods to promote — rendang, nasi goreng, satay — thus reflects both aesthetic and ideological preferences, privileging particular regional and ethnic cuisines over others in the service of a unified national brand.",
+    "example": "Indonesia's Wonderful Indonesia tourism campaign prominently features culinary imagery, with rendang and nasi goreng positioned as flagship ambassadors of Indonesian identity in international promotional materials and trade expos.",
+    "related": ["Culinary Diplomacy", "Cultural Branding", "Food Nationalism", "Indonesian Diaspora"],
+    "keywords": ["soft power", "public diplomacy", "culinary culture", "national identity", "cultural outreach", "food promotion", "Indonesia"],
+    "historical": "The term gastrodiplomacy is widely attributed to Paul Rockower, who systematized its analysis in diplomatic studies literature around 2011-2012. However, food-based diplomatic practice predates the term considerably, traceable to ancient gift-giving rituals, colonial-era spice trading, and twentieth-century culinary aid programs."
+  },
+  {
+    "term": "Culinary Diplomacy",
+    "altTerm": null,
+    "category": "Concept",
+    "letter": "C",
+    "definition": "Culinary diplomacy is the use of food and cuisine within elite or official diplomatic settings — state dinners, embassy receptions, bilateral summits — as a vehicle for building interpersonal rapport, cultural understanding, and political goodwill between heads of state, diplomats, and foreign dignitaries. Unlike gastrodiplomacy, culinary diplomacy is primarily directed at institutional actors rather than mass publics, functioning within formal channels of international relations.",
+    "explanation": "Culinary diplomacy has a long history in statecraft, from the lavish banquets of European courts to the carefully curated menus of contemporary bilateral summits. In the Indonesian context, culinary diplomacy manifests in embassy receptions that showcase regional Indonesian cuisines, in the serving of Indonesian dishes at international forums, and in the gifting of artisanal food products as diplomatic tokens. The practice is embedded in a broader logic of hospitality — the idea that sharing food creates social bonds that may translate into political goodwill. Indonesian embassies in countries with significant diaspora populations — such as the Netherlands, Saudi Arabia, Malaysia, and Australia — have developed distinct culinary diplomatic programs, adapting Indonesian cuisine to local palates while maintaining its symbolic national character. A critical dimension of culinary diplomacy in the Indonesian context involves halal certification: as a predominantly Muslim nation, Indonesia's diplomatic cuisine must navigate questions of religious compliance, influencing which dishes are served and to whom, particularly in non-Muslim host countries.",
+    "example": "The Indonesian Embassy in Washington D.C. regularly hosts Indonesian Night events featuring regional dishes prepared by Indonesian chefs, combining cultural presentation with diplomatic networking.",
+    "related": ["Gastrodiplomacy", "Embassy Promotion Programs", "Halal Certification", "Cultural Branding"],
+    "keywords": ["elite diplomacy", "state dinners", "embassy cuisine", "bilateral relations", "hospitality", "diplomatic protocol", "Indonesian embassies"],
+    "historical": null
+  },
+  {
+    "term": "Culinary Infrastructure",
+    "altTerm": null,
+    "category": "Concept",
+    "letter": "C",
+    "definition": "Culinary infrastructure refers to the material, institutional, and logistical systems that enable a nation's food culture to be produced, distributed, promoted, and consumed across national and transnational spaces. It encompasses physical infrastructure — kitchens, supply chains, restaurant networks — as well as institutional architecture: certification bodies, culinary schools, tourism agencies, trade associations, and digital platforms that collectively constitute the apparatus through which national cuisines are sustained and projected.",
+    "explanation": "The concept of culinary infrastructure extends beyond the restaurant industry to encompass the complex interdependencies between agriculture, food processing, culinary education, certification, media, and tourism. For Indonesia, the construction of a coherent culinary infrastructure has been a significant policy challenge given the country's geographic fragmentation and extraordinary culinary diversity. Efforts to develop Indonesian culinary infrastructure internationally have included the establishment of Indonesian restaurant networks in key cities (Tokyo, Amsterdam, Riyadh), the promotion of Indonesian culinary arts through state-supported training programs, and the integration of food into the Wonderful Indonesia tourism brand. A critical node in this infrastructure is the system of halal certification, which simultaneously connects Indonesian food to the global halal market and imposes standardization requirements that may conflict with the artisanal, regionally specific character of many traditional dishes. Digital infrastructure — food blogs, YouTube channels, social media accounts, and streaming content featuring Indonesian cuisine — has increasingly become a decentralized but powerful component of Indonesia's transnational culinary infrastructure.",
+    "example": "The establishment of Indonesian Culinary Centers (Pusat Promosi Kuliner Indonesia) in select cities abroad, coordinated by the Ministry of Tourism and Creative Economy, represents a deliberate expansion of Indonesia's transnational culinary infrastructure.",
+    "related": ["Gastrodiplomacy", "Halal Certification", "Culinary Tourism", "Ministry of Tourism and Creative Economy"],
+    "keywords": ["material infrastructure", "culinary logistics", "restaurant networks", "food policy", "supply chains", "certification", "transnational cuisine"],
+    "historical": null
+  },
+  {
+    "term": "Food Heritage",
+    "altTerm": null,
+    "category": "Concept",
+    "letter": "F",
+    "definition": "Food heritage denotes the ensemble of culinary practices, recipes, ingredients, techniques, and symbolic meanings that a community or nation recognizes as constitutive of its historical identity and cultural continuity. It functions as a form of intangible cultural heritage, subject to processes of documentation, valorization, transmission, and — increasingly — strategic deployment in tourism, diplomacy, and cultural branding. Food heritage involves both material and discursive dimensions: what is cooked and how it is narrated.",
+    "explanation": "In Indonesia, food heritage is particularly complex due to the country's multi-ethnic composition and colonial history. Heritage cuisines often carry traces of interaction with Arab, Indian, Chinese, Portuguese, Dutch, and indigenous culinary traditions, making any claim of authentic Indonesian food heritage inherently contested. The Indonesian government has increasingly sought UNESCO recognition for specific culinary traditions — notably through efforts related to rendang and jamu — as a means of formalizing and internationally legitimating food heritage claims. This process of heritagization involves selecting certain foods as representative of national identity while others remain marginal to official discourse. Community-level food heritage practices — such as slametan communal feasts in Java or the communal rice harvest rituals of various ethnic groups — often resist commodification and exist in tension with state-led heritage frameworks. The academic study of food heritage in Indonesia must therefore attend to the politics of recognition: whose culinary traditions are validated, by whom, and for what purposes.",
+    "example": "The candidacy of Indonesian jamu (traditional herbal medicine-drink) for UNESCO Intangible Cultural Heritage status reflects the state's effort to institutionalize and internationally recognize Indonesia's botanical culinary heritage.",
+    "related": ["Food Nationalism", "Gastrodiplomacy", "Spice Routes", "Rendang", "Cultural Branding"],
+    "keywords": ["intangible heritage", "UNESCO", "culinary tradition", "heritagization", "identity", "authenticity", "Indonesia"],
+    "historical": "The Indonesian government's engagement with UNESCO food heritage processes accelerated in the 2010s, coinciding with broader international recognition of the diplomatic and economic value of intangible cultural heritage."
+  },
+  {
+    "term": "Food Nationalism",
+    "altTerm": null,
+    "category": "Concept",
+    "letter": "F",
+    "definition": "Food nationalism is the discursive and political process through which particular foods, culinary practices, or dietary traditions become articulated as essential markers of national identity, often mobilizing affective claims of cultural ownership, authenticity, and distinctiveness. It operates through state policy, media representation, popular culture, and everyday practice, and can generate both unifying national narratives and contentious border disputes over culinary ownership between neighboring nations.",
+    "explanation": "Food nationalism in Indonesia is expressed through multiple registers. At the institutional level, it manifests in government campaigns promoting asli (authentic/original) Indonesian dishes and in the assertion of Indonesian culinary sovereignty in response to perceived appropriation of Indonesian dishes by neighboring states — most notably Malaysia. The rendang controversy — in which a BBC television program allegedly misrepresented the dish — and recurring disputes with Malaysia over dishes like nasi lemak illustrate how food has become a flashpoint of nationalist sentiment in the digital era. Food nationalism operates through nostalgia and affect as well as geopolitics: the emotional resonance of makanan ibu (mother's cooking) and regional culinary pride mobilize identity politics that national branding programs seek to harness. However, food nationalism also carries risks: the essentialization of Indonesian cuisine as one nation, one cuisine may suppress the genuine plurality of regional traditions and marginalize ethnic minority food cultures within the archipelago's own borders.",
+    "example": "The widespread Indonesian social media response to international food rankings and cross-border culinary disputes — particularly with Malaysia — demonstrates the affective intensity of food nationalism as a form of everyday digital patriotism.",
+    "related": ["Food Heritage", "Gastrodiplomacy", "Cultural Branding", "Rendang"],
+    "keywords": ["nationalism", "culinary identity", "food disputes", "authenticity", "sovereignty", "social media", "Indonesia-Malaysia"],
+    "historical": "Indonesian food nationalism intensified in the digital era as social media platforms enabled rapid mass mobilization around perceived cultural slights, transforming food into a site of viral geopolitical contestation."
+  },
+  {
+    "term": "Cultural Branding",
+    "altTerm": "Nation Branding",
+    "category": "Concept",
+    "letter": "C",
+    "definition": "Cultural branding, in the context of gastrodiplomacy, refers to the strategic construction and promotion of a coherent, attractive national cultural identity for external audiences, using cultural products — including cuisine — as primary vehicles of national image-making. It draws on marketing logic and applies it to the domain of international cultural promotion, treating national identity as a communicable brand with measurable recognition and recall value in target markets.",
+    "explanation": "Indonesia's primary nation-branding vehicle is the Wonderful Indonesia (Pesona Indonesia) campaign, launched in 2011, which integrates culinary promotion into a broader tourism and cultural identity strategy. Cultural branding through food involves the selection and standardization of a curated set of dishes — typically rendang, nasi goreng, satay, gado-gado, and soto — as the internationally legible face of Indonesian cuisine. This selection process is not culturally neutral: it privileges cuisines with broad palatability, visual appeal for international media, and sufficient distance from unfamiliar ingredients or preparation methods. Cultural branding thus produces a simplified, internationally marketed version of Indonesian culinary culture that is strategically effective but analytically distinguishable from the full complexity of what Indonesians actually eat. The tension between brand legibility and cultural authenticity is a recurring theme in food diplomacy studies and is particularly acute for a nation as culinarily diverse as Indonesia.",
+    "example": "Indonesia's pavilion at international Expos (e.g., Expo Dubai 2021) prominently featured curated Indonesian culinary experiences alongside cultural performances, demonstrating the integration of food into the broader Wonderful Indonesia brand architecture.",
+    "related": ["Gastrodiplomacy", "Food Nationalism", "Food Heritage", "Ministry of Tourism and Creative Economy"],
+    "keywords": ["nation branding", "soft power", "Wonderful Indonesia", "culinary identity", "tourism marketing", "image-making", "diplomacy"],
+    "historical": null
+  },
+  {
+    "term": "Rendang",
+    "altTerm": "Randang (Minangkabau)",
+    "category": "Food",
+    "letter": "R",
+    "definition": "Rendang is a dry-method slow-cooked beef dish originating from the Minangkabau people of West Sumatra, Indonesia. Prepared by simmering meat in coconut milk and an elaborate spice paste — including galangal, lemongrass, kaffir lime, chili, turmeric, and ginger — until the liquid evaporates and the spices caramelize into the meat, rendang is distinguished by its deep, complex flavor profile, dark color, and exceptional shelf stability. It occupies a prominent position in Indonesian culinary nationalism and international gastrodiplomacy.",
+    "explanation": "Rendang's significance in Indonesian gastrodiplomacy exceeds its culinary qualities. In 2011 and 2017, CNN Travel readers ranked rendang among the world's best foods, transforming it into a globally recognized symbol of Indonesian culinary excellence. For the Minangkabau, rendang carries deep cultural and philosophical meaning: its preparation process — slow, patient, transformative — mirrors Minangkabau epistemological values, and the dish is traditionally associated with celebrations, rituals, and long-distance travel. Its preservation qualities made it ideal for the mobile, trading lifestyle of Minangkabau diaspora communities, known as rantau. Rendang's integration into national gastrodiplomacy has created tensions between its Minangkabau origins and its appropriation as a generic Indonesian dish — a recurring dynamic in food heritage politics. The 2018 BBC controversy, in which a television program featured a rendang preparation that Indonesians and Malaysians criticized as culturally inappropriate, precipitated a transnational social media mobilization that illustrated food nationalism's volatility. Rendang is also claimed by Malaysia, where it is a staple of Malay cuisine, making it a recurring flashpoint in the broader pattern of Indonesia-Malaysia culinary border disputes.",
+    "example": "When CNN Travel named rendang the world's most delicious food in 2017, the Indonesian government and media swiftly incorporated the ranking into official tourism campaigns, exemplifying how external validation amplifies gastrodiplomacy.",
+    "related": ["Gastrodiplomacy", "Food Nationalism", "Food Heritage", "Spice Routes", "Cultural Branding"],
+    "keywords": ["Minangkabau", "West Sumatra", "beef", "spice paste", "coconut milk", "culinary nationalism", "world food ranking"],
+    "historical": "Rendang is attested in Minangkabau literary tradition from at least the sixteenth century. Its association with the Minangkabau rantau (migration) culture contributed to its wide diffusion across the Malay-Indonesian world long before the era of state-sponsored gastrodiplomacy."
+  },
+  {
+    "term": "Nasi Goreng",
+    "altTerm": null,
+    "category": "Food",
+    "letter": "N",
+    "definition": "Nasi goreng — literally fried rice in Indonesian and Malay — is a wok-fried rice dish seasoned with sweet soy sauce (kecap manis), shrimp paste, chili, garlic, shallots, and various additions including egg, vegetables, and protein. It functions simultaneously as everyday domestic food, street food, hotel restaurant staple, and international culinary ambassador for Indonesia. Its adaptability, palatability, and cross-cultural familiarity make it one of Indonesia's most strategically deployed gastrodiplomacy assets.",
+    "explanation": "Nasi goreng occupies a paradoxical position in Indonesian food culture and diplomacy. As a dish of great domestic ubiquity — consumed across class, ethnic, and regional lines — it carries genuine national resonance. Yet its international promotion as a national dish glosses over its shared heritage with broader Southeast and East Asian fried rice traditions. Culinary historians trace Indonesian nasi goreng's distinctive character — particularly the use of kecap manis, a uniquely Indonesian sweet soy sauce developed through Chinese-Javanese culinary exchange — to centuries of inter-ethnic food exchange. Its association with former President Sukarno, who reportedly served it to visiting dignitaries, has contributed to its quasi-official diplomatic status. Hotel chains operating across Indonesia have further standardized the dish for international tourist consumption, creating a commercially legible version that may diverge significantly from street-level or household preparations. Nasi goreng thus exemplifies the tension between culinary standardization for international marketability and the preservation of regional variation.",
+    "example": "The inclusion of nasi goreng in the menus of major Indonesian airlines and five-star international hotels that offer Indonesian cuisine reflects its status as a gastronomically safe, internationally legible flagship of Indonesian food identity.",
+    "related": ["Rendang", "Gastrodiplomacy", "Culinary Tourism", "Cultural Branding"],
+    "keywords": ["fried rice", "kecap manis", "street food", "national dish", "hotel cuisine", "culinary hybridity", "Indonesia"],
+    "historical": "The kecap manis that distinguishes Indonesian nasi goreng from other regional fried rice dishes developed from Chinese soy sauce traditions adapted by Chinese-Indonesian communities, reflecting the culinary creolization of Java's port cities."
+  },
+  {
+    "term": "Satay",
+    "altTerm": "Sate",
+    "category": "Food",
+    "letter": "S",
+    "definition": "Satay (sate in Indonesian) is a dish of seasoned, skewered, and grilled meat — typically chicken, beef, lamb, or pork in non-Muslim contexts — served with a variety of dipping sauces, most characteristically a peanut-based sauce. Originating in Java and Madura, satay is one of the most geographically dispersed Indonesian-origin foods globally, present across Southeast Asia and found in diasporic Indonesian communities worldwide. It is among Indonesia's most internationally recognized culinary exports.",
+    "explanation": "Satay's international diffusion predates organized gastrodiplomacy, carried through centuries of trade, migration, and colonial networks. Its presence across Malaysian, Singaporean, Thai, and broader Southeast Asian cuisines has generated ongoing debates about culinary origin and national ownership. For Indonesian gastrodiplomacy, satay functions as an accessible entry point to Indonesian cuisine for international audiences: its preparation method (grilling), format (skewer), and peanut sauce profile are familiar and non-threatening to palates unaccustomed to more complex Indonesian flavor profiles. Regional variation within Indonesia is substantial: sate Madura (from Madura island) uses a distinctive sweet peanut sauce; sate Lilit from Bali involves minced fish or pork wrapped around lemongrass stalks; sate Padang from West Sumatra is served with a spiced offal sauce. The selection of which satay to promote internationally thus carries implicit regional political decisions. Indonesia's inclusion of satay in the list of dishes promoted under official gastrodiplomacy campaigns reflects its palatability and cross-cultural recognizability.",
+    "example": "Satay has become a standard feature of Indonesian cultural events abroad, including Indonesia's participation in world food festivals and embassy culinary nights, precisely because its format and flavor profile maximize accessibility for non-Indonesian audiences.",
+    "related": ["Rendang", "Nasi Goreng", "Food Heritage", "Gastrodiplomacy"],
+    "keywords": ["skewered meat", "peanut sauce", "Madura", "Bali", "street food", "culinary export", "Southeast Asia"],
+    "historical": null
+  },
+  {
+    "term": "Tempe",
+    "altTerm": "Tempeh",
+    "category": "Food",
+    "letter": "T",
+    "definition": "Tempe (tempeh in English) is a traditional Indonesian fermented soybean product produced by culturing cooked soybeans with Rhizopus mold, which binds the beans into a firm, sliceable cake. Originating in Java, tempe is a staple protein source in Indonesian cuisine, consumed across socioeconomic classes, and recognized internationally for its nutritional density and versatility. It has emerged as a significant object of food heritage discourse and, increasingly, of sustainable food advocacy in global culinary circles.",
+    "explanation": "Tempe's trajectory from humble Javanese staple to internationally celebrated superfood exemplifies the dynamics of culinary revaluation in gastrodiplomacy. Within Indonesia, tempe has historically been associated with working-class and rural consumption — a stigma that led to its underrepresentation in elite culinary diplomacy despite its cultural importance. However, the global rise of plant-based diets and fermented food interest has repositioned tempe as a sophisticated, sustainable, and culturally distinctive food, generating substantial international interest. This external revaluation has influenced domestic Indonesian discourse, with food critics, nutritionists, and cultural institutions increasingly asserting tempe as a heritage food worthy of national pride. The Indonesian government has pursued intellectual property protection for tempe as a form of food sovereignty, given the product's wide adoption by international food companies. Tempe's fermentation process, which involves a specific Indonesian-origin mold culture (Rhizopus oligosporus), connects it to the longer history of Javanese food biotechnology and illustrates the depth of Indonesian culinary scientific heritage.",
+    "example": "The growing presence of tempe in international plant-based food markets — including product lines by major food companies in Europe and North America — has prompted Indonesian cultural advocates to assert the dish's Javanese origin as a form of food heritage protection.",
+    "related": ["Food Heritage", "Food Nationalism", "Culinary Infrastructure"],
+    "keywords": ["fermentation", "soybean", "Java", "plant-based", "food sovereignty", "intangible heritage", "Rhizopus"],
+    "historical": "Tempe is believed to have originated in Java between the sixteenth and nineteenth centuries, with the earliest written reference appearing in a Javanese manuscript. Its association with the rice-centered Javanese agricultural economy shaped its early development as a meat substitute."
+  },
+  {
+    "term": "Spice Routes",
+    "altTerm": "Jalur Rempah",
+    "category": "Food",
+    "letter": "S",
+    "definition": "The Spice Routes (Jalur Rempah) refer to the historical maritime trade networks that connected the spice-producing islands of the Indonesian archipelago — particularly the Maluku (Moluccas), Banda Islands, and Sulawesi — to markets in China, India, the Arab world, and Europe from ancient times through the colonial era. These routes facilitated the global diffusion of cloves, nutmeg, pepper, and other Indonesian-origin spices, fundamentally shaping world culinary history and generating the geopolitical contests that drove European colonial expansion into Southeast Asia.",
+    "explanation": "Indonesia's Spice Routes heritage occupies a central position in its contemporary gastrodiplomacy narrative, representing a claim to historical global significance that predates colonialism. The Indonesian government's Jalur Rempah initiative — formally registered with UNESCO as part of Indonesia's effort to inscribe the Spice Routes as a World Heritage Site — frames Indonesia not as a peripheral object of colonial history but as an originary node in the world's first genuinely global trade network. This reframing has profound implications for culinary diplomacy: it positions Indonesian cuisine not as a regional curiosity but as a fundamental contributor to global flavor profiles. Cloves (cengkeh), originally from the Banda Islands, were among the world's most valuable commodities for centuries; nutmeg (pala) from the same islands drove the VOC's most brutal colonial campaigns. The Spice Routes narrative thus connects gastrodiplomacy to decolonial historiography, asserting Indonesian agency and centrality in world history through culinary heritage.",
+    "example": "Indonesia's UNESCO nomination of Jalur Rempah for World Heritage inscription, combined with the annual Sail Nusantara maritime cultural event, mobilizes Spice Routes heritage as both a diplomatic resource and a national identity anchor.",
+    "related": ["Food Heritage", "Gastrodiplomacy", "Cultural Branding", "Rendang", "Culinary Tourism"],
+    "keywords": ["spice trade", "Maluku", "cloves", "nutmeg", "colonial history", "UNESCO", "maritime heritage"],
+    "historical": "The Banda Islands were the world's sole source of nutmeg and mace until the nineteenth century. The Dutch VOC's monopoly control of Banda spice production, maintained through mass violence against indigenous Bandanese, represents one of the most documented cases of colonial resource extraction in food history."
+  },
+  {
+    "term": "Indonesian Diaspora",
+    "altTerm": "Diaspora Indonesia",
+    "category": "Actor",
+    "letter": "I",
+    "definition": "The Indonesian diaspora comprises Indonesian-born individuals and their descendants residing outside Indonesia, distributed across major destination countries including Malaysia, Singapore, the Netherlands, Saudi Arabia, Australia, Japan, and the United States. As culinary carriers — maintaining, adapting, and transmitting Indonesian food practices in host societies — diaspora communities function as decentralized, non-state actors in Indonesian gastrodiplomacy, often preceding and enabling formal state culinary promotion by establishing Indonesian food cultures in transnational spaces.",
+    "explanation": "The Indonesian diaspora's role in gastrodiplomacy operates through multiple mechanisms. Indonesian restaurants opened by diaspora entrepreneurs introduce Indonesian cuisine to host-country publics, creating the material infrastructure that subsequent state-backed promotion can leverage. Home cooking within diaspora households maintains culinary practices and transmits knowledge across generations — a form of everyday gastrodiplomacy that escapes institutional capture. Online content production — Indonesian food bloggers, YouTube cooking channels, and Instagram accounts operating in diaspora contexts — constitutes a substantial digital arm of informal gastrodiplomacy, often reaching larger and more engaged international audiences than official campaigns. The relationship between diaspora and state in Indonesian gastrodiplomacy is not always harmonious: diaspora entrepreneurs may resist state standardization of dishes that they cook according to regional or familial traditions; diaspora food cultures may also drift toward adaptation for local palates in ways that official diplomacy regards as dilutive of culinary authenticity.",
+    "example": "The clustering of Indonesian restaurants in cities like The Hague, Amsterdam, Sydney, and Riyadh — often established by diaspora entrepreneurs decades before official gastrodiplomacy programs — created the transnational taste communities that state promotion now seeks to expand.",
+    "related": ["Gastrodiplomacy", "Food Festival", "Embassy Promotion Programs", "Culinary Tourism"],
+    "keywords": ["migration", "transnational communities", "culinary transmission", "diaspora entrepreneurship", "informal diplomacy", "adaptation", "Netherlands"],
+    "historical": "The Netherlands hosts the largest Western Indonesian diaspora, partly owing to colonial-era migration. Dutch-Indonesian culinary fusion — most notably the rijsttafel (rice table) banquet format — represents a distinctive gastrodiplomacy legacy of colonial encounter that Indonesia has only recently begun to reclaim in cultural diplomacy discourse."
+  },
+  {
+    "term": "Embassy Promotion Programs",
+    "altTerm": null,
+    "category": "Actor",
+    "letter": "E",
+    "definition": "Embassy promotion programs in the context of gastrodiplomacy refer to the formal and semi-formal culinary outreach activities organized by Indonesian diplomatic missions abroad — including Indonesian embassies, consulates, and cultural centers (Pusat Kebudayaan Indonesia) — to introduce, celebrate, and build affinity for Indonesian food culture among host-country publics, officials, and media. These programs operate as a state-institutional node within the broader architecture of Indonesian gastrodiplomacy.",
+    "explanation": "Indonesian embassy culinary promotion takes diverse forms: Indonesian Night events combining food, music, and cultural performance; participation in host-city food festivals; chef residencies and cooking demonstrations; journalist and influencer familiarization tours targeting Indonesian food; the distribution of culinary promotional materials; and collaboration with Indonesian diaspora restaurant associations. The scope and quality of these programs vary significantly between missions, reflecting differences in budget allocation, host-country market conditions, and the initiative of individual ambassadors and cultural attaches. Embassies in countries with large Indonesian diaspora populations — such as the Netherlands, Australia, and Malaysia — tend to have more developed culinary promotion infrastructure. A distinctive feature of Indonesian embassy gastrodiplomacy is the challenge of representing culinary diversity: with hundreds of distinct regional cuisines, embassies must make curatorial choices that inevitably privilege some regions over others. The integration of embassy culinary programs with the Wonderful Indonesia brand framework has increased coordination with the Ministry of Tourism, though tensions between ministries over jurisdictional authority for gastrodiplomacy remain an institutional challenge.",
+    "example": "The Indonesian Embassy in Tokyo regularly organizes Indonesian food and cultural festivals as part of bilateral people-to-people diplomacy, leveraging Japan's strong interest in culinary tourism and Indonesian food culture.",
+    "related": ["Gastrodiplomacy", "Cultural Branding", "Indonesian Diaspora", "Ministry of Tourism and Creative Economy"],
+    "keywords": ["embassy", "cultural diplomacy", "outreach", "Indonesian Night", "culinary promotion", "diplomatic mission", "Wonderful Indonesia"],
+    "historical": null
+  },
+  {
+    "term": "Food Festival",
+    "altTerm": "Culinary Festival",
+    "category": "Practice",
+    "letter": "F",
+    "definition": "A food festival, in the gastrodiplomacy context, is a staged, bounded cultural event — organized by states, diaspora organizations, tourism boards, or private actors — that uses the preparation, demonstration, sampling, and narration of national or regional cuisine as a mode of cultural promotion, community building, and public diplomacy. Food festivals function as condensed, theatricalized encounters with culinary heritage, designed to generate affective engagement with national food culture among both diaspora communities and host-country publics.",
+    "explanation": "Food festivals are among the most visible and accessible instruments of gastrodiplomacy, combining sensory experience with cultural narrative in ways that formal diplomatic events cannot replicate. In the Indonesian context, food festivals operate at multiple scales: large-scale events organized domestically (such as the Ubud Food Festival in Bali, which has developed an international profile) and abroad (Indonesian participation in world food fairs in Germany, Japan, Australia, and elsewhere). The festival format necessarily involves a degree of culinary performance and staging that may diverge from everyday food practice — dishes are presented in standardized, visually appealing forms, provenance stories are simplified for non-specialist audiences, and unfamiliar flavor profiles may be moderated for palatability. Despite these mediation effects, food festivals create experiential encounters with Indonesian cuisine that have demonstrable effects on culinary tourism interest and restaurant patronage. The Ubud Food Festival has been particularly significant in elevating Bali's gastronomic profile internationally, attracting food journalists, chefs, and culinary tourists and generating substantial media coverage that amplifies Indonesia's culinary brand.",
+    "example": "The Ubud Food Festival (Bali), established in 2015, has grown into Southeast Asia's premier culinary gathering, attracting international chefs and food writers and generating significant media coverage that positions Bali — and by extension Indonesia — as a serious gastronomic destination.",
+    "related": ["Culinary Tourism", "Gastrodiplomacy", "Embassy Promotion Programs", "Cultural Branding"],
+    "keywords": ["culinary event", "festival", "Ubud", "Bali", "food promotion", "staging", "culinary tourism"],
+    "historical": null
+  },
+  {
+    "term": "Culinary Tourism",
+    "altTerm": "Food Tourism; Gastronomic Tourism",
+    "category": "Practice",
+    "letter": "C",
+    "definition": "Culinary tourism is a form of tourism in which the primary motivation or a significant component of the travel experience is engagement with the food and drink culture of the destination — including tasting local dishes, participating in cooking classes, visiting food markets, attending culinary events, and learning about the cultural contexts of local cuisine. As both an economic sector and a cultural practice, culinary tourism is a major vehicle for gastrodiplomacy, enabling the direct, embodied transmission of national food culture to international visitors.",
+    "explanation": "Indonesia has positioned culinary tourism as a strategic pillar of its broader tourism development, recognizing that food experiences generate high visitor satisfaction, encourage longer stays, and support local economies from agriculture to artisanal production. The Indonesian Ministry of Tourism has integrated culinary tourism into destination branding for key tourism zones — Bali, Yogyakarta, Lombok, and the Komodo region — while also promoting less-visited culinary destinations such as Padang (West Sumatra), Makassar (South Sulawesi), and Manado (North Sulawesi). The development of culinary tourism infrastructure — cooking schools, food tours, culinary heritage trails, specialty food markets — requires coordination between government agencies, private operators, local communities, and heritage institutions. A central tension in Indonesian culinary tourism is the challenge of authenticity: tourist demand for authentic local food experiences can drive commodification processes that simultaneously attract visitors and transform the practices that visitors sought to experience. Culinary tourism in Indonesia also intersects with halal tourism, as the government has aggressively promoted Indonesia as a leading halal tourism destination, with culinary offerings as a core component.",
+    "example": "Yogyakarta's kraton-adjacent food street (Jalan Malioboro) and its surrounding gudeg-producing warung (small restaurants) constitute a well-documented culinary tourism ecosystem that sustains traditional Javanese cuisine while adapting to international visitor preferences.",
+    "related": ["Food Festival", "Gastrodiplomacy", "Cultural Branding", "Halal Certification"],
+    "keywords": ["food tourism", "experiential travel", "culinary heritage trails", "Bali", "Yogyakarta", "halal tourism", "authenticity"],
+    "historical": null
+  },
+  {
+    "term": "Halal Certification",
+    "altTerm": null,
+    "category": "Practice",
+    "letter": "H",
+    "definition": "Halal certification is the formal process by which food products, restaurants, production facilities, and supply chains are assessed and certified as compliant with Islamic dietary law (shariah), confirming the absence of prohibited ingredients (most notably pork and its derivatives, alcohol, and non-halal slaughtered animals) and compliance with prescribed preparation methods. In the Indonesian context, halal certification is administered primarily by the Majelis Ulama Indonesia (MUI) and, from 2019, increasingly regulated through the BPJPH (Halal Product Assurance Organizing Agency) under the Ministry of Religious Affairs.",
+    "explanation": "Halal certification occupies a dual role in Indonesian gastrodiplomacy. Domestically, it functions as a regulatory and religious assurance mechanism for Indonesia's Muslim-majority population — with significant implications for the food industry, tourism, and culinary promotion. Internationally, it serves as both a market access tool — enabling Indonesian food exports and restaurants to reach the global halal market, estimated at several hundred billion dollars annually — and a component of Indonesia's identity projection as a moderate Muslim-majority nation with world-class food standards. Indonesia's ambition to become the world's leading halal food hub, articulated in successive national development plans, positions halal certification as a pillar of economic gastrodiplomacy. However, the expansion of mandatory halal certification has generated controversy within Indonesia, particularly regarding its implications for non-Muslim communities who produce and consume non-halal foods (most notably in Bali, North Sumatra, and North Sulawesi) and for small food producers who may lack the resources to navigate certification bureaucracy.",
+    "example": "Indonesia's goal of having all food products certified halal under the JPH Law has created significant regulatory challenges for small artisanal food producers, who must navigate certification costs and administrative requirements while maintaining traditional production methods.",
+    "related": ["Culinary Infrastructure", "Culinary Tourism", "Gastrodiplomacy", "Embassy Promotion Programs"],
+    "keywords": ["Islamic dietary law", "MUI", "BPJPH", "halal market", "food regulation", "Muslim-majority", "food export"],
+    "historical": "The MUI issued its first halal certification in 1994. The subsequent three decades have seen significant expansion and contestation of halal certification's scope, culminating in the JPH (Halal Product Guarantee) Law of 2014, which established the legal framework for mandatory certification."
+  },
+  {
+    "term": "Ministry of Tourism and Creative Economy",
+    "altTerm": "Kemenparekraf",
+    "category": "Institution",
+    "letter": "M",
+    "definition": "The Indonesian Ministry of Tourism and Creative Economy (Kementerian Pariwisata dan Ekonomi Kreatif, Kemenparekraf) is the primary government institution responsible for developing, promoting, and regulating Indonesia's tourism sector and creative industries, including the culinary sector. In the gastrodiplomacy domain, the Ministry serves as the principal architect of national culinary branding strategy, overseeing the Wonderful Indonesia campaign, coordinating international culinary promotion, and developing culinary infrastructure and event programs that position Indonesian food as a global attraction.",
+    "explanation": "Kemenparekraf's mandate in culinary promotion spans domestic and international activities: supporting culinary creative industries, training culinary entrepreneurs, promoting Indonesian cuisine at international trade fairs and food expos, coordinating embassy culinary programs, and developing culinary tourism destinations. The Ministry has identified gastronomy as one of the sixteen priority sectors of Indonesia's creative economy, recognizing its value chain linkages to agriculture, hospitality, media, and manufacturing. Institutionally, Indonesian gastrodiplomacy involves coordination challenges across at least three ministries: Tourism and Creative Economy (promotional and tourism dimensions), Foreign Affairs (diplomatic implementation through embassies), and Trade (food export and market access). The absence of a unified inter-ministerial gastrodiplomacy framework has been identified as a structural impediment to the coherence and impact of Indonesia's culinary diplomacy. Under successive presidential administrations, emphasis on culinary promotion has varied, with Joko Widodo's administrations (2014-2024) giving significant rhetorical and budgetary priority to creative economy development, including culinary sector promotion.",
+    "example": "Kemenparekraf's 30 Iconic Indonesian Foods initiative systematically identified and documented thirty regionally diverse Indonesian dishes for international promotion, combining culinary heritage documentation with gastrodiplomacy strategy.",
+    "related": ["Gastrodiplomacy", "Cultural Branding", "Embassy Promotion Programs", "Culinary Tourism"],
+    "keywords": ["Kemenparekraf", "Wonderful Indonesia", "creative economy", "culinary promotion", "tourism ministry", "government", "policy"],
+    "historical": null
+  },
+  {
+    "term": "Bali",
+    "altTerm": null,
+    "category": "Place",
+    "letter": "B",
+    "definition": "Bali is a Hindu-majority province of Indonesia and the country's premier international tourism destination, distinguished by its exceptional integration of culinary tradition, spiritual practice, agricultural landscape, and cultural performance. In gastrodiplomacy, Bali functions as Indonesia's most internationally legible culinary space — the site where global audiences most frequently encounter Indonesian food culture — and as a laboratory for culinary tourism development, food heritage documentation, and gastronomic nation-branding.",
+    "explanation": "Bali's culinary diplomacy significance derives partly from its existing high international profile as a luxury and cultural tourism destination, which provides a ready audience for culinary experiences, and partly from its distinctive cuisine rooted in Hindu ritual practice and the island's extraordinary agricultural biodiversity. Balinese cuisine — characterized by basa gede (a complex spice paste), lawar (a ceremonial minced meat and coconut dish), babi guling (roasted suckling pig, significant in Hindu ritual contexts), and bebek betutu (slow-roasted duck) — is simultaneously deeply local and globally appealing. The Ubud Food Festival, established in 2015, has positioned Bali as a regional gastronomic hub, attracting international chefs, food journalists, and culinary tourists who encounter not only Balinese cuisine but Indonesian food diversity more broadly. However, Bali's centrality in Indonesian gastrodiplomacy creates a representational skew: Bali's Hindu cultural identity, high income levels, and sophisticated tourism infrastructure make it a distinctly unrepresentative window into the broader Indonesian culinary landscape. Furthermore, the pork-centered ceremonial cuisine of Bali exists in tension with Indonesia's halal tourism framework, creating institutional ambiguity about how to position Bali within a Muslim-majority nation's gastrodiplomacy strategy.",
+    "example": "The Ubud Food Festival's programming, which combines traditional Balinese cooking demonstrations, Indonesian regional cuisine showcases, and international chef collaborations, exemplifies Bali's gastrodiplomacy function as a meeting point between Indonesian culinary tradition and global food culture.",
+    "related": ["Culinary Tourism", "Food Festival", "Food Heritage", "Gastrodiplomacy"],
+    "keywords": ["Bali", "Ubud", "Hindu", "babi guling", "Ubud Food Festival", "culinary tourism", "lawar"],
+    "historical": null
+  },
+  {
+    "term": "Java",
+    "altTerm": null,
+    "category": "Place",
+    "letter": "J",
+    "definition": "Java is Indonesia's most populous island, home to the cities of Jakarta, Yogyakarta, Surakarta (Solo), and Surabaya, and the political, economic, and cultural center of the Indonesian state. Javanese cuisine — characterized by a preference for sweet, mild flavors (the use of palm sugar as a balancing agent is distinctive), a sophisticated repertoire of ceremonial and everyday dishes, and strong integration with Hindu-Buddhist and Islamic cultural traditions — exercises disproportionate influence on the construction of Indonesian national cuisine for both domestic and international audiences.",
+    "explanation": "Java's centrality in Indonesian state formation has given Javanese culinary traditions significant representational power in national gastrodiplomacy. The kitchen of the kraton (royal palace) in Yogyakarta and Surakarta represents a sophisticated haute cuisine tradition that informs Indonesia's culinary heritage claims. Yogyakarta's gudeg (young jackfruit braised in coconut milk and palm sugar), Solo's nasi liwet (rice cooked in coconut milk) and serabi (coconut crepe), and the broader Javanese tradition of wedang (hot ginger and herbal drinks) are among the cultural assets with gastrodiplomacy potential. The Javanese slametan — a communal feast organized to mark transitions and seek communal blessings — represents a food heritage of social significance that has attracted scholarly attention as a window into Javanese social philosophy. Jakarta, as the capital city and a major international hub, functions as Indonesia's primary site of culinary encounter for foreign visitors, business travelers, and diplomats — making the capital's diverse food ecology an important, if undertheorized, front line of everyday gastrodiplomacy.",
+    "example": "Yogyakarta's annual Sekaten festival — rooted in Javanese-Islamic syncretic tradition — features distinctive ceremonial foods including jenang (thick porridge) and apem (rice cakes) that represent Javanese culinary heritage as an integrated cultural, spiritual, and gastronomic practice.",
+    "related": ["Food Heritage", "Nasi Goreng", "Tempe", "Culinary Tourism", "Spice Routes"],
+    "keywords": ["Java", "Yogyakarta", "Jakarta", "Javanese cuisine", "slametan", "royal cuisine", "gudeg"],
+    "historical": "Java's spice trade history — as a key entrepot connecting the spice islands of Maluku to regional and global markets — shaped its culinary culture through centuries of contact with Arab, Indian, Chinese, and European traders and colonizers."
+  }
+  ,
+  {
+    "term": "Indonesia Spice Up the World (ISUTW)",
+    "altTerm": "ISUTW",
+    "category": "Policy",
+    "letter": "I",
+    "definition": "Indonesia Spice Up the World (ISUTW) is a state-led gastrodiplomacy initiative launched in 2021 to expand Indonesian culinary presence globally, increase spice exports, and strengthen cultural diplomacy through food. It represents Indonesia's first comprehensive attempt to institutionalize gastrodiplomacy through coordinated action among ministries, state agencies, financial institutions, and culinary actors.",
+    "explanation": "ISUTW represents Indonesia's first comprehensive attempt to institutionalize gastrodiplomacy through coordinated action among ministries, state agencies, financial institutions, and culinary actors. The program aims to establish thousands of Indonesian restaurants abroad while increasing the global circulation of spices and processed food products. Beyond economic objectives, ISUTW seeks to construct a coherent national culinary narrative and enhance Indonesia's international image. Its implementation reveals the importance of targeting specific regions, adapting to local regulatory frameworks, and aligning culinary promotion with global trends such as sustainability, health-conscious consumption, and mobility-based dining practices.",
+    "example": "The program prioritizes key dishes such as rendang, nasi goreng, and satay, while also promoting Indonesian spices including nutmeg, cloves, and cinnamon in global markets.",
+    "related": ["Gastrodiplomacy", "Culinary Diplomacy", "Gastro-Destination", "Spice Routes"],
+    "keywords": ["ISUTW", "policy", "spice trade", "restaurants", "Indonesia", "soft power"],
+    "historical": "Launched in November 2021 as Indonesia's first coordinated national gastrodiplomacy program."
+  },
+  {
+    "term": "Rijsttafel",
+    "altTerm": "Rice Table",
+    "category": "Food",
+    "letter": "R",
+    "definition": "Rijsttafel is a colonial-era dining tradition originating in the Dutch East Indies, consisting of multiple Indonesian dishes served in a single elaborate meal. It embodies the hybridity of colonial culinary culture, emerging from interactions among European, Indonesian, and Chinese communities in the Dutch East Indies.",
+    "explanation": "Rijsttafel embodies the hybridity of colonial culinary culture, emerging from interactions among European, Indonesian, and Chinese communities in the Dutch East Indies. It represents not only a collection of dishes but also a structured gastronomic practice involving preparation, presentation, and social performance. Transferred to Europe during the colonial period, it became a central element of Indonesian cuisine in the Netherlands and later in France. Over time, Rijsttafel shifted from an exotic colonial display to a normalized component of Dutch culinary identity, reflecting broader processes of cultural integration, adaptation, and memory-making within postcolonial societies.",
+    "example": "Restaurants in the Netherlands commonly serve Rijsttafel with 15 to 20 dishes, including satay, gado-gado, and rendang.",
+    "related": ["Food Heritage", "Indonesian Diaspora", "Ethnic Indonesian Restaurants"],
+    "keywords": ["colonial food", "hybridity", "Netherlands", "Indonesia", "multi-dish"],
+    "historical": "Developed in the 19th-century Dutch East Indies and later institutionalized in Dutch gastronomy."
+  },
+  {
+    "term": "Tong Tong Fair",
+    "altTerm": "Pasar Malam Besar",
+    "category": "Practice",
+    "letter": "T",
+    "definition": "Tong Tong Fair is an annual cultural and culinary festival in The Hague that serves as a major platform for promoting Indonesian cuisine and Indo-European heritage. It is one of the largest Eurasian cultural festivals in Europe.",
+    "explanation": "Originally known as Pasar Malam Besar, Tong Tong Fair is one of the largest Eurasian cultural festivals in Europe. It functions as a public arena where Indonesian cuisine is performed, consumed, and reinterpreted within a diasporic context. The event attracts diverse audiences and features food stalls, cultural performances, and exhibitions that collectively sustain and circulate Indonesian culinary heritage abroad. Its significance lies in its role as a long-term informal infrastructure of gastrodiplomacy, predating state-led initiatives and demonstrating how community-driven events contribute to the global visibility of national cuisines.",
+    "example": "The festival's food court showcases dishes from regions such as Java, Padang, and Palembang.",
+    "related": ["Food Festival", "Indonesian Diaspora", "Pasar Malam Indonesia"],
+    "keywords": ["festival", "diaspora", "Netherlands", "culinary promotion", "heritage"],
+    "historical": "Held annually since 1959 in The Hague."
+  },
+  {
+    "term": "Pasar Malam Indonesia",
+    "altTerm": null,
+    "category": "Practice",
+    "letter": "P",
+    "definition": "Pasar Malam Indonesia is a cultural festival organized by Indonesian diplomatic institutions to promote Indonesian cuisine and heritage abroad. Unlike community-driven events, it represents a formalized, state-supported effort to showcase Indonesian culture through culinary performance.",
+    "explanation": "Unlike community-driven events such as Tong Tong Fair, Pasar Malam Indonesia represents a more formalized, state-supported effort to showcase Indonesian culture. Organized by Indonesian embassies, the event emphasizes culinary performance as a key medium of cultural diplomacy, featuring cooking demonstrations, food stalls, and participation from Indonesian restaurants. It illustrates how state actors utilize festival formats to enhance cultural visibility and strengthen engagement with international audiences, while also supporting diaspora entrepreneurs.",
+    "example": "The Indonesian Embassy in The Hague organized Pasar Malam Indonesia with participation from dozens of Indonesian restaurants.",
+    "related": ["Food Festival", "Gastrodiplomacy", "Embassy Promotion Programs", "Tong Tong Fair"],
+    "keywords": ["festival", "embassy", "promotion", "culture", "food"],
+    "historical": "Initiated in 2010 by the Indonesian Embassy in the Netherlands."
+  },
+  {
+    "term": "Ethnic Indonesian Restaurants",
+    "altTerm": null,
+    "category": "Practice",
+    "letter": "E",
+    "definition": "Ethnic Indonesian restaurants are establishments that specialize in regional Indonesian cuisines, emphasizing authenticity and local culinary identities. Since the 2000s, these have increasingly shifted toward regional specialization in key markets such as Europe.",
+    "explanation": "Since the 2000s, Indonesian restaurants in Europe have increasingly shifted toward regional specialization, offering dishes from areas such as Minangkabau, Java, Bali, and Manado. This trend reflects both the demographic composition of Indonesian diaspora communities and the growing demand for authentic culinary experiences among global consumers. These restaurants function as key nodes in gastrodiplomacy, as they mediate between authenticity and adaptation while introducing diverse culinary identities beyond a singular national narrative.",
+    "example": "Restaurants in the Netherlands now serve region-specific dishes such as rendang from Minangkabau and pindang from Palembang.",
+    "related": ["Indonesian Diaspora", "Food Heritage", "Rijsttafel"],
+    "keywords": ["restaurants", "regional cuisine", "diaspora", "authenticity", "Europe"],
+    "historical": "Expanded significantly in Europe after the 2000s with new migration flows from Indonesia."
+  },
+  {
+    "term": "Plant-Based Indonesian Cuisine",
+    "altTerm": null,
+    "category": "Practice",
+    "letter": "P",
+    "definition": "Plant-based Indonesian cuisine refers to adaptations of traditional Indonesian dishes using vegetarian or vegan ingredients to align with global dietary trends toward sustainability and health-conscious consumption.",
+    "explanation": "In response to increasing demand for sustainable and health-conscious diets, Indonesian cuisine abroad has undergone significant adaptation. Restaurants in Europe have incorporated plant-based alternatives such as tempeh, tofu, and vegetable-based rendang, reinterpreting traditional recipes without animal products. This transformation illustrates the flexibility of Indonesian culinary traditions and highlights how gastrodiplomacy intersects with global concerns about sustainability, environmental impact, and ethical consumption.",
+    "example": "Vegan rendang and tempeh-based dishes are commonly served in Indonesian restaurants in the Netherlands.",
+    "related": ["Tempe", "Culinary Infrastructure", "Ethnic Indonesian Restaurants"],
+    "keywords": ["vegan", "sustainability", "Europe", "diet", "adaptation", "tempeh"],
+    "historical": "Gained prominence in Europe during the 2010s alongside plant-based food trends."
+  },
+  {
+    "term": "Food Truck Diplomacy",
+    "altTerm": null,
+    "category": "Practice",
+    "letter": "F",
+    "definition": "Food truck diplomacy refers to the use of mobile food vendors as a strategy to promote national cuisine in accessible and informal public settings, emphasizing mobility, affordability, and direct engagement with diverse urban audiences.",
+    "explanation": "Food truck diplomacy emphasizes mobility, affordability, and direct engagement with diverse urban audiences. Compared to formal restaurants, food trucks allow for wider reach and lower operational costs, making them an effective tool for introducing national cuisines to new markets. In the context of Indonesian gastrodiplomacy, food trucks are proposed as a strategic alternative to traditional restaurant expansion, particularly in Europe where fast, convenient, and street-based dining formats are popular among students and working populations.",
+    "example": "Indonesian food trucks serving dishes such as gado-gado or satay can be positioned in urban public spaces to increase visibility and accessibility.",
+    "related": ["Gastrodiplomacy", "Culinary Tourism", "Indonesia Spice Up the World (ISUTW)"],
+    "keywords": ["food truck", "mobility", "urban", "strategy", "promotion", "street food"],
+    "historical": "Emerges as a recommended strategy in the post-2020 development of Indonesian gastrodiplomacy."
+  },
+  {
+    "term": "Indonesian Diaspora Network Culinary Task Force",
+    "altTerm": "IDN Culinary Task Force",
+    "category": "Institution",
+    "letter": "I",
+    "definition": "The IDN Culinary Task Force is a diaspora-based initiative aimed at promoting Indonesian cuisine globally through networks of restaurants, events, and collaborations. It operates as a bridge between state policies and grassroots culinary actors.",
+    "explanation": "Formed within the Indonesian Diaspora Network, the Culinary Task Force represents the institutionalization of diaspora participation in gastrodiplomacy. It operates as a bridge between state policies and grassroots culinary actors, facilitating collaboration among chefs, entrepreneurs, and cultural institutions. By organizing events, supporting restaurant networks, and promoting Indonesian food abroad, the task force demonstrates how non-state actors play a central role in shaping national culinary visibility.",
+    "example": "The IDN Netherlands chapter actively promotes Indonesian cuisine through restaurant collaborations and culinary events across European cities.",
+    "related": ["Indonesian Diaspora", "Gastrodiplomacy", "Embassy Promotion Programs"],
+    "keywords": ["diaspora", "network", "institution", "promotion", "Indonesia", "non-state actor"],
+    "historical": "Established as part of the global Indonesian Diaspora Network in the 2010s."
+  },
+  {
+    "term": "Political Exile Restaurants in Paris",
+    "altTerm": null,
+    "category": "Place",
+    "letter": "P",
+    "definition": "Political exile restaurants in Paris refer to Indonesian dining establishments founded by exiles and migrants following the political upheavals of the 1960s, which evolved into important sites of cultural preservation and transmission.",
+    "explanation": "These restaurants emerged as survival strategies for Indonesian political exiles who were unable to return home after the 1965 political crisis. Over time, they evolved into important sites of cultural preservation and transmission, introducing Indonesian cuisine to French society. Unlike Dutch contexts shaped by colonial ties, the Parisian Indonesian culinary scene reflects political displacement, adaptation, and cultural negotiation within a different socio-historical environment.",
+    "example": "Restaurants established by Indonesian exiles in Paris often combine traditional dishes with French dining styles, creating a distinctive Franco-Indonesian culinary hybrid.",
+    "related": ["Indonesian Diaspora", "Food Heritage"],
+    "keywords": ["exile", "Paris", "diaspora", "history", "migration", "1965"],
+    "historical": "Developed in the 1980s among Indonesian political exiles in France following the 1965 political crisis."
+  },
+  {
+    "term": "Gastro-Destination",
+    "altTerm": null,
+    "category": "Concept",
+    "letter": "G",
+    "definition": "Gastro-destination refers to a tourism strategy that promotes specific locations through their unique and authentic culinary offerings, positioning local food traditions as primary drivers of travel rather than supplementary experiences.",
+    "explanation": "The concept of gastro-destination emphasizes the role of food as a central attraction in tourism development. Rather than treating cuisine as a supplementary experience, it positions local food traditions as primary drivers of travel. Within the framework of Indonesian gastrodiplomacy, gastro-destination strategies aim to connect international promotion with domestic tourism by encouraging visitors to experience culinary diversity in its original context. This approach integrates cultural heritage, economic development, and tourism branding.",
+    "example": "Regions in Indonesia such as Padang, Yogyakarta, and Manado are promoted internationally through their signature dishes to attract culinary tourists.",
+    "related": ["Culinary Tourism", "Gastrodiplomacy", "Cultural Branding", "Bali", "Java"],
+    "keywords": ["tourism", "food", "destination", "branding", "culture", "culinary tourism"],
+    "historical": "Adopted in contemporary tourism strategies linking gastronomy and destination marketing, gaining prominence in Indonesian policy discourse in the 2010s."
+  }
+]
+</script>
+
 <script>
-// ─────────────────────────────────────────────
-// DICTIONARY DATA
-// ─────────────────────────────────────────────
-const ENTRIES = [
-  {
-    term: "Gastrodiplomacy",
-    altTerm: null,
-    category: "Concept",
-    letter: "G",
-    definition: "Gastrodiplomacy is the deliberate deployment of a nation's culinary culture as an instrument of public diplomacy, cultural outreach, and soft power projection. It encompasses state-sponsored and non-state-driven initiatives that use food — its preparation, presentation, narrative, and consumption — to foster foreign public appreciation, national recognition, and geopolitical goodwill. Distinct from culinary diplomacy, gastrodiplomacy operates at a broader societal scale, targeting mass audiences rather than elite diplomatic actors alone.",
-    explanation: "Gastrodiplomacy emerged as a recognized diplomatic practice in the early twenty-first century, most prominently articulated by Thailand's Global Thai Programme (2002), which institutionalized the opening of Thai restaurants abroad as a form of state-backed cultural promotion. Indonesia has pursued analogous strategies through its promotional campaigns, culinary tourism initiatives, and diaspora engagement programs, though Indonesian gastrodiplomacy remains comparatively decentralized. Analytically, gastrodiplomacy sits at the intersection of soft power theory — originally developed by Joseph Nye — and food studies, particularly scholarship on the political economy of taste and national cuisine as symbolic capital. For Indonesia, the practice carries additional complexity: the nation's extraordinary culinary diversity, rooted in seventeen thousand islands, hundreds of ethnic groups, and millennia of spice trade, makes the selection and promotion of any single 'Indonesian cuisine' inherently a political act of homogenization and representation. The strategic choice of which foods to promote — rendang, nasi goreng, satay — thus reflects both aesthetic and ideological preferences, privileging particular regional and ethnic cuisines over others in the service of a unified national brand.",
-    example: "Indonesia's 'Wonderful Indonesia' tourism campaign prominently features culinary imagery, with rendang and nasi goreng positioned as flagship ambassadors of Indonesian identity in international promotional materials and trade expos.",
-    related: ["Culinary Diplomacy", "Soft Power", "Cultural Branding", "Food Nationalism", "Indonesian Diaspora"],
-    keywords: ["soft power", "public diplomacy", "culinary culture", "national identity", "cultural outreach", "food promotion", "Indonesia"],
-    historical: "The term 'gastrodiplomacy' is widely attributed to Paul Rockower, who systematized its analysis in diplomatic studies literature around 2011–2012. However, food-based diplomatic practice predates the term considerably, traceable to ancient gift-giving rituals, colonial-era spice trading, and twentieth-century culinary aid programs."
-  },
-  {
-    term: "Culinary Diplomacy",
-    altTerm: null,
-    category: "Concept",
-    letter: "C",
-    definition: "Culinary diplomacy is the use of food and cuisine within elite or official diplomatic settings — state dinners, embassy receptions, bilateral summits — as a vehicle for building interpersonal rapport, cultural understanding, and political goodwill between heads of state, diplomats, and foreign dignitaries. Unlike gastrodiplomacy, culinary diplomacy is primarily directed at institutional actors rather than mass publics, functioning within formal channels of international relations.",
-    explanation: "Culinary diplomacy has a long history in statecraft, from the lavish banquets of European courts to the carefully curated menus of contemporary bilateral summits. In the Indonesian context, culinary diplomacy manifests in embassy receptions that showcase regional Indonesian cuisines, in the serving of Indonesian dishes at international forums, and in the gifting of artisanal food products as diplomatic tokens. The practice is embedded in a broader logic of hospitality — the idea that sharing food creates social bonds that may translate into political goodwill. Indonesian embassies in countries with significant diaspora populations — such as the Netherlands, Saudi Arabia, Malaysia, and Australia — have developed distinct culinary diplomatic programs, adapting Indonesian cuisine to local palates while maintaining its symbolic national character. A critical dimension of culinary diplomacy in the Indonesian context involves halal certification: as a predominantly Muslim nation, Indonesia's diplomatic cuisine must navigate questions of religious compliance, influencing which dishes are served and to whom, particularly in non-Muslim host countries.",
-    example: "The Indonesian Embassy in Washington D.C. regularly hosts 'Indonesian Night' events featuring regional dishes prepared by Indonesian chefs, combining cultural presentation with diplomatic networking.",
-    related: ["Gastrodiplomacy", "Embassy Promotion Programs", "Halal Certification", "Cultural Branding"],
-    keywords: ["elite diplomacy", "state dinners", "embassy cuisine", "bilateral relations", "hospitality", "diplomatic protocol", "Indonesian embassies"],
-    historical: null
-  },
-  {
-    term: "Culinary Infrastructure",
-    altTerm: null,
-    category: "Concept",
-    letter: "C",
-    definition: "Culinary infrastructure refers to the material, institutional, and logistical systems that enable a nation's food culture to be produced, distributed, promoted, and consumed across national and transnational spaces. It encompasses physical infrastructure — kitchens, supply chains, restaurant networks — as well as institutional architecture: certification bodies, culinary schools, tourism agencies, trade associations, and digital platforms that collectively constitute the apparatus through which national cuisines are sustained and projected.",
-    explanation: "The concept of culinary infrastructure extends beyond the restaurant industry to encompass the complex interdependencies between agriculture, food processing, culinary education, certification, media, and tourism. For Indonesia, the construction of a coherent culinary infrastructure has been a significant policy challenge given the country's geographic fragmentation and extraordinary culinary diversity. Efforts to develop Indonesian culinary infrastructure internationally have included the establishment of Indonesian restaurant networks in key cities (Tokyo, Amsterdam, Riyadh), the promotion of Indonesian culinary arts through state-supported training programs, and the integration of food into the Wonderful Indonesia tourism brand. A critical node in this infrastructure is the system of halal certification, which simultaneously connects Indonesian food to the global halal market and imposes standardization requirements that may conflict with the artisanal, regionally specific character of many traditional dishes. Digital infrastructure — food blogs, YouTube channels, social media accounts, and streaming content featuring Indonesian cuisine — has increasingly become a decentralized but powerful component of Indonesia's transnational culinary infrastructure.",
-    example: "The establishment of Indonesian Culinary Centers (Pusat Promosi Kuliner Indonesia) in select cities abroad, coordinated by the Ministry of Tourism and Creative Economy, represents a deliberate expansion of Indonesia's transnational culinary infrastructure.",
-    related: ["Gastrodiplomacy", "Halal Certification", "Culinary Tourism", "Ministry of Tourism"],
-    keywords: ["material infrastructure", "culinary logistics", "restaurant networks", "food policy", "supply chains", "certification", "transnational cuisine"],
-    historical: null
-  },
-  {
-    term: "Food Heritage",
-    altTerm: null,
-    category: "Concept",
-    letter: "F",
-    definition: "Food heritage denotes the ensemble of culinary practices, recipes, ingredients, techniques, and symbolic meanings that a community or nation recognizes as constitutive of its historical identity and cultural continuity. It functions as a form of intangible cultural heritage, subject to processes of documentation, valorization, transmission, and — increasingly — strategic deployment in tourism, diplomacy, and cultural branding. Food heritage involves both material and discursive dimensions: what is cooked and how it is narrated.",
-    explanation: "In Indonesia, food heritage is particularly complex due to the country's multi-ethnic composition and colonial history. Heritage cuisines often carry traces of interaction with Arab, Indian, Chinese, Portuguese, Dutch, and indigenous culinary traditions, making any claim of 'authentic' Indonesian food heritage inherently contested. The Indonesian government has increasingly sought UNESCO recognition for specific culinary traditions — notably through efforts related to rendang and jamu — as a means of formalizing and internationally legitimating food heritage claims. This process of heritagization involves selecting certain foods as representative of national identity while others remain marginal to official discourse. Community-level food heritage practices — such as slametan communal feasts in Java or the communal rice harvest rituals of various ethnic groups — often resist commodification and exist in tension with state-led heritage frameworks. The academic study of food heritage in Indonesia must therefore attend to the politics of recognition: whose culinary traditions are validated, by whom, and for what purposes.",
-    example: "The candidacy of Indonesian jamu (traditional herbal medicine-drink) for UNESCO Intangible Cultural Heritage status reflects the state's effort to institutionalize and internationally recognize Indonesia's botanical culinary heritage.",
-    related: ["Food Nationalism", "Gastrodiplomacy", "Spice Routes", "Rendang", "Cultural Branding"],
-    keywords: ["intangible heritage", "UNESCO", "culinary tradition", "heritagization", "identity", "authenticity", "Indonesia"],
-    historical: "The Indonesian government's engagement with UNESCO food heritage processes accelerated in the 2010s, coinciding with broader international recognition of the diplomatic and economic value of intangible cultural heritage."
-  },
-  {
-    term: "Food Nationalism",
-    altTerm: null,
-    category: "Concept",
-    letter: "F",
-    definition: "Food nationalism is the discursive and political process through which particular foods, culinary practices, or dietary traditions become articulated as essential markers of national identity, often mobilizing affective claims of cultural ownership, authenticity, and distinctiveness. It operates through state policy, media representation, popular culture, and everyday practice, and can generate both unifying national narratives and contentious border disputes over culinary ownership between neighboring nations.",
-    explanation: "Food nationalism in Indonesia is expressed through multiple registers. At the institutional level, it manifests in government campaigns promoting 'asli' (authentic/original) Indonesian dishes and in the assertion of Indonesian culinary sovereignty in response to perceived appropriation of Indonesian dishes by neighboring states — most notably Malaysia. The rendang controversy — in which a BBC television program allegedly misrepresented the dish — and recurring disputes with Malaysia over dishes like nasi lemak, batik, and the gamelan illustrate how food has become a flashpoint of nationalist sentiment in the digital era. Food nationalism operates through nostalgia and affect as well as geopolitics: the emotional resonance of 'makanan ibu' (mother's cooking) and regional culinary pride mobilize identity politics that national branding programs seek to harness. However, food nationalism also carries risks: the essentialization of Indonesian cuisine as 'one nation, one cuisine' may suppress the genuine plurality of regional traditions and marginalize ethnic minority food cultures within the archipelago's own borders.",
-    example: "The widespread Indonesian social media response to international food rankings and cross-border culinary disputes — particularly with Malaysia — demonstrates the affective intensity of food nationalism as a form of everyday digital patriotism.",
-    related: ["Food Heritage", "Gastrodiplomacy", "Cultural Branding", "Rendang"],
-    keywords: ["nationalism", "culinary identity", "food disputes", "authenticity", "sovereignty", "social media", "Indonesia-Malaysia"],
-    historical: "Indonesian food nationalism intensified in the digital era as social media platforms enabled rapid mass mobilization around perceived cultural slights, transforming food into a site of viral geopolitical contestation."
-  },
-  {
-    term: "Cultural Branding",
-    altTerm: "Nation Branding",
-    category: "Concept",
-    letter: "C",
-    definition: "Cultural branding, in the context of gastrodiplomacy, refers to the strategic construction and promotion of a coherent, attractive national cultural identity for external audiences, using cultural products — including cuisine — as primary vehicles of national image-making. It draws on marketing logic and applies it to the domain of international cultural promotion, treating national identity as a communicable brand with measurable recognition and recall value in target markets.",
-    explanation: "Indonesia's primary nation-branding vehicle is the 'Wonderful Indonesia' (Pesona Indonesia) campaign, launched in 2011, which integrates culinary promotion into a broader tourism and cultural identity strategy. Cultural branding through food involves the selection and standardization of a curated set of dishes — typically rendang, nasi goreng, satay, gado-gado, and soto — as the internationally legible 'face' of Indonesian cuisine. This selection process is not culturally neutral: it privileges cuisines with broad palatability, visual appeal for international media, and sufficient distance from unfamiliar ingredients or preparation methods. Cultural branding thus produces a simplified, internationally marketed version of Indonesian culinary culture that is strategically effective but analytically distinguishable from the full complexity of what Indonesians actually eat. The tension between brand legibility and cultural authenticity is a recurring theme in food diplomacy studies and is particularly acute for a nation as culinarily diverse as Indonesia.",
-    example: "Indonesia's pavilion at international Expos (e.g., Expo Dubai 2021) prominently featured curated Indonesian culinary experiences alongside cultural performances, demonstrating the integration of food into the broader Wonderful Indonesia brand architecture.",
-    related: ["Gastrodiplomacy", "Food Nationalism", "Food Heritage", "Ministry of Tourism"],
-    keywords: ["nation branding", "soft power", "Wonderful Indonesia", "culinary identity", "tourism marketing", "image-making", "diplomacy"],
-    historical: null
-  },
-
-  // FOOD ITEMS
-  {
-    term: "Rendang",
-    altTerm: "Randang (Minangkabau)",
-    category: "Food",
-    letter: "R",
-    definition: "Rendang is a dry-method slow-cooked beef dish originating from the Minangkabau people of West Sumatra, Indonesia. Prepared by simmering meat in coconut milk and an elaborate spice paste — including galangal, lemongrass, kaffir lime, chili, turmeric, and ginger — until the liquid evaporates and the spices caramelize into the meat, rendang is distinguished by its deep, complex flavor profile, dark color, and exceptional shelf stability. It occupies a prominent position in Indonesian culinary nationalism and international gastrodiplomacy.",
-    explanation: "Rendang's significance in Indonesian gastrodiplomacy exceeds its culinary qualities. In 2011 and 2017, CNN Travel readers ranked rendang among the world's best foods, transforming it into a globally recognized symbol of Indonesian culinary excellence. For the Minangkabau, rendang carries deep cultural and philosophical meaning: its preparation process — slow, patient, transformative — mirrors Minangkabau epistemological values, and the dish is traditionally associated with celebrations, rituals, and long-distance travel (its preservation qualities made it ideal for the mobile, trading lifestyle of Minangkabau diaspora communities, known as rantau). Rendang's integration into national gastrodiplomacy has created tensions between its Minangkabau origins and its appropriation as a generic 'Indonesian' dish — a recurring dynamic in food heritage politics. The 2018 BBC controversy, in which a television program featured a rendang preparation that Indonesians and Malaysians criticized as culturally inappropriate, precipitated a transnational social media mobilization that illustrated food nationalism's volatility. Rendang is also claimed by Malaysia, where it is a staple of Malay cuisine, making it a recurring flashpoint in the broader pattern of Indonesia-Malaysia culinary border disputes.",
-    example: "When CNN Travel named rendang the world's most delicious food in 2017, the Indonesian government and media swiftly incorporated the ranking into official tourism campaigns, exemplifying how external validation amplifies gastrodiplomacy.",
-    related: ["Gastrodiplomacy", "Food Nationalism", "Food Heritage", "Spice Routes", "Cultural Branding"],
-    keywords: ["Minangkabau", "West Sumatra", "beef", "spice paste", "coconut milk", "culinary nationalism", "world food ranking"],
-    historical: "Rendang is attested in Minangkabau literary tradition from at least the sixteenth century. Its association with the Minangkabau rantau (migration) culture contributed to its wide diffusion across the Malay-Indonesian world long before the era of state-sponsored gastrodiplomacy."
-  },
-  {
-    term: "Nasi Goreng",
-    altTerm: null,
-    category: "Food",
-    letter: "N",
-    definition: "Nasi goreng — literally 'fried rice' in Indonesian and Malay — is a wok-fried rice dish seasoned with sweet soy sauce (kecap manis), shrimp paste, chili, garlic, shallots, and various additions including egg, vegetables, and protein. It functions simultaneously as everyday domestic food, street food, hotel restaurant staple, and international culinary ambassador for Indonesia. Its adaptability, palatability, and cross-cultural familiarity make it one of Indonesia's most strategically deployed gastrodiplomacy assets.",
-    explanation: "Nasi goreng occupies a paradoxical position in Indonesian food culture and diplomacy. As a dish of great domestic ubiquity — consumed across class, ethnic, and regional lines — it carries genuine national resonance. Yet its international promotion as a 'national dish' glosses over its shared heritage with broader Southeast and East Asian fried rice traditions. Culinary historians trace Indonesian nasi goreng's distinctive character — particularly the use of kecap manis, a uniquely Indonesian sweet soy sauce developed through Chinese-Javanese culinary exchange — to centuries of inter-ethnic food exchange. Its association with former President Sukarno, who reportedly served it to visiting dignitaries, has contributed to its quasi-official diplomatic status. Hotel chains operating across Indonesia have further standardized the dish for international tourist consumption, creating a commercially legible version that may diverge significantly from street-level or household preparations. Nasi goreng thus exemplifies the tension between culinary standardization for international marketability and the preservation of regional variation.",
-    example: "The inclusion of nasi goreng in the menus of major Indonesian airlines and five-star international hotels that offer Indonesian cuisine reflects its status as a gastronomically safe, internationally legible flagship of Indonesian food identity.",
-    related: ["Rendang", "Gastrodiplomacy", "Culinary Tourism", "Cultural Branding"],
-    keywords: ["fried rice", "kecap manis", "street food", "national dish", "hotel cuisine", "culinary hybridity", "Indonesia"],
-    historical: "The kecap manis that distinguishes Indonesian nasi goreng from other regional fried rice dishes developed from Chinese soy sauce traditions adapted by Chinese-Indonesian communities, reflecting the culinary creolization of Java's port cities."
-  },
-  {
-    term: "Satay",
-    altTerm: "Sate",
-    category: "Food",
-    letter: "S",
-    definition: "Satay (sate in Indonesian) is a dish of seasoned, skewered, and grilled meat — typically chicken, beef, lamb, or pork in non-Muslim contexts — served with a variety of dipping sauces, most characteristically a peanut-based sauce. Originating in Java and Madura, satay is one of the most geographically dispersed Indonesian-origin foods globally, present across Southeast Asia and found in diasporic Indonesian communities worldwide. It is among Indonesia's most internationally recognized culinary exports.",
-    explanation: "Satay's international diffusion predates organized gastrodiplomacy, carried through centuries of trade, migration, and colonial networks. Its presence across Malaysian, Singaporean, Thai, and broader Southeast Asian cuisines has generated ongoing debates about culinary origin and national ownership. For Indonesian gastrodiplomacy, satay functions as an accessible entry point to Indonesian cuisine for international audiences: its preparation method (grilling), format (skewer), and peanut sauce profile are familiar and non-threatening to palates unaccustomed to more complex Indonesian flavor profiles. Regional variation within Indonesia is substantial: sate Madura (from Madura island) uses a distinctive sweet peanut sauce; sate Lilit from Bali involves minced fish or pork wrapped around lemongrass stalks; sate Padang from West Sumatra is served with a spiced offal sauce. The selection of which satay to promote internationally thus carries implicit regional political decisions. Indonesia's inclusion of satay in the list of dishes promoted under official gastrodiplomacy campaigns reflects its palatability and cross-cultural recognizability.",
-    example: "Satay has become a standard feature of Indonesian cultural events abroad, including Indonesia's participation in world food festivals and embassy culinary nights, precisely because its format and flavor profile maximize accessibility for non-Indonesian audiences.",
-    related: ["Rendang", "Nasi Goreng", "Food Heritage", "Gastrodiplomacy"],
-    keywords: ["skewered meat", "peanut sauce", "Madura", "Bali", "street food", "culinary export", "Southeast Asia"],
-    historical: null
-  },
-  {
-    term: "Tempe",
-    altTerm: "Tempeh",
-    category: "Food",
-    letter: "T",
-    definition: "Tempe (tempeh in English) is a traditional Indonesian fermented soybean product produced by culturing cooked soybeans with Rhizopus mold, which binds the beans into a firm, sliceable cake. Originating in Java, tempe is a staple protein source in Indonesian cuisine, consumed across socioeconomic classes, and recognized internationally for its nutritional density and versatility. It has emerged as a significant object of food heritage discourse and, increasingly, of sustainable food advocacy in global culinary circles.",
-    explanation: "Tempe's trajectory from humble Javanese staple to internationally celebrated superfood exemplifies the dynamics of culinary revaluation in gastrodiplomacy. Within Indonesia, tempe has historically been associated with working-class and rural consumption — a stigma that led to its underrepresentation in elite culinary diplomacy despite its cultural importance. However, the global rise of plant-based diets and fermented food interest has repositioned tempe as a sophisticated, sustainable, and culturally distinctive food, generating substantial international interest. This external revaluation has influenced domestic Indonesian discourse, with food critics, nutritionists, and cultural institutions increasingly asserting tempe as a heritage food worthy of national pride. The Indonesian government has pursued intellectual property protection for tempe as a form of food sovereignty, given the product's wide adoption by international food companies. Tempe's fermentation process, which involves a specific Indonesian-origin mold culture (Rhizopus oligosporus), connects it to the longer history of Javanese food biotechnology and illustrates the depth of Indonesian culinary scientific heritage.",
-    example: "The growing presence of tempe in international plant-based food markets — including product lines by major food companies in Europe and North America — has prompted Indonesian cultural advocates to assert the dish's Javanese origin as a form of food heritage protection.",
-    related: ["Food Heritage", "Food Nationalism", "Culinary Infrastructure", "Food Heritage"],
-    keywords: ["fermentation", "soybean", "Java", "plant-based", "food sovereignty", "intangible heritage", "Rhizopus"],
-    historical: "Tempe is believed to have originated in Java between the sixteenth and nineteenth centuries, with the earliest written reference appearing in a Javanese manuscript. Its association with the rice-centered Javanese agricultural economy and Buddhist/Hindu dietary practices in pre-Islamic Java shaped its early development as a meat substitute."
-  },
-  {
-    term: "Spice Routes",
-    altTerm: "Jalur Rempah",
-    category: "Food",
-    letter: "S",
-    definition: "The Spice Routes (Jalur Rempah) refer to the historical maritime trade networks that connected the spice-producing islands of the Indonesian archipelago — particularly the Maluku (Moluccas), Banda Islands, and Sulawesi — to markets in China, India, the Arab world, and Europe from ancient times through the colonial era. These routes facilitated the global diffusion of cloves, nutmeg, pepper, and other Indonesian-origin spices, fundamentally shaping world culinary history and generating the geopolitical contests that drove European colonial expansion into Southeast Asia.",
-    explanation: "Indonesia's Spice Routes heritage occupies a central position in its contemporary gastrodiplomacy narrative, representing a claim to historical global significance that predates colonialism. The Indonesian government's Jalur Rempah initiative — formally registered with UNESCO as part of Indonesia's effort to inscribe the Spice Routes as a World Heritage Site — frames Indonesia not as a peripheral object of colonial history but as an originary node in the world's first genuinely global trade network. This reframing has profound implications for culinary diplomacy: it positions Indonesian cuisine not as a regional curiosity but as a fundamental contributor to global flavor profiles. Cloves (cengkeh), originally from the Banda Islands, were among the world's most valuable commodities for centuries; nutmeg (pala) from the same islands drove the VOC's most brutal colonial campaigns. The Spice Routes narrative thus connects gastrodiplomacy to decolonial historiography, asserting Indonesian agency and centrality in world history through culinary heritage. Contemporary gastrodiplomacy initiatives that invoke the Spice Routes seek to leverage this historical depth for nation branding purposes while also advancing Indigenous claims to culinary intellectual property.",
-    example: "Indonesia's UNESCO nomination of Jalur Rempah for World Heritage inscription, combined with the annual Sail Nusantara maritime cultural event, mobilizes Spice Routes heritage as both a diplomatic resource and a national identity anchor.",
-    related: ["Food Heritage", "Gastrodiplomacy", "Cultural Branding", "Rendang", "Culinary Tourism"],
-    keywords: ["spice trade", "Maluku", "cloves", "nutmeg", "colonial history", "UNESCO", "maritime heritage"],
-    historical: "The Banda Islands were the world's sole source of nutmeg and mace until the nineteenth century. The Dutch VOC's monopoly control of Banda spice production, maintained through mass violence against indigenous Bandanese, represents one of the most documented cases of colonial resource extraction in food history."
-  },
-
-  // ACTORS
-  {
-    term: "Indonesian Diaspora",
-    altTerm: "Diaspora Indonesia",
-    category: "Actor",
-    letter: "I",
-    definition: "The Indonesian diaspora comprises Indonesian-born individuals and their descendants residing outside Indonesia, distributed across major destination countries including Malaysia, Singapore, the Netherlands, Saudi Arabia, Australia, Japan, and the United States. As culinary carriers — maintaining, adapting, and transmitting Indonesian food practices in host societies — diaspora communities function as decentralized, non-state actors in Indonesian gastrodiplomacy, often preceding and enabling formal state culinary promotion by establishing Indonesian food cultures in transnational spaces.",
-    explanation: "The Indonesian diaspora's role in gastrodiplomacy operates through multiple mechanisms. Indonesian restaurants opened by diaspora entrepreneurs introduce Indonesian cuisine to host-country publics, creating the material infrastructure that subsequent state-backed promotion can leverage. Home cooking within diaspora households maintains culinary practices and transmits knowledge across generations — a form of 'everyday gastrodiplomacy' that escapes institutional capture. Online content production — Indonesian food bloggers, YouTube cooking channels, and Instagram accounts operating in diaspora contexts — constitutes a substantial digital arm of informal gastrodiplomacy, often reaching larger and more engaged international audiences than official campaigns. The relationship between diaspora and state in Indonesian gastrodiplomacy is not always harmonious: diaspora entrepreneurs may resist state standardization of dishes that they cook according to regional or familial traditions; diaspora food cultures may also drift toward adaptation for local palates in ways that official diplomacy regards as dilutive of culinary authenticity. The large Indonesian labor migrant community in the Middle East — primarily domestic workers — represents a distinct diaspora segment whose food practices are shaped by conditions of constrained mobility and cultural negotiation under restrictive employment conditions.",
-    example: "The clustering of Indonesian restaurants in cities like The Hague, Amsterdam, Sydney, and Riyadh — often established by diaspora entrepreneurs decades before official gastrodiplomacy programs — created the transnational taste communities that state promotion now seeks to expand.",
-    related: ["Gastrodiplomacy", "Food Festival", "Embassy Promotion Programs", "Culinary Tourism"],
-    keywords: ["migration", "transnational communities", "culinary transmission", "diaspora entrepreneurship", "informal diplomacy", "adaptation", "Netherlands"],
-    historical: "The Netherlands hosts the largest Western Indonesian diaspora, partly owing to colonial-era migration. Dutch-Indonesian culinary fusion — most notably the rijsttafel (rice table) banquet format — represents a distinctive gastrodiplomacy legacy of colonial encounter that Indonesia has only recently begun to reclaim in cultural diplomacy discourse."
-  },
-  {
-    term: "Embassy Promotion Programs",
-    altTerm: null,
-    category: "Actor",
-    letter: "E",
-    definition: "Embassy promotion programs in the context of gastrodiplomacy refer to the formal and semi-formal culinary outreach activities organized by Indonesian diplomatic missions abroad — including Indonesian embassies, consulates, and cultural centers (Pusat Kebudayaan Indonesia) — to introduce, celebrate, and build affinity for Indonesian food culture among host-country publics, officials, and media. These programs operate as a state-institutional node within the broader architecture of Indonesian gastrodiplomacy.",
-    explanation: "Indonesian embassy culinary promotion takes diverse forms: Indonesian Night events combining food, music, and cultural performance; participation in host-city food festivals; chef residencies and cooking demonstrations; journalist and influencer familiarization tours targeting Indonesian food; the distribution of culinary promotional materials; and collaboration with Indonesian diaspora restaurant associations. The scope and quality of these programs vary significantly between missions, reflecting differences in budget allocation, host-country market conditions, and the initiative of individual ambassadors and cultural attachés. Embassies in countries with large Indonesian diaspora populations — such as the Netherlands, Australia, and Malaysia — tend to have more developed culinary promotion infrastructure. A distinctive feature of Indonesian embassy gastrodiplomacy is the challenge of representing culinary diversity: with hundreds of distinct regional cuisines, embassies must make curatorial choices that inevitably privilege some regions over others. The integration of embassy culinary programs with the Wonderful Indonesia brand framework has increased coordination with the Ministry of Tourism, though tensions between the foreign affairs ministry, the tourism ministry, and the creative economy ministry over jurisdictional authority for gastrodiplomacy remain an institutional challenge.",
-    example: "The Indonesian Embassy in Tokyo regularly organizes Indonesian food and cultural festivals as part of bilateral people-to-people diplomacy, leveraging Japan's strong interest in culinary tourism and Indonesian food culture.",
-    related: ["Gastrodiplomacy", "Cultural Branding", "Indonesian Diaspora", "Ministry of Tourism"],
-    keywords: ["embassy", "cultural diplomacy", "outreach", "Indonesian Night", "culinary promotion", "diplomatic mission", "Wonderful Indonesia"],
-    historical: null
-  },
-
-  // PRACTICES
-  {
-    term: "Food Festival",
-    altTerm: "Culinary Festival",
-    category: "Practice",
-    letter: "F",
-    definition: "A food festival, in the gastrodiplomacy context, is a staged, bounded cultural event — organized by states, diaspora organizations, tourism boards, or private actors — that uses the preparation, demonstration, sampling, and narration of national or regional cuisine as a mode of cultural promotion, community building, and public diplomacy. Food festivals function as condensed, theatricalized encounters with culinary heritage, designed to generate affective engagement with national food culture among both diaspora communities and host-country publics.",
-    explanation: "Food festivals are among the most visible and accessible instruments of gastrodiplomacy, combining sensory experience with cultural narrative in ways that formal diplomatic events cannot replicate. In the Indonesian context, food festivals operate at multiple scales: large-scale events organized domestically (such as the Ubud Food Festival in Bali, which has developed an international profile) and abroad (Indonesian participation in world food fairs in Germany, Japan, Australia, and elsewhere). The festival format necessarily involves a degree of culinary performance and staging that may diverge from everyday food practice — dishes are presented in standardized, visually appealing forms, provenance stories are simplified for non-specialist audiences, and unfamiliar flavor profiles may be moderated for palatability. Despite these mediation effects, food festivals create experiential encounters with Indonesian cuisine that have demonstrable effects on culinary tourism interest and restaurant patronage. The Ubud Food Festival has been particularly significant in elevating Bali's gastronomic profile internationally, attracting food journalists, chefs, and culinary tourists and generating substantial media coverage that amplifies Indonesia's culinary brand.",
-    example: "The Ubud Food Festival (Bali), established in 2015, has grown into Southeast Asia's premier culinary gathering, attracting international chefs and food writers and generating significant media coverage that positions Bali — and by extension Indonesia — as a serious gastronomic destination.",
-    related: ["Culinary Tourism", "Gastrodiplomacy", "Embassy Promotion Programs", "Cultural Branding"],
-    keywords: ["culinary event", "festival", "Ubud", "Bali", "food promotion", "staging", "culinary tourism"],
-    historical: null
-  },
-  {
-    term: "Culinary Tourism",
-    altTerm: "Food Tourism; Gastronomic Tourism",
-    category: "Practice",
-    letter: "C",
-    definition: "Culinary tourism is a form of tourism in which the primary motivation or a significant component of the travel experience is engagement with the food and drink culture of the destination — including tasting local dishes, participating in cooking classes, visiting food markets, attending culinary events, and learning about the cultural contexts of local cuisine. As both an economic sector and a cultural practice, culinary tourism is a major vehicle for gastrodiplomacy, enabling the direct, embodied transmission of national food culture to international visitors.",
-    explanation: "Indonesia has positioned culinary tourism as a strategic pillar of its broader tourism development, recognizing that food experiences generate high visitor satisfaction, encourage longer stays, and support local economies from agriculture to artisanal production. The Indonesian Ministry of Tourism has integrated culinary tourism into destination branding for key tourism zones — Bali, Yogyakarta, Lombok, and the Komodo region — while also promoting less-visited culinary destinations such as Padang (West Sumatra), Makassar (South Sulawesi), and Manado (North Sulawesi). The development of culinary tourism infrastructure — cooking schools, food tours, culinary heritage trails, specialty food markets — requires coordination between government agencies, private operators, local communities, and heritage institutions. A central tension in Indonesian culinary tourism is the challenge of authenticity: tourist demand for 'authentic' local food experiences can drive commodification processes that simultaneously attract visitors and transform the practices that visitors sought to experience. Culinary tourism in Indonesia also intersects with halal tourism, as the government has aggressively promoted Indonesia as a leading halal tourism destination, with culinary offerings as a core component.",
-    example: "Yogyakarta's kraton-adjacent food street (Jalan Malioboro) and its surrounding gudeg-producing warung (small restaurants) constitute a well-documented culinary tourism ecosystem that sustains traditional Javanese cuisine while adapting to international visitor preferences.",
-    related: ["Food Festival", "Gastrodiplomacy", "Cultural Branding", "Halal Certification"],
-    keywords: ["food tourism", "experiential travel", "culinary heritage trails", "Bali", "Yogyakarta", "halal tourism", "authenticity"],
-    historical: null
-  },
-  {
-    term: "Halal Certification",
-    altTerm: null,
-    category: "Practice",
-    letter: "H",
-    definition: "Halal certification is the formal process by which food products, restaurants, production facilities, and supply chains are assessed and certified as compliant with Islamic dietary law (shariah), confirming the absence of prohibited ingredients (most notably pork and its derivatives, alcohol, and non-halal slaughtered animals) and compliance with prescribed preparation methods. In the Indonesian context, halal certification is administered primarily by the Majelis Ulama Indonesia (MUI) and, from 2019, increasingly regulated through the BPJPH (Halal Product Assurance Organizing Agency) under the Ministry of Religious Affairs.",
-    explanation: "Halal certification occupies a dual role in Indonesian gastrodiplomacy. Domestically, it functions as a regulatory and religious assurance mechanism for Indonesia's Muslim-majority population — with significant implications for the food industry, tourism, and culinary promotion. Internationally, it serves as both a market access tool — enabling Indonesian food exports and restaurants to reach the global halal market, estimated at several hundred billion dollars annually — and a component of Indonesia's identity projection as a moderate Muslim-majority nation with world-class food standards. Indonesia's ambition to become the world's leading halal food hub, articulated in successive national development plans, positions halal certification as a pillar of economic gastrodiplomacy. However, the expansion of mandatory halal certification has generated controversy within Indonesia, particularly regarding its implications for non-Muslim communities who produce and consume non-halal foods (most notably in Bali, North Sumatra, and North Sulawesi) and for small food producers who may lack the resources to navigate certification bureaucracy. The intersection of halal certification with culinary tourism further complicates matters, as international tourists may seek food experiences — including wine, pork dishes, or non-halal street food — that diverge from the halal tourism framework.",
-    example: "Indonesia's goal of having all food products certified halal by 2024 under the JPH Law has created significant regulatory challenges for small artisanal food producers, who must navigate certification costs and administrative requirements while maintaining traditional production methods.",
-    related: ["Culinary Infrastructure", "Culinary Tourism", "Gastrodiplomacy", "Embassy Promotion Programs"],
-    keywords: ["Islamic dietary law", "MUI", "BPJPH", "halal market", "food regulation", "Muslim-majority", "food export"],
-    historical: "The MUI issued its first halal certification in 1994. The subsequent three decades have seen significant expansion and contestation of halal certification's scope, culminating in the JPH (Halal Product Guarantee) Law of 2014, which established the legal framework for mandatory certification."
-  },
-
-  // INSTITUTIONS
-  {
-    term: "Ministry of Tourism and Creative Economy",
-    altTerm: "Kemenparekraf",
-    category: "Institution",
-    letter: "M",
-    definition: "The Indonesian Ministry of Tourism and Creative Economy (Kementerian Pariwisata dan Ekonomi Kreatif, Kemenparekraf) is the primary government institution responsible for developing, promoting, and regulating Indonesia's tourism sector and creative industries, including the culinary sector. In the gastrodiplomacy domain, the Ministry serves as the principal architect of national culinary branding strategy, overseeing the Wonderful Indonesia campaign, coordinating international culinary promotion, and developing culinary infrastructure and event programs that position Indonesian food as a global attraction.",
-    explanation: "Kemenparekraf's mandate in culinary promotion spans domestic and international activities: supporting culinary creative industries, training culinary entrepreneurs, promoting Indonesian cuisine at international trade fairs and food expos, coordinating embassy culinary programs, and developing culinary tourism destinations. The Ministry has identified gastronomy as one of the sixteen priority sectors of Indonesia's creative economy, recognizing its value chain linkages to agriculture, hospitality, media, and manufacturing. Institutionally, Indonesian gastrodiplomacy involves coordination challenges across at least three ministries: Tourism and Creative Economy (promotional and tourism dimensions), Foreign Affairs (diplomatic implementation through embassies), and Trade (food export and market access). The absence of a unified inter-ministerial gastrodiplomacy framework has been identified as a structural impediment to the coherence and impact of Indonesia's culinary diplomacy. Under successive presidential administrations, emphasis on culinary promotion has varied, with Joko Widodo's administrations (2014–2024) giving significant rhetorical and budgetary priority to creative economy development, including culinary sector promotion.",
-    example: "Kemenparekraf's '30 Iconic Indonesian Foods' initiative systematically identified and documented thirty regionally diverse Indonesian dishes for international promotion, combining culinary heritage documentation with gastrodiplomacy strategy.",
-    related: ["Gastrodiplomacy", "Cultural Branding", "Embassy Promotion Programs", "Culinary Tourism"],
-    keywords: ["Kemenparekraf", "Wonderful Indonesia", "creative economy", "culinary promotion", "tourism ministry", "government", "policy"],
-    historical: null
-  },
-
-  // PLACES
-  {
-    term: "Bali",
-    altTerm: null,
-    category: "Place",
-    letter: "B",
-    definition: "Bali is a Hindu-majority province of Indonesia and the country's premier international tourism destination, distinguished by its exceptional integration of culinary tradition, spiritual practice, agricultural landscape, and cultural performance. In gastrodiplomacy, Bali functions as Indonesia's most internationally legible culinary space — the site where global audiences most frequently encounter Indonesian food culture — and as a laboratory for culinary tourism development, food heritage documentation, and gastronomic nation-branding.",
-    explanation: "Bali's culinary diplomacy significance derives partly from its existing high international profile as a luxury and cultural tourism destination, which provides a ready audience for culinary experiences, and partly from its distinctive cuisine rooted in Hindu ritual practice and the island's extraordinary agricultural biodiversity. Balinese cuisine — characterized by basa gede (a complex spice paste), lawar (a ceremonial minced meat and coconut dish), babi guling (roasted suckling pig, significant in Hindu ritual contexts), and bebek betutu (slow-roasted duck) — is simultaneously deeply local and globally appealing. The Ubud Food Festival, established in 2015, has positioned Bali as a regional gastronomic hub, attracting international chefs, food journalists, and culinary tourists who encounter not only Balinese cuisine but Indonesian food diversity more broadly. However, Bali's centrality in Indonesian gastrodiplomacy creates a representational skew: Bali's Hindu cultural identity, high income levels, and sophisticated tourism infrastructure make it a distinctly unrepresentative window into the broader Indonesian culinary landscape. Furthermore, the pork-centered ceremonial cuisine of Bali exists in tension with Indonesia's halal tourism framework, creating institutional ambiguity about how to position Bali within a Muslim-majority nation's gastrodiplomacy strategy.",
-    example: "The Ubud Food Festival's programming, which combines traditional Balinese cooking demonstrations, Indonesian regional cuisine showcases, and international chef collaborations, exemplifies Bali's gastrodiplomacy function as a meeting point between Indonesian culinary tradition and global food culture.",
-    related: ["Culinary Tourism", "Food Festival", "Food Heritage", "Gastrodiplomacy"],
-    keywords: ["Bali", "Ubud", "Hindu", "babi guling", "Ubud Food Festival", "culinary tourism", "lawar"],
-    historical: null
-  },
-  {
-    term: "Java",
-    altTerm: null,
-    category: "Place",
-    letter: "J",
-    definition: "Java is Indonesia's most populous island, home to the cities of Jakarta, Yogyakarta, Surakarta (Solo), and Surabaya, and the political, economic, and cultural center of the Indonesian state. Javanese cuisine — characterized by a preference for sweet, mild flavors (the use of palm sugar as a balancing agent is distinctive), a sophisticated repertoire of ceremonial and everyday dishes, and strong integration with Hindu-Buddhist and Islamic cultural traditions — exercises disproportionate influence on the construction of Indonesian national cuisine for both domestic and international audiences.",
-    explanation: "Java's centrality in Indonesian state formation has given Javanese culinary traditions significant representational power in national gastrodiplomacy. The kitchen of the kraton (royal palace) in Yogyakarta and Surakarta represents a sophisticated haute cuisine tradition that informs Indonesia's culinary heritage claims. Yogyakarta's gudeg (young jackfruit braised in coconut milk and palm sugar), Solo's nasi liwet (rice cooked in coconut milk) and serabi (coconut crepe), and the broader Javanese tradition of wedang (hot ginger and herbal drinks) are among the cultural assets with gastrodiplomacy potential. The Javanese slametan — a communal feast organized to mark transitions and seek communal blessings — represents a food heritage of social significance that has attracted scholarly attention as a window into Javanese social philosophy. Jakarta, as the capital city and a major international hub, functions as Indonesia's primary site of culinary encounter for foreign visitors, business travelers, and diplomats — making the capital's diverse food ecology an important, if undertheorized, front line of everyday gastrodiplomacy. Java also hosts the largest concentration of culinary schools and professional culinary training institutions, making it the center of Indonesia's formal culinary education infrastructure.",
-    example: "Yogyakarta's annual Sekaten festival — rooted in Javanese-Islamic syncretic tradition — features distinctive ceremonial foods including jenang (thick porridge) and apem (rice cakes) that represent Javanese culinary heritage as an integrated cultural, spiritual, and gastronomic practice.",
-    related: ["Food Heritage", "Nasi Goreng", "Tempe", "Culinary Tourism", "Spice Routes"],
-    keywords: ["Java", "Yogyakarta", "Jakarta", "Javanese cuisine", "slametan", "royal cuisine", "gudeg"],
-    historical: "Java's spice trade history — as a key entrepôt connecting the spice islands of Maluku to regional and global markets — shaped its culinary culture through centuries of contact with Arab, Indian, Chinese, and European traders and colonizers."
-  }
-];
-
-// ─────────────────────────────────────────────
-// STATE
-// ─────────────────────────────────────────────
-let currentFilter = 'all';
-let currentSort = 'alpha';
-let currentSearch = '';
-
-// ─────────────────────────────────────────────
-// CATEGORY CONFIG
-// ─────────────────────────────────────────────
-const CAT_CLASSES = {
-  'Concept': 'cat-concept',
-  'Food': 'cat-food',
-  'Actor': 'cat-actor',
-  'Practice': 'cat-practice',
-  'Institution': 'cat-institution',
-  'Place': 'cat-place',
-  'Policy': 'cat-policy'
-};
-
-const CAT_COLORS = {
-  'Concept': '#B5451B',
-  'Food': '#C49A2A',
-  'Actor': '#5C3317',
-  'Practice': '#7A8C6E',
-  'Institution': '#3D2B0F',
-  'Place': '#8B6914',
-  'Policy': '#6B4F2A'
-};
-
-// ─────────────────────────────────────────────
-// BUILD ALPHABET NAV
-// ─────────────────────────────────────────────
-function buildAlphaNav() {
-  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-  const usedLetters = new Set(ENTRIES.map(e => e.letter));
-  const inner = document.querySelector('.alpha-inner');
-  letters.forEach(l => {
-    const btn = document.createElement('button');
-    btn.className = 'alpha-btn ' + (usedLetters.has(l) ? 'has-entries' : 'no-entries');
-    btn.textContent = l;
-    btn.dataset.letter = l;
-    if (usedLetters.has(l)) {
-      btn.onclick = () => scrollToLetter(l);
-    }
-    inner.appendChild(btn);
-  });
-}
-
-function scrollToLetter(letter) {
-  const divider = document.querySelector('.letter-divider[data-letter="' + letter + '"]');
-  if (divider) {
-    divider.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
-
-// ─────────────────────────────────────────────
-// RENDER
-// ─────────────────────────────────────────────
-function getFilteredSorted() {
-  let entries = [...ENTRIES];
-
-  // filter by category
-  if (currentFilter !== 'all') {
-    entries = entries.filter(e => e.category === currentFilter);
-  }
-
-  // filter by search
-  if (currentSearch.trim()) {
-    const q = currentSearch.trim().toLowerCase();
-    entries = entries.filter(e => {
-      return e.term.toLowerCase().includes(q)
-        || e.definition.toLowerCase().includes(q)
-        || e.explanation.toLowerCase().includes(q)
-        || e.keywords.some(k => k.toLowerCase().includes(q))
-        || (e.altTerm && e.altTerm.toLowerCase().includes(q));
-    });
-  }
-
-  // sort
-  if (currentSort === 'alpha') {
-    entries.sort((a, b) => a.term.localeCompare(b.term));
-  } else {
-    entries.sort((a, b) => a.category.localeCompare(b.category) || a.term.localeCompare(b.term));
-  }
-
-  return entries;
-}
-
-function highlight(text, query) {
-  if (!query || !query.trim()) return escHtml(text);
-  const q = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return escHtml(text).replace(new RegExp('(' + q + ')', 'gi'), '<mark>$1</mark>');
-}
-
-function escHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-function renderEntries() {
-  const container = document.getElementById('entries-container');
-  const noResults = document.getElementById('no-results');
-  container.innerHTML = '';
-
-  const entries = getFilteredSorted();
-
-  if (entries.length === 0) {
-    noResults.style.display = 'block';
-    document.getElementById('section-count').textContent = 'No entries found';
+(function() {
+  // ── Load data safely from JSON in <script> tag ──
+  var ENTRIES = [];
+  try {
+    ENTRIES = JSON.parse(document.getElementById('dict-data').textContent);
+  } catch(e) {
+    console.error('Dictionary data failed to load:', e);
+    document.getElementById('entries-container').innerHTML = '<p style="padding:2rem;color:red">Error loading dictionary data. Please check the browser console.</p>';
     return;
   }
 
-  noResults.style.display = 'none';
-  document.getElementById('section-count').textContent = `Showing ${entries.length} of ${ENTRIES.length}`;
+  var currentFilter = 'all';
+  var currentSort = 'alpha';
+  var currentSearch = '';
 
-  const q = currentSearch.trim().toLowerCase();
+  var CAT_CLASSES = {
+    'Concept': 'cat-concept',
+    'Food': 'cat-food',
+    'Actor': 'cat-actor',
+    'Practice': 'cat-practice',
+    'Institution': 'cat-institution',
+    'Place': 'cat-place',
+    'Policy': 'cat-policy'
+  };
 
-  // Group by letter if alpha sort
-  if (currentSort === 'alpha') {
-    let lastLetter = '';
-    entries.forEach(entry => {
-      if (entry.letter !== lastLetter) {
-        lastLetter = entry.letter;
-        const divider = document.createElement('div');
-        divider.className = 'letter-divider';
-        divider.dataset.letter = entry.letter;
-        const count = entries.filter(e => e.letter === entry.letter).length;
-        divider.innerHTML = `${entry.letter} <span>${count} ${count === 1 ? 'entry' : 'entries'}</span>`;
-        container.appendChild(divider);
+  var CAT_COLORS = {
+    'Concept': '#B5451B',
+    'Food': '#C49A2A',
+    'Actor': '#5C3317',
+    'Practice': '#7A8C6E',
+    'Institution': '#3D2B0F',
+    'Place': '#8B6914',
+    'Policy': '#6B4F2A'
+  };
+
+  // ── Alphabet nav ──
+  function buildAlphaNav() {
+    var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    var usedLetters = {};
+    ENTRIES.forEach(function(e) { usedLetters[e.letter] = true; });
+    var inner = document.querySelector('.alpha-inner');
+    letters.forEach(function(l) {
+      var btn = document.createElement('button');
+      btn.className = 'alpha-btn ' + (usedLetters[l] ? 'has-entries' : 'no-entries');
+      btn.textContent = l;
+      if (usedLetters[l]) {
+        btn.onclick = function() { scrollToLetter(l); };
       }
-      container.appendChild(createEntryCard(entry, q));
-    });
-  } else {
-    let lastCat = '';
-    entries.forEach(entry => {
-      if (entry.category !== lastCat) {
-        lastCat = entry.category;
-        const divider = document.createElement('div');
-        divider.className = 'letter-divider';
-        divider.style.color = CAT_COLORS[entry.category];
-        divider.style.borderColor = CAT_COLORS[entry.category] + '33';
-        const count = entries.filter(e => e.category === entry.category).length;
-        divider.innerHTML = `${entry.category} <span>${count} ${count === 1 ? 'entry' : 'entries'}</span>`;
-        container.appendChild(divider);
-      }
-      container.appendChild(createEntryCard(entry, q));
+      inner.appendChild(btn);
     });
   }
-}
 
-function createEntryCard(entry, q) {
-  const card = document.createElement('div');
-  card.className = 'entry-card collapsed';
-  card.id = 'entry-' + entry.term.replace(/\s+/g, '-').toLowerCase();
+  function scrollToLetter(letter) {
+    var dividers = document.querySelectorAll('.letter-divider');
+    for (var i = 0; i < dividers.length; i++) {
+      if (dividers[i].dataset.letter === letter) {
+        dividers[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        break;
+      }
+    }
+  }
 
-  const catClass = CAT_CLASSES[entry.category] || '';
+  // ── Counts ──
+  function updateCounts() {
+    var cats = ['Concept','Food','Actor','Practice','Institution','Place','Policy'];
+    document.getElementById('count-all').textContent = ENTRIES.length;
+    document.getElementById('total-entries').textContent = ENTRIES.length;
+    var foodCount = ENTRIES.filter(function(e){ return e.category === 'Food'; }).length;
+    var conceptCount = ENTRIES.filter(function(e){ return e.category === 'Concept'; }).length;
+    document.getElementById('food-count').textContent = foodCount;
+    document.getElementById('concept-count').textContent = conceptCount;
+    cats.forEach(function(cat) {
+      var el = document.getElementById('count-' + cat);
+      if (el) el.textContent = ENTRIES.filter(function(e){ return e.category === cat; }).length;
+    });
+  }
 
-  card.innerHTML = `
-    <div class="entry-header" onclick="toggleEntry(this.parentElement)">
-      <div>
-        <div class="entry-term">
-          ${highlight(entry.term, q)}
-          ${entry.altTerm ? `<em>also: ${escHtml(entry.altTerm)}</em>` : ''}
-        </div>
-      </div>
-      <div class="entry-header-right">
-        <span class="category-badge ${catClass}">${escHtml(entry.category)}</span>
-        <span class="expand-icon">›</span>
-      </div>
-    </div>
-    <div class="entry-body">
-      <div class="entry-section">
-        <div class="entry-section-label">Definition</div>
-        <div class="definition-text">${highlight(entry.definition, q)}</div>
-      </div>
-      <div class="entry-section">
-        <div class="entry-section-label">Extended Explanation</div>
-        <div class="explanation-text">${highlight(entry.explanation, q)}</div>
-      </div>
-      <div class="entry-section">
-        <div class="example-text">
-          <strong>Empirical Example</strong>
-          ${highlight(entry.example, q)}
-        </div>
-      </div>
-      ${entry.historical ? `
-      <div class="entry-section">
-        <div class="entry-section-label">Historical Note</div>
-        <div class="hist-text">${escHtml(entry.historical)}</div>
-      </div>` : ''}
-      <div class="entry-section">
-        <div class="entry-section-label">Related Terms</div>
-        <div class="related-row">
-          ${entry.related.map(r => `<span class="related-link" onclick="searchTerm('${r.replace(/'/g,"\\'")}\")">${escHtml(r)}</span>`).join('')}
-        </div>
-      </div>
-      <div class="entry-section">
-        <div class="entry-section-label">Keywords</div>
-        <div class="tags-row">
-          ${entry.keywords.map(k => `<span class="tag" onclick="searchTerm('${k.replace(/'/g,"\\'")}\")">${escHtml(k)}</span>`).join('')}
-        </div>
-      </div>
-    </div>
-  `;
+  // ── Filter + sort ──
+  function getFilteredSorted() {
+    var entries = ENTRIES.slice();
+    if (currentFilter !== 'all') {
+      entries = entries.filter(function(e){ return e.category === currentFilter; });
+    }
+    if (currentSearch.trim()) {
+      var q = currentSearch.trim().toLowerCase();
+      entries = entries.filter(function(e) {
+        return e.term.toLowerCase().indexOf(q) !== -1
+          || e.definition.toLowerCase().indexOf(q) !== -1
+          || e.explanation.toLowerCase().indexOf(q) !== -1
+          || e.keywords.some(function(k){ return k.toLowerCase().indexOf(q) !== -1; })
+          || (e.altTerm && e.altTerm.toLowerCase().indexOf(q) !== -1);
+      });
+    }
+    if (currentSort === 'alpha') {
+      entries.sort(function(a,b){ return a.term.localeCompare(b.term); });
+    } else {
+      entries.sort(function(a,b){
+        var c = a.category.localeCompare(b.category);
+        return c !== 0 ? c : a.term.localeCompare(b.term);
+      });
+    }
+    return entries;
+  }
 
-  return card;
-}
+  // ── Safe HTML escape ──
+  function esc(s) {
+    return String(s)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
 
-// ─────────────────────────────────────────────
-// INTERACTIONS
-// ─────────────────────────────────────────────
-function toggleEntry(card) {
-  card.classList.toggle('collapsed');
-}
+  function highlight(text, query) {
+    var escaped = esc(text);
+    if (!query || !query.trim()) return escaped;
+    var q = query.trim().replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    return escaped.replace(new RegExp('(' + q + ')','gi'),'<mark>$1</mark>');
+  }
 
-function filterByCategory(cat, btn) {
-  currentFilter = cat;
-  document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  // ── Render ──
+  function renderEntries() {
+    var container = document.getElementById('entries-container');
+    var noResults = document.getElementById('no-results');
+    container.innerHTML = '';
+    var entries = getFilteredSorted();
+    if (entries.length === 0) {
+      noResults.style.display = 'block';
+      document.getElementById('section-count').textContent = 'No entries found';
+      return;
+    }
+    noResults.style.display = 'none';
+    document.getElementById('section-count').textContent = 'Showing ' + entries.length + ' of ' + ENTRIES.length;
+    var q = currentSearch.trim().toLowerCase();
+    if (currentSort === 'alpha') {
+      var lastLetter = '';
+      entries.forEach(function(entry) {
+        if (entry.letter !== lastLetter) {
+          lastLetter = entry.letter;
+          var count = entries.filter(function(e){ return e.letter === entry.letter; }).length;
+          var div = document.createElement('div');
+          div.className = 'letter-divider';
+          div.dataset.letter = entry.letter;
+          div.innerHTML = entry.letter + ' <span>' + count + ' ' + (count === 1 ? 'entry' : 'entries') + '</span>';
+          container.appendChild(div);
+        }
+        container.appendChild(createCard(entry, q));
+      });
+    } else {
+      var lastCat = '';
+      entries.forEach(function(entry) {
+        if (entry.category !== lastCat) {
+          lastCat = entry.category;
+          var count = entries.filter(function(e){ return e.category === entry.category; }).length;
+          var div = document.createElement('div');
+          div.className = 'letter-divider';
+          div.style.color = CAT_COLORS[entry.category] || '#999';
+          div.style.borderColor = (CAT_COLORS[entry.category] || '#999') + '33';
+          div.innerHTML = esc(entry.category) + ' <span>' + count + ' ' + (count === 1 ? 'entry' : 'entries') + '</span>';
+          container.appendChild(div);
+        }
+        container.appendChild(createCard(entry, q));
+      });
+    }
+  }
 
-  const title = cat === 'all' ? 'All Entries' : cat + 's';
-  document.getElementById('section-title').textContent = title;
+  function createCard(entry, q) {
+    var card = document.createElement('div');
+    card.className = 'entry-card collapsed';
+    card.id = 'entry-' + entry.term.replace(/\s+/g,'-').toLowerCase();
 
-  renderEntries();
-}
+    var catClass = CAT_CLASSES[entry.category] || '';
 
-function sortEntries(mode, btn) {
-  currentSort = mode;
-  document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderEntries();
-}
+    // Build related links using data attributes (safe, no inline JS strings)
+    var relatedHTML = entry.related.map(function(r) {
+      return '<span class="related-link" data-search="' + esc(r) + '">' + esc(r) + '</span>';
+    }).join('');
 
-function searchTerm(term) {
-  const input = document.getElementById('search-input');
-  input.value = term;
-  currentSearch = term;
-  currentFilter = 'all';
-  document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector('.sidebar-btn[data-filter="all"]').classList.add('active');
-  document.getElementById('section-title').textContent = 'Search Results';
-  renderEntries();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+    var tagsHTML = entry.keywords.map(function(k) {
+      return '<span class="tag" data-search="' + esc(k) + '">' + esc(k) + '</span>';
+    }).join('');
 
-// Update counts
-function updateCounts() {
-  const cats = ['Concept', 'Food', 'Actor', 'Practice', 'Institution', 'Place', 'Policy'];
-  document.getElementById('count-all').textContent = ENTRIES.length;
-  document.getElementById('total-entries').textContent = ENTRIES.length;
-  cats.forEach(cat => {
-    const el = document.getElementById('count-' + cat);
-    if (el) el.textContent = ENTRIES.filter(e => e.category === cat).length;
-  });
-}
+    var altHTML = entry.altTerm ? '<em>also: ' + esc(entry.altTerm) + '</em>' : '';
+    var histHTML = entry.historical
+      ? '<div class="entry-section"><div class="entry-section-label">Historical Note</div><div class="hist-text">' + esc(entry.historical) + '</div></div>'
+      : '';
 
-// ─────────────────────────────────────────────
-// SEARCH INPUT
-// ─────────────────────────────────────────────
-document.getElementById('search-input').addEventListener('input', function() {
-  currentSearch = this.value;
-  if (currentSearch) {
+    card.innerHTML =
+      '<div class="entry-header">' +
+        '<div>' +
+          '<div class="entry-term">' + highlight(entry.term, q) + altHTML + '</div>' +
+        '</div>' +
+        '<div class="entry-header-right">' +
+          '<span class="category-badge ' + catClass + '">' + esc(entry.category) + '</span>' +
+          '<span class="expand-icon">&#x203A;</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="entry-body">' +
+        '<div class="entry-section">' +
+          '<div class="entry-section-label">Definition</div>' +
+          '<div class="definition-text">' + highlight(entry.definition, q) + '</div>' +
+        '</div>' +
+        '<div class="entry-section">' +
+          '<div class="entry-section-label">Extended Explanation</div>' +
+          '<div class="explanation-text">' + highlight(entry.explanation, q) + '</div>' +
+        '</div>' +
+        '<div class="entry-section">' +
+          '<div class="example-text"><strong>Empirical Example</strong>' + highlight(entry.example, q) + '</div>' +
+        '</div>' +
+        histHTML +
+        '<div class="entry-section">' +
+          '<div class="entry-section-label">Related Terms</div>' +
+          '<div class="related-row">' + relatedHTML + '</div>' +
+        '</div>' +
+        '<div class="entry-section">' +
+          '<div class="entry-section-label">Keywords</div>' +
+          '<div class="tags-row">' + tagsHTML + '</div>' +
+        '</div>' +
+      '</div>';
+
+    // Header click = toggle
+    card.querySelector('.entry-header').addEventListener('click', function() {
+      card.classList.toggle('collapsed');
+    });
+
+    // Related + tag clicks use data-search
+    card.querySelectorAll('.related-link, .tag').forEach(function(el) {
+      el.addEventListener('click', function(ev) {
+        ev.stopPropagation();
+        var term = el.dataset.search;
+        triggerSearch(term);
+      });
+    });
+
+    return card;
+  }
+
+  function triggerSearch(term) {
+    var input = document.getElementById('search-input');
+    input.value = term;
+    currentSearch = term;
+    currentFilter = 'all';
+    document.querySelectorAll('.sidebar-btn').forEach(function(b){ b.classList.remove('active'); });
+    document.querySelector('.sidebar-btn[data-filter="all"]').classList.add('active');
     document.getElementById('section-title').textContent = 'Search Results';
-  } else {
-    document.getElementById('section-title').textContent = currentFilter === 'all' ? 'All Entries' : currentFilter + 's';
+    renderEntries();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  renderEntries();
-});
 
-// ─────────────────────────────────────────────
-// INIT
-// ─────────────────────────────────────────────
-buildAlphaNav();
-updateCounts();
-renderEntries();
+  // ── Sidebar buttons ──
+  document.querySelectorAll('.sidebar-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      currentFilter = btn.dataset.filter;
+      document.querySelectorAll('.sidebar-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('section-title').textContent = currentFilter === 'all' ? 'All Entries' : currentFilter + 's';
+      renderEntries();
+    });
+  });
+
+  // ── Sort chips ──
+  document.querySelectorAll('.filter-chip').forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      currentSort = chip.dataset.sort;
+      document.querySelectorAll('.filter-chip').forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      renderEntries();
+    });
+  });
+
+  // ── Search input ──
+  document.getElementById('search-input').addEventListener('input', function() {
+    currentSearch = this.value;
+    document.getElementById('section-title').textContent = currentSearch ? 'Search Results' : (currentFilter === 'all' ? 'All Entries' : currentFilter + 's');
+    renderEntries();
+  });
+
+  // ── Init ──
+  buildAlphaNav();
+  updateCounts();
+  renderEntries();
+
+})();
 </script>
 </body>
 </html>
