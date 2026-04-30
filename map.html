@@ -162,7 +162,6 @@
   <div id="panel">
     <div class="phdr">
       <h3>Restaurant Directory</h3>
-      <p>Click a name to zoom to its location</p>
     </div>
     <div id="rlist"></div>
     <div id="leg">
@@ -174,6 +173,14 @@
         <div class="li"><div class="ld" style="background:#1A6B8A"></div>Netherlands</div>
         <div class="li"><div class="ld" style="background:#8B1A3A"></div>France</div>
         <div class="li"><div class="ld" style="background:#2D5A1B"></div>UK</div>
+      </div>
+      <div style="margin-top:0.75rem;padding-top:0.6rem;border-top:1px solid var(--aged)">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:var(--muted);letter-spacing:0.03em;line-height:1.7;">
+          Data compiled by the Gastrodiplomacy Research Team,<br>
+          Research Centre for Area Studies,<br>
+          National Research and Innovation Agency (BRIN),<br>
+          Republic of Indonesia.
+        </div>
       </div>
     </div>
     <div id="dc"></div>
@@ -197,7 +204,8 @@ var ALL=[
   {id:4,country:'Netherlands',city:'Amsterdam',name:'Restaurant Jun',type:'traditional',lat:52.3758801,lng:4.8732001,address:'Frederik Hendrikstraat 98, 1052 HZ Amsterdam',desc:'Highly regarded for its authentic Indonesian flavours using housemade spice pastes. A neighbourhood favourite for both Indonesian expats and adventurous local diners.',menu:'Choice menu with soup or wontons, beef rendang, pisang goreng'},
   {id:5,country:'Netherlands',city:'Amsterdam',name:'Kartika',type:'traditional',lat:52.3631282,lng:4.8760264,address:'Overtoom 68H, 1054 HL Amsterdam',desc:'A beloved Amsterdam institution serving rijsttafel in tapas-style. Known for its Ramayana rijsttafel and warm, attentive hospitality.',menu:'Ramayana rijsttafel, daging rendang, perkedel jagung, nasi goreng'},
   {id:6,country:'Netherlands',city:'Amsterdam',name:'Restaurant Blauw Amsterdam',type:'modern',lat:52.3534442,lng:4.8556758,address:'Amstelveenseweg 158-160, 1075 XN Amsterdam',desc:'Amsterdam branch of the Michelin Bib Gourmand-awarded Blauw in Utrecht. Stylish setting with generous rijsttafel served in distinctive almond-shaped porcelain dishes.',menu:'Rijsttafel, beef rendang, gado-gado, ikan bakar'},
-  {id:7,country:'Netherlands',city:'Amsterdam',name:'Tempo Doeloe',type:'traditional',lat:52.3633005,lng:4.898687,address:'Utrechtsestraat 75, 1017 VJ Amsterdam',desc:'One of Amsterdam\'s longest-standing Indonesian restaurants, named after the Dutch colonial expression for "the good old days." Classic rijsttafel in a warm, intimate setting.',menu:'Rijsttafel, martabak, various sambals, traditional Indonesian mains'},
+  {id:7,country:'Netherlands',city:'Amsterdam',name:'Toko Bersama',type:'traditional',lat:52.3662,lng:4.8720,address:'Bilderdijkstraat 116, 1053 KZ Amsterdam (Oud West)',desc:'A beloved cafeteria-style Indonesian toko in Amsterdam-West, run by an owner who has lived in the city since 1991. Known for generous portions of homemade Indonesian snacks and daily meals. Google rating 4.8 from 5,500+ reviews. Rijsttafel available.',menu:'Nasi rames, rendang, soto ayam, tempeh balado, loempia, nasi goreng, daily specials'},
+  {id:9,country:'Netherlands',city:'Amsterdam',name:'Ron Gastrobar Indonesia',type:'modern',lat:52.2944,lng:4.9128,address:'Amstelzijde 51, 1184 TZ Ouderkerk aan de Amstel',desc:'Michelin-recognised Indonesian restaurant by top chef Ron Blaauw, set on a terrace along the River Amstel in Ouderkerk. Executive Chef Agus Hermawan — appointed ambassador for traditional Indonesian cuisine by Indonesia\'s Ministry of Tourism — leads the kitchen. A landmark of high-end gastrodiplomacy in the Netherlands.',menu:'Rijsttafel Agus (15 dishes), rijsttafel Guillaume (12 dishes), satay kambing, udang laut peteh, tahu telor, satasting'},
   {id:8,country:'Netherlands',city:'Amsterdam',name:'Sampurna',type:'traditional',lat:52.3701968,lng:4.8776873,address:'Lijnbaansgracht 161H, 1016 VX Amsterdam',desc:'A well-established Indonesian brasserie open daily for lunch and dinner. Known for its wide menu inspired by traditional Indonesian family recipes.',menu:'Sampurna rice table, satay, nasi goreng, dak rendang'},
   // ── THE HAGUE ──
   {id:10,country:'Netherlands',city:'The Hague',name:'Keraton Damai',type:'traditional',lat:52.0848377,lng:4.2817634,address:'Groot Hertoginnelaan 57, 2517 EC Den Haag',desc:'Widely considered the finest Indonesian restaurant in The Hague. Beautifully decorated with cultural artefacts and warm service. Offers both classic and vegan rijsttafel.',menu:'Rijsttafel, vegan rijsttafel, fried dumplings, chicken soup'},
@@ -351,7 +359,7 @@ function render(){
 function zoomTo(id){
   var p=ALL.find(function(x){return x.id===id});
   if(!p)return;
-  map.setView([p.lat,p.lng],15);
+  map.setView([p.lat,p.lng],17);
   var m=markers.find(function(x){return x.id===id});
   if(m)m.layer.openPopup();
   showDetail(p);highlightItem(id);
@@ -364,6 +372,7 @@ function highlightItem(id){
 }
 
 function showDetail(p){
+  var gmapUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.name+' '+p.address);
   document.getElementById('dc').innerHTML=
     '<div id="cdc"><span>Restaurant Detail</span><button onclick="closeDetail()">✕</button></div>'
     +'<div class="dcard visible">'
@@ -375,9 +384,19 @@ function showDetail(p){
     +'<div class="dsl">About</div><div class="ddesc">'+p.desc+'</div>'
     +'<div class="dsl">Signature Dishes</div><div class="dmenu">'+p.menu+'</div>'
     +'<div class="dsl">Address</div><div class="daddr">'+p.address+'</div>'
+    +'<a href="'+gmapUrl+'" target="_blank" rel="noopener" style="'
+      +'display:inline-flex;align-items:center;gap:0.38rem;margin-top:0.7rem;'
+      +'font-family:\'JetBrains Mono\',monospace;font-size:0.6rem;font-weight:600;'
+      +'color:#FDF6E8;background:#8B5E2A;border-radius:3px;'
+      +'padding:0.32rem 0.7rem;text-decoration:none;letter-spacing:0.06em;'
+      +'transition:background 0.15s;"'
+      +' onmouseover="this.style.background=\'#6B4520\'" onmouseout="this.style.background=\'#8B5E2A\'">'
+      +'<svg width="11" height="11" viewBox="0 0 24 24" fill="#FDF6E8"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>'
+      +'Open in Google Maps</a>'
     +'</div>';
 }
 
+// Controls
 function closeDetail(){
   document.getElementById('dc').innerHTML='';
   document.querySelectorAll('.ri').forEach(function(el){el.classList.remove('active')});
