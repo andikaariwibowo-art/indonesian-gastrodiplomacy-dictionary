@@ -12,217 +12,82 @@
     --parchment:#EDD8A8;--warm-white:#FDF6E8;--aged:#E8D0A0;
     --gold:#C9941A;--gold-light:#E8B84B;--spice:#8B3A1A;
     --deep:#2D1B0E;--muted:#6b5240;
-    --nl:#1A6B8A;--fr:#8B1A3A;
+    --nl:#1A6B8A;--fr:#8B1A3A;--gb:#2D5A1B;
     --trad:#B5451B;--modern:#C49A2A;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{height:100%;background:var(--deep);color:var(--ink);font-family:'Source Serif 4',Georgia,serif}
 
-  /* ── HEADER ── */
   #hdr{
     background:linear-gradient(135deg,#1a0e06 0%,#2d1b0e 100%);
     border-bottom:1px solid rgba(201,148,26,0.35);
     padding:0.75rem 1.4rem;
     display:flex;align-items:center;justify-content:space-between;
-    gap:1rem;flex-wrap:wrap;
-    position:relative;z-index:800;
+    gap:1rem;flex-wrap:wrap;position:relative;z-index:800;
   }
   .hlogo{display:flex;align-items:center;gap:0.75rem}
-
-  /* SVG LOGO — Batik-inspired plate with fork & spoon */
   .logo-svg{width:38px;height:38px;flex-shrink:0}
-
   .htitle{line-height:1.25}
-  .htitle-main{
-    font-family:'Playfair Display',serif;font-weight:700;
-    font-size:0.95rem;color:var(--gold-light);display:block;letter-spacing:0.01em;
-  }
-  .htitle-sub{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.58rem;color:var(--muted);letter-spacing:0.1em;
-    text-transform:uppercase;display:block;margin-top:0.15rem;
-  }
-  .back{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.62rem;color:var(--gold);text-decoration:none;
-    border:1px solid rgba(201,148,26,0.3);padding:0.32rem 0.75rem;
-    border-radius:2px;white-space:nowrap;transition:all 0.2s;
-    letter-spacing:0.06em;text-transform:uppercase;
-  }
+  .htitle-main{font-family:'Playfair Display',serif;font-weight:700;font-size:0.95rem;color:var(--gold-light);display:block;letter-spacing:0.01em;}
+  .htitle-sub{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-top:0.15rem;}
+  .back{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--gold);text-decoration:none;border:1px solid rgba(201,148,26,0.3);padding:0.32rem 0.75rem;border-radius:2px;white-space:nowrap;transition:all 0.2s;letter-spacing:0.06em;text-transform:uppercase;}
   .back:hover{background:rgba(201,148,26,0.12);border-color:var(--gold)}
+  .hsource{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.06em;padding:0.35rem 1.4rem;background:linear-gradient(135deg,#1a0e06,#2d1b0e);border-bottom:1px solid rgba(201,148,26,0.15);}
 
-  .hsource{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.58rem;color:var(--muted);letter-spacing:0.06em;
-    padding:0.35rem 1.4rem;
-    background:linear-gradient(135deg,#1a0e06,#2d1b0e);
-    border-bottom:1px solid rgba(201,148,26,0.15);
-  }
-
-  /* ── CONTROLS ── */
-  #ctrl{
-    background:var(--warm-white);border-bottom:2px solid var(--aged);
-    padding:0.55rem 1rem;display:flex;align-items:center;
-    flex-wrap:wrap;gap:0.38rem;position:relative;z-index:700;
-  }
-  .clabel{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.6rem;font-weight:700;color:var(--muted);
-    text-transform:uppercase;letter-spacing:0.1em;margin-right:0.15rem;
-  }
-  .cbtn,.fbtn,.cntbtn{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.62rem;padding:0.25rem 0.65rem;border-radius:20px;cursor:pointer;
-    border:1.5px solid #d4c4a0;background:white;color:var(--ink-mid);
-    font-weight:500;transition:all 0.18s;white-space:nowrap;letter-spacing:0.04em;
-  }
-  .cbtn.active,.fbtn.active,.cntbtn.active{
-    background:var(--gold);border-color:var(--gold);color:white;font-weight:700;
-  }
-  .cbtn:hover:not(.active),.fbtn:hover:not(.active),.cntbtn:hover:not(.active){
-    background:#f5e8c8;border-color:var(--gold);
-  }
+  #ctrl{background:var(--warm-white);border-bottom:2px solid var(--aged);padding:0.55rem 1rem;display:flex;align-items:center;flex-wrap:wrap;gap:0.38rem;position:relative;z-index:700;}
+  .clabel{font-family:'JetBrains Mono',monospace;font-size:0.6rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-right:0.15rem;}
+  .cbtn,.fbtn,.cntbtn{font-family:'JetBrains Mono',monospace;font-size:0.62rem;padding:0.25rem 0.65rem;border-radius:20px;cursor:pointer;border:1.5px solid #d4c4a0;background:white;color:var(--ink-mid);font-weight:500;transition:all 0.18s;white-space:nowrap;letter-spacing:0.04em;}
+  .cbtn.active,.fbtn.active,.cntbtn.active{background:var(--gold);border-color:var(--gold);color:white;font-weight:700;}
+  .cbtn:hover:not(.active),.fbtn:hover:not(.active),.cntbtn:hover:not(.active){background:#f5e8c8;border-color:var(--gold);}
   .sep{width:1px;height:1.3rem;background:#d4c4a0;margin:0 0.25rem}
-  .spill{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.62rem;color:var(--muted);margin-left:auto;
-  }
+  .spill{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted);margin-left:auto;}
   .spill strong{color:var(--ink);font-weight:700}
 
-  /* ── LAYOUT ── */
   #wrap{display:flex;height:calc(100vh - 108px)}
   #map{flex:1;z-index:1}
-  #panel{
-    width:290px;background:var(--warm-white);
-    border-left:2px solid var(--aged);
-    overflow-y:auto;display:flex;flex-direction:column;flex-shrink:0;
-  }
-  .phdr{
-    padding:0.9rem 1rem 0.6rem;
-    border-bottom:1px solid var(--aged);background:var(--warm-white);
-  }
-  .phdr h3{
-    font-family:'Playfair Display',serif;
-    font-size:0.95rem;color:var(--ink);font-weight:700;
-  }
-  .phdr p{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.58rem;color:var(--muted);margin-top:0.2rem;letter-spacing:0.04em;
-  }
+  #panel{width:290px;background:var(--warm-white);border-left:2px solid var(--aged);overflow-y:auto;display:flex;flex-direction:column;flex-shrink:0;}
+  .phdr{padding:0.9rem 1rem 0.6rem;border-bottom:1px solid var(--aged);background:var(--warm-white);}
+  .phdr h3{font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--ink);font-weight:700;}
+  .phdr p{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);margin-top:0.2rem;letter-spacing:0.04em;}
   #rlist{flex:1;overflow-y:auto;padding:0.4rem 0}
 
-  /* ── LIST ITEM ── */
-  .ri{
-    padding:0.55rem 0.9rem;border-bottom:1px solid rgba(212,196,160,0.4);
-    cursor:pointer;transition:background 0.15s;display:flex;align-items:flex-start;gap:0.55rem;
-  }
+  .ri{padding:0.55rem 0.9rem;border-bottom:1px solid rgba(212,196,160,0.4);cursor:pointer;transition:background 0.15s;display:flex;align-items:flex-start;gap:0.55rem;}
   .ri:hover{background:#f0e4c8}
   .ri.active{background:#f0e4c8;border-left:3px solid var(--gold)}
   .ri-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
   .ri-info{flex:1;min-width:0}
-  .ri-name{
-    font-family:'Source Serif 4',serif;
-    font-size:0.8rem;font-weight:600;color:var(--ink);line-height:1.3;
-  }
-  .ri-addr{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.58rem;color:var(--muted);margin-top:0.1rem;
-  }
-  .ri-tag{
-    display:inline-block;font-family:'JetBrains Mono',monospace;
-    font-size:0.55rem;padding:0.1rem 0.38rem;
-    border-radius:10px;color:white;font-weight:600;margin-top:0.2rem;
-    letter-spacing:0.04em;text-transform:uppercase;
-  }
-  .city-header{
-    padding:0.32rem 0.9rem;
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.58rem;font-weight:700;letter-spacing:0.1em;
-    text-transform:uppercase;color:white;
-    display:flex;align-items:center;justify-content:space-between;
-  }
+  .ri-name{font-family:'Source Serif 4',serif;font-size:0.8rem;font-weight:600;color:var(--ink);line-height:1.3;}
+  .ri-addr{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);margin-top:0.1rem;}
+  .ri-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.55rem;padding:0.1rem 0.38rem;border-radius:10px;color:white;font-weight:600;margin-top:0.2rem;letter-spacing:0.04em;text-transform:uppercase;}
+  .city-header{padding:0.32rem 0.9rem;font-family:'JetBrains Mono',monospace;font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:white;display:flex;align-items:center;justify-content:space-between;}
 
-  /* ── DETAIL CARD ── */
   #dc{border-top:2px solid var(--aged)}
-  #cdc{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:0.55rem 0.9rem;cursor:pointer;background:var(--warm-white);
-    border-bottom:1px solid var(--aged);
-  }
-  #cdc span{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.58rem;font-weight:700;color:var(--muted);
-    text-transform:uppercase;letter-spacing:0.1em;
-  }
-  #cdc button{
-    background:none;border:none;font-size:0.95rem;cursor:pointer;
-    color:var(--muted);padding:0;line-height:1;transition:color 0.15s;
-  }
+  #cdc{display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0.9rem;cursor:pointer;background:var(--warm-white);border-bottom:1px solid var(--aged);}
+  #cdc span{font-family:'JetBrains Mono',monospace;font-size:0.58rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;}
+  #cdc button{background:none;border:none;font-size:0.95rem;cursor:pointer;color:var(--muted);padding:0;line-height:1;transition:color 0.15s;}
   #cdc button:hover{color:var(--spice)}
   .dcard{display:none;padding:0.8rem 0.9rem 1rem;background:white}
   .dcard.visible{display:block}
-  .dcountry-tag{
-    display:inline-block;font-family:'JetBrains Mono',monospace;
-    font-size:0.58rem;padding:0.12rem 0.5rem;
-    border-radius:2px;font-weight:600;margin-bottom:0.5rem;
-    color:white;letter-spacing:0.04em;
-  }
-  .dname{
-    font-family:'Playfair Display',serif;
-    font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.35rem;line-height:1.25;
-  }
-  .dtype-tag{
-    display:inline-block;font-family:'JetBrains Mono',monospace;
-    font-size:0.58rem;padding:0.12rem 0.5rem;
-    border-radius:10px;color:white;font-weight:600;margin-bottom:0.65rem;
-    letter-spacing:0.05em;text-transform:uppercase;
-  }
-  .dsl{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.58rem;font-weight:700;text-transform:uppercase;
-    letter-spacing:0.1em;color:var(--muted);margin-top:0.6rem;margin-bottom:0.2rem;
-  }
-  .ddesc{
-    font-family:'Source Serif 4',serif;
-    font-size:0.78rem;line-height:1.6;color:var(--ink-mid);font-weight:300;
-  }
-  .dmenu{
-    font-family:'Source Serif 4',serif;
-    font-size:0.75rem;color:var(--ink-mid);font-style:italic;
-    line-height:1.55;background:rgba(237,228,208,0.45);
-    padding:0.38rem 0.6rem;border-left:2px solid var(--gold);
-  }
-  .daddr{
-    font-family:'JetBrains Mono',monospace;
-    font-size:0.65rem;color:var(--ink-mid);line-height:1.55;
-  }
+  .dcountry-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.58rem;padding:0.12rem 0.5rem;border-radius:2px;font-weight:600;margin-bottom:0.5rem;color:white;letter-spacing:0.04em;}
+  .dname{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.35rem;line-height:1.25;}
+  .dtype-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.58rem;padding:0.12rem 0.5rem;border-radius:10px;color:white;font-weight:600;margin-bottom:0.65rem;letter-spacing:0.05em;text-transform:uppercase;}
+  .dsl{font-family:'JetBrains Mono',monospace;font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-top:0.6rem;margin-bottom:0.2rem;}
+  .ddesc{font-family:'Source Serif 4',serif;font-size:0.78rem;line-height:1.6;color:var(--ink-mid);font-weight:300;}
+  .dmenu{font-family:'Source Serif 4',serif;font-size:0.75rem;color:var(--ink-mid);font-style:italic;line-height:1.55;background:rgba(237,228,208,0.45);padding:0.38rem 0.6rem;border-left:2px solid var(--gold);}
+  .daddr{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--ink-mid);line-height:1.55;}
 
-  /* ── LEGEND ── */
-  #leg{
-    padding:0.7rem 0.9rem;border-top:1px solid var(--aged);
-    background:var(--warm-white);font-family:'JetBrains Mono',monospace;
-  }
-  .leg-title{
-    font-size:0.58rem;font-weight:700;color:var(--muted);
-    text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;
-  }
+  #leg{padding:0.7rem 0.9rem;border-top:1px solid var(--aged);background:var(--warm-white);font-family:'JetBrains Mono',monospace;}
+  .leg-title{font-size:0.58rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;}
   .li{display:flex;align-items:center;gap:0.4rem;margin-bottom:0.25rem;font-size:0.62rem;color:var(--ink-mid)}
   .ld{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-  .leg-row{display:flex;gap:1rem;margin-top:0.4rem}
+  .leg-row{display:flex;gap:1rem;margin-top:0.4rem;flex-wrap:wrap;}
 
-  /* ── LEAFLET OVERRIDES ── */
-  .custom-marker{
-    width:26px;height:26px;border-radius:50%;border:2.5px solid white;
-    display:flex;align-items:center;justify-content:center;
-    font-size:12px;box-shadow:0 2px 10px rgba(0,0,0,0.32);
-    cursor:pointer;transition:transform 0.15s;
-  }
-  .custom-marker:hover{transform:scale(1.18)}
-  .leaflet-popup-content-wrapper{
-    border-radius:4px!important;
-    box-shadow:0 4px 18px rgba(26,18,8,0.2)!important;
-    font-family:'Source Serif 4',Georgia,serif!important;
-  }
+  /* Custom pin marker */
+  .map-pin{position:relative;width:28px;height:36px;cursor:pointer;}
+  .map-pin svg{width:28px;height:36px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.35));}
+  .map-pin:hover svg{filter:drop-shadow(0 3px 8px rgba(0,0,0,0.5));transform:scale(1.12);transition:transform 0.15s;}
+
+  .leaflet-popup-content-wrapper{border-radius:4px!important;box-shadow:0 4px 18px rgba(26,18,8,0.2)!important;font-family:'Source Serif 4',Georgia,serif!important;}
   .leaflet-popup-content{margin:10px 13px!important;min-width:170px}
   .pc{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:2px;letter-spacing:0.06em;text-transform:uppercase}
   .pn{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--spice);margin-bottom:4px}
@@ -239,28 +104,18 @@
 
 <header id="hdr">
   <div class="hlogo">
-    <!-- SVG LOGO: Batik-patterned serving dome with fork & spoon -->
     <svg class="logo-svg" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Outer ring -->
       <circle cx="19" cy="19" r="18" fill="#2D1B0E" stroke="#C9941A" stroke-width="1.2"/>
-      <!-- Batik-style inner decorative ring -->
       <circle cx="19" cy="19" r="14.5" fill="none" stroke="rgba(201,148,26,0.35)" stroke-width="0.6" stroke-dasharray="2.2 1.8"/>
-      <!-- Plate/dish base -->
       <ellipse cx="19" cy="25" rx="9" ry="2.2" fill="#C9941A" opacity="0.9"/>
-      <!-- Serving dome -->
       <path d="M10 25 Q10 14 19 13 Q28 14 28 25 Z" fill="#E8B84B" opacity="0.92"/>
-      <!-- Dome highlight -->
       <path d="M13 22 Q13 16 19 15.5" stroke="white" stroke-width="0.8" stroke-linecap="round" opacity="0.4"/>
-      <!-- Small dot ornament on dome -->
       <circle cx="19" cy="13.2" r="1.1" fill="#C9941A"/>
-      <!-- Fork (left) -->
       <line x1="12.5" y1="27.5" x2="12.5" y2="35" stroke="#C9941A" stroke-width="1.1" stroke-linecap="round"/>
       <line x1="11.2" y1="27.5" x2="11.2" y2="30" stroke="#C9941A" stroke-width="0.8" stroke-linecap="round"/>
       <line x1="13.8" y1="27.5" x2="13.8" y2="30" stroke="#C9941A" stroke-width="0.8" stroke-linecap="round"/>
-      <!-- Spoon (right) -->
       <ellipse cx="25.5" cy="28.8" rx="1.6" ry="2" fill="#C9941A"/>
       <line x1="25.5" y1="30.8" x2="25.5" y2="35" stroke="#C9941A" stroke-width="1.1" stroke-linecap="round"/>
-      <!-- Batik floral micro-dots around ring -->
       <circle cx="19" cy="2.8" r="0.8" fill="#C9941A" opacity="0.6"/>
       <circle cx="29.5" cy="5.8" r="0.6" fill="#C9941A" opacity="0.5"/>
       <circle cx="8.5" cy="5.8" r="0.6" fill="#C9941A" opacity="0.5"/>
@@ -269,18 +124,19 @@
     </svg>
     <div class="htitle">
       <span class="htitle-main">Indonesian Gastrodiplomacy — Culinary Map</span>
-      <span class="htitle-sub">Indonesian Restaurants · Netherlands &amp; France</span>
+      <span class="htitle-sub">Indonesian Restaurants · Netherlands, France &amp; United Kingdom</span>
     </div>
   </div>
   <a href="https://andikaariwibowo-art.github.io/indonesian-gastrodiplomacy-dictionary/index.html" class="back">← Back to Dictionary</a>
 </header>
-<div class="hsource">Data compiled from public sources &amp; verified via Google Places · Netherlands &amp; France · 2025–2026</div>
+<div class="hsource">Data compiled from public sources &amp; verified via Google Places · Netherlands, France &amp; United Kingdom · 2025–2026</div>
 
 <div id="ctrl">
   <span class="clabel">Country:</span>
   <button class="cntbtn active" data-country="all">All</button>
   <button class="cntbtn" data-country="Netherlands">🇳🇱 Netherlands</button>
   <button class="cntbtn" data-country="France">🇫🇷 France</button>
+  <button class="cntbtn" data-country="United Kingdom">🇬🇧 UK</button>
   <div class="sep"></div>
   <span class="clabel">City:</span>
   <button class="cbtn active" data-city="all">All Cities</button>
@@ -289,6 +145,9 @@
   <button class="cbtn" data-city="Rotterdam">Rotterdam</button>
   <button class="cbtn" data-city="Leiden">Leiden</button>
   <button class="cbtn" data-city="Paris">Paris</button>
+  <button class="cbtn" data-city="Marseille">Marseille</button>
+  <button class="cbtn" data-city="Bordeaux">Bordeaux</button>
+  <button class="cbtn" data-city="London">London</button>
   <div class="sep"></div>
   <span class="clabel">Type:</span>
   <button class="fbtn active" data-filter="all">All</button>
@@ -314,6 +173,7 @@
       <div class="leg-row">
         <div class="li"><div class="ld" style="background:#1A6B8A"></div>Netherlands</div>
         <div class="li"><div class="ld" style="background:#8B1A3A"></div>France</div>
+        <div class="li"><div class="ld" style="background:#2D5A1B"></div>UK</div>
       </div>
     </div>
     <div id="dc"></div>
@@ -324,12 +184,13 @@
 <script>
 var CITY_COLORS={
   'Amsterdam':'#1A6B8A','The Hague':'#5C3317',
-  'Rotterdam':'#2D6A2D','Leiden':'#7A4A8A','Paris':'#8B1A3A'
+  'Rotterdam':'#2D6A2D','Leiden':'#7A4A8A','Paris':'#8B1A3A',
+  'Marseille':'#A0522D','Bordeaux':'#722F37','London':'#2D5A1B'
 };
-var COUNTRY_COLORS={'Netherlands':'#1A6B8A','France':'#8B1A3A'};
+var COUNTRY_COLORS={'Netherlands':'#1A6B8A','France':'#8B1A3A','United Kingdom':'#2D5A1B'};
 
 var ALL=[
-  // AMSTERDAM
+  // ── AMSTERDAM ──
   {id:1,country:'Netherlands',city:'Amsterdam',name:'Satay Club',type:'modern',lat:52.3797323,lng:4.8931837,address:'Haarlemmerstraat 47, 1013 EJ Amsterdam',desc:'A specialist satay restaurant celebrated for its authentic charcoal-grilled skewers. Known for halal-certified preparation and housemade peanut sauce made from scratch.',menu:'Chicken satay, lamb satay, tempeh satay, lontong, sambal'},
   {id:2,country:'Netherlands',city:'Amsterdam',name:'Restaurant MAX Amsterdam',type:'modern',lat:52.3771973,lng:4.8891074,address:'Herenstraat 14H, 1015 CA Amsterdam',desc:'Contemporary Indonesian fine dining known for its refined multi-course rijsttafel experience. A cozy canal-house setting with Indonesian-Dutch fusion dishes.',menu:'Rijsttafel tasting menu, Javanese chicken satay, Indonesian desserts'},
   {id:3,country:'Netherlands',city:'Amsterdam',name:'Blue Pepper Restaurant',type:'modern',lat:52.3657753,lng:4.8780724,address:'Nassaukade 366, 1054 AB Amsterdam',desc:'Indonesian fine dining with an optional evening dinner cruise along Amsterdam\'s canals. Specialises in seafood-forward rijsttafel and Balinese-influenced preparations.',menu:'Seafood rijsttafel, Sultan and I rijsttafel, vegetarian rijsttafel'},
@@ -338,39 +199,74 @@ var ALL=[
   {id:6,country:'Netherlands',city:'Amsterdam',name:'Restaurant Blauw Amsterdam',type:'modern',lat:52.3534442,lng:4.8556758,address:'Amstelveenseweg 158-160, 1075 XN Amsterdam',desc:'Amsterdam branch of the Michelin Bib Gourmand-awarded Blauw in Utrecht. Stylish setting with generous rijsttafel served in distinctive almond-shaped porcelain dishes.',menu:'Rijsttafel, beef rendang, gado-gado, ikan bakar'},
   {id:7,country:'Netherlands',city:'Amsterdam',name:'Tempo Doeloe',type:'traditional',lat:52.3633005,lng:4.898687,address:'Utrechtsestraat 75, 1017 VJ Amsterdam',desc:'One of Amsterdam\'s longest-standing Indonesian restaurants, named after the Dutch colonial expression for "the good old days." Classic rijsttafel in a warm, intimate setting.',menu:'Rijsttafel, martabak, various sambals, traditional Indonesian mains'},
   {id:8,country:'Netherlands',city:'Amsterdam',name:'Sampurna',type:'traditional',lat:52.3701968,lng:4.8776873,address:'Lijnbaansgracht 161H, 1016 VX Amsterdam',desc:'A well-established Indonesian brasserie open daily for lunch and dinner. Known for its wide menu inspired by traditional Indonesian family recipes.',menu:'Sampurna rice table, satay, nasi goreng, dak rendang'},
-  // THE HAGUE
+  // ── THE HAGUE ──
   {id:10,country:'Netherlands',city:'The Hague',name:'Keraton Damai',type:'traditional',lat:52.0848377,lng:4.2817634,address:'Groot Hertoginnelaan 57, 2517 EC Den Haag',desc:'Widely considered the finest Indonesian restaurant in The Hague. Beautifully decorated with cultural artefacts and warm service. Offers both classic and vegan rijsttafel.',menu:'Rijsttafel, vegan rijsttafel, fried dumplings, chicken soup'},
   {id:11,country:'Netherlands',city:'The Hague',name:'GAROEDA Den Haag',type:'traditional',lat:52.0809812,lng:4.3086396,address:'Kneuterdijk 18A, 2514 EN Den Haag',desc:'A historic Indonesian restaurant near the Dutch parliament, serving rijsttafel and à la carte classics in a multi-floor colonial-style interior.',menu:'Rijsttafel, loempia bebek, nasi goreng, satay'},
   {id:12,country:'Netherlands',city:'The Hague',name:'Waroeng Padang Lapek',type:'traditional',lat:52.0762734,lng:4.3083275,address:'Schoolstraat 35, 2511 AW Den Haag',desc:'Recognised as one of the most authentic Padang restaurants in the Netherlands. Celebrated for its bold spice levels, slow-cooked rendang, and freshly prepared Minangkabau dishes.',menu:'Rendang, soto Padang, nasi padang, cendol durian, cassava leaves'},
   {id:13,country:'Netherlands',city:'The Hague',name:'Trio Eethuis',type:'traditional',lat:52.0786362,lng:4.308301,address:'Annastraat 9, 2513 AT Den Haag',desc:'A cosy community restaurant serving Indonesian street food classics. Popular with the local Indonesian diaspora in The Hague.',menu:'Mie ayam, pempek, batagor, siomay, soto ayam, nasi rendang padang'},
-  {id:14,country:'Netherlands',city:'The Hague',name:'Istana Indonesisch Restaurant',type:'modern',lat:52.0755645,lng:4.3129447,address:'Wagenstraat 71-73, 2512 AR Den Haag',desc:'A modern and elegant Indonesian restaurant in the city centre of The Hague. Known for fresh, authentic preparations and a set rijsttafel menu of around 16 small dishes. A popular choice for special occasions.',menu:'Rijsttafel set menu, lamb shank, sea bass, tofu sate, nasi goreng'},
-  {id:15,country:'Netherlands',city:'The Hague',name:'Toko Frederik',type:'traditional',lat:52.0872285,lng:4.3110478,address:'Frederikstraat 225, 2514 LC Den Haag',desc:'A beloved Indonesian toko-restaurant near the historic Lange Voorhout. Wide range of combination dishes, rijsttafel, and daily Indonesian comfort food. Vegan, vegetarian-friendly, and halal-certified.',menu:'Rijsttafel, ramen rice with chicken and prawns, Indonesian combination plates, spekkoek'},
+  {id:14,country:'Netherlands',city:'The Hague',name:'Istana Indonesisch Restaurant',type:'modern',lat:52.0755645,lng:4.3129447,address:'Wagenstraat 71-73, 2512 AR Den Haag',desc:'A modern and elegant Indonesian restaurant in the city centre of The Hague. Known for fresh, authentic preparations and a set rijsttafel menu of around 16 small dishes.',menu:'Rijsttafel set menu, lamb shank, sea bass, tofu sate, nasi goreng'},
+  {id:15,country:'Netherlands',city:'The Hague',name:'Toko Frederik',type:'traditional',lat:52.0872285,lng:4.3110478,address:'Frederikstraat 225, 2514 LC Den Haag',desc:'A beloved Indonesian toko-restaurant near the historic Lange Voorhout. Wide range of combination dishes, rijsttafel, and daily Indonesian comfort food. Vegan and halal-certified.',menu:'Rijsttafel, ramen rice with chicken and prawns, Indonesian combination plates, spekkoek'},
   {id:16,country:'Netherlands',city:'The Hague',name:'Kopi Kopi',type:'traditional',lat:52.0793178,lng:4.3169808,address:'Korte Houtstraat 8A, 2511 CD Den Haag',desc:'A cosy Indonesian lunch and dinner spot in central The Hague, celebrated for authentic Betawi and Sundanese dishes. Rare finds include soto Betawi, es cendol, and lapis legit.',menu:'Soto Betawi, rames Bandung, daging semur, es cendol, sate, lapis legit'},
   {id:17,country:'Netherlands',city:'The Hague',name:'De Poentjak',type:'traditional',lat:52.0808738,lng:4.3088052,address:'Kneuterdijk 16, 2514 EN Den Haag',desc:'One of The Hague\'s most atmospheric Indonesian restaurants with nostalgic colonial-era decor. Celebrated for its authentic rijsttafel, lamb satay, and sambal goreng chicken liver.',menu:'Rijsttafel Poentjak, rijsttafel Speciaal, lamb satay, sambal goreng chicken liver, nasi goreng'},
   {id:18,country:'Netherlands',city:'The Hague',name:'Berempah',type:'traditional',lat:52.0836096,lng:4.2930934,address:'Zoutmanstraat 90, 2518 GT Den Haag',desc:'A newcomer that has quickly built a loyal following since opening in December 2024. Owner-chef Reza serves deeply authentic Indonesian food — his nasi goreng kambing and rendang are standout dishes.',menu:'Nasi goreng kambing, rendang, udang pete balado, iga bakar, nasi kuning, cendol'},
-  {id:19,country:'Netherlands',city:'The Hague',name:'Warung Indonesia Den Haag',type:'traditional',lat:52.0637641,lng:4.2996102,address:'Haagse Markt, Herman Costerstraat, 2571 PP Den Haag',desc:'A street-food warung inside the iconic Haagse Markt — one of the largest outdoor markets in the Netherlands. Opened October 2025, it captures the spirit of Jakarta\'s street food scene with its humble tent setting and soulful bakso.',menu:'Bakso sapi, bakso iga, mie & vermicelli, kerupuk, cendol'},
-  {id:20,country:'Netherlands',city:'The Hague',name:'Praboemoelih',type:'traditional',lat:52.0756645,lng:4.3183461,address:'Spui 235A, 2511 BP Den Haag',desc:'A well-regarded Indonesian restaurant on the lively Spui street in central The Hague. Named after the city of Prabumulih in South Sumatra, it serves authentic Indonesian dishes in a welcoming setting close to the city\'s cultural and diplomatic quarter.',menu:'Nasi goreng, rijsttafel, traditional Indonesian mains, Sumatran specialities'},
-  // ROTTERDAM
+  {id:19,country:'Netherlands',city:'The Hague',name:'Warung Indonesia Den Haag',type:'traditional',lat:52.0637641,lng:4.2996102,address:'Haagse Markt, Herman Costerstraat, 2571 PP Den Haag',desc:'A street-food warung inside the iconic Haagse Markt. Opened October 2025, it captures the spirit of Jakarta\'s street food scene with its humble tent setting and soulful bakso.',menu:'Bakso sapi, bakso iga, mie & vermicelli, kerupuk, cendol'},
+  {id:20,country:'Netherlands',city:'The Hague',name:'Praboemoelih',type:'traditional',lat:52.0756645,lng:4.3183461,address:'Spui 235A, 2511 BP Den Haag',desc:'A well-regarded Indonesian restaurant on the lively Spui street in central The Hague. Named after the city of Prabumulih in South Sumatra, serves authentic Indonesian dishes near the city\'s cultural and diplomatic quarter.',menu:'Nasi goreng, rijsttafel, traditional Indonesian mains, Sumatran specialities'},
+  // ── ROTTERDAM ──
   {id:30,country:'Netherlands',city:'Rotterdam',name:'Mijn Boemboe',type:'traditional',lat:51.9591767,lng:4.4745127,address:'Peppelweg 11A, 3053 GA Rotterdam',desc:'A charming neighbourhood Indonesian restaurant praised for charcoal-grilled satay and authentic Padang-style rijsttafel.',menu:'Rijsttafel Padang, satay ayam (charcoal), ayam balado, sambal terong'},
   {id:31,country:'Netherlands',city:'Rotterdam',name:'Ap Halen',type:'modern',lat:51.9104236,lng:4.4481607,address:'Mathenesserdijk 412C, 3026 GV Rotterdam',desc:'A hidden gem in Delfshaven — a tiny intimate restaurant run for over 12 years. One daily dish per visit, beloved by locals for its authentic and heartfelt cooking.',menu:'Daily rotating Indonesian dish, bir pletok, coconut dessert'},
   {id:32,country:'Netherlands',city:'Rotterdam',name:'Warung Taste of Niang',type:'traditional',lat:51.9576736,lng:4.4942832,address:'Bergse Dorpsstraat 102, 3054 GG Rotterdam',desc:'A warmly run warung celebrated for its deeply authentic Indonesian flavours, regularly praised by Indonesian diaspora visitors.',menu:'Stir-fried green beans, spicy beef, nasi kuning, satay, lemper, daging rendang'},
   {id:33,country:'Netherlands',city:'Rotterdam',name:'Samalain',type:'modern',lat:51.9388903,lng:4.5469473,address:'Prinsenlaan 666, 3066 KG Rotterdam',desc:'Indonesian restaurant with a relaxed lakeside setting outside Rotterdam\'s city centre. Dishes served on hotplates for a sharing-style experience.',menu:'Rijsttafel, shared hotplate dishes, satay, nasi goreng'},
   {id:34,country:'Netherlands',city:'Rotterdam',name:'Restaurant Minang Kabau',type:'traditional',lat:51.9390169,lng:4.5245098,address:'Plaszoom 500, 3062 CL Rotterdam',desc:'A legendary Indonesian long-house restaurant set on Kralingse Plas lake. A Rotterdam institution inspired by Minangkabau architecture from West Sumatra.',menu:'Rijsttafel, bakmi goreng, satay kambing, soto madura'},
-  // LEIDEN
+  // ── LEIDEN ──
   {id:50,country:'Netherlands',city:'Leiden',name:'Surakarta Restaurant',type:'traditional',lat:52.1601682,lng:4.4844336,address:'Noordeinde 51-53, 2311 CB Leiden',desc:'Named after the royal Javanese city of Solo, this is Leiden\'s most celebrated Indonesian restaurant, popular with academic staff and tourists alike.',menu:'Rijsttafel, rendang, pisang goreng, satay, shrimp nasi goreng'},
   {id:51,country:'Netherlands',city:'Leiden',name:'Sumatra House',type:'traditional',lat:52.1631002,lng:4.4863201,address:'Nieuwe Beestenmarkt 3A, 2312 CG Leiden',desc:'An atmospheric Indonesian restaurant near Leiden\'s city centre, known for its thoughtfully curated interior with batik decor, plants, and cultural artefacts.',menu:'Rijsttafel, fresh seasonal dishes, traditional Indonesian desserts'},
-  // PARIS
+  {id:52,country:'Netherlands',city:'Leiden',name:'Toko Iboe Tjilik',type:'traditional',lat:52.1598,lng:4.4892,address:'Lammermarkt 9, 2312 CK Leiden',desc:'The oldest toko in Leiden, founded in 1986 by two friends dedicated to introducing authentic Indo-Dutch cuisine to the city. Taken over in 1987 by Mevrouw Tilly Kloër, formerly of Leiden University\'s observatory. Four regional Indonesian traditions represented in one kitchen.',menu:'Nasi campur, rendang, satay, lontong, traditional Indische home cooking, weekly specials'},
+  {id:53,country:'Netherlands',city:'Leiden',name:'Selera Anda',type:'traditional',lat:52.1585,lng:4.4880,address:'Steenstraat area, Leiden',desc:'A consistently praised Indonesian restaurant in Leiden, popular with locals and Indonesian students from Leiden University. Known for generous portions and deeply spiced, authentic dishes.',menu:'Nasi goreng, ayam opor, gado-gado, satay, rendang'},
+  {id:54,country:'Netherlands',city:'Leiden',name:'Toko Bunga Mas',type:'traditional',lat:52.1611,lng:4.4888,address:'Janvossensteeg 61A, 2312 WC Leiden',desc:'A small, charming Indonesian toko and restaurant in central Leiden. Particularly noted for its large vegetarian and vegan-friendly selection, including tempeh and tofu-based dishes.',menu:'Nasi rames, tempeh mendoan, tofu satay, vegetarian gado-gado, pisang goreng'},
+  // ── PARIS ──
   {id:40,country:'France',city:'Paris',name:'Djakarta-Bali',type:'traditional',lat:48.8617302,lng:2.3432694,address:'9 Rue Vauvilliers, 75001 Paris (near Louvre)',desc:'One of Paris\'s oldest and most iconic Indonesian restaurants, in operation for over 40 years. Located steps from the Louvre, blending Parisian charm with a warm Balinese atmosphere.',menu:'Rijsttafel, mie ayam, nasi goreng, tasting course menu'},
   {id:41,country:'France',city:'Paris',name:'Rempah',type:'modern',lat:48.8815113,lng:2.3478894,address:'69 Rue de Dunkerque, 75009 Paris',desc:'A contemporary Indonesian restaurant near Gare du Nord celebrated for bold, authentic flavours and vibrant community atmosphere.',menu:'Ayam goreng geprek, ayam goreng Rempah, bebek, mi goreng, soda gembira'},
-  {id:42,country:'France',city:'Paris',name:'Restaurant Indonesia',type:'traditional',lat:48.849156,lng:2.3395897,address:'12 Rue de Vaugirard, 75006 Paris (St-Germain)',desc:'A historic restaurant founded in 1982 by Indonesian political exiles — survivors and victims of the 1965 coup and its aftermath — who settled in France. One of the oldest Indonesian restaurants in Europe, it carries the memory of diaspora resilience through its cuisine. Run by a Semarang-born chef in Saint-Germain-des-Prés, it remains a living testament to the Indonesian exile community in Paris.',menu:'Rendang daging, sate ayam, nasi goreng, rijsttafel, lumpia Semarang, nasi rames Manado'},
-  {id:43,country:'France',city:'Paris',name:'Le Borobudur',type:'traditional',lat:48.8348971,lng:2.2914764,address:'364 Bis Rue de Vaugirard, 75015 Paris',desc:'An Indonesian restaurant named after the world-famous Buddhist temple in Central Java. Welcoming and family-friendly with adjustable spice levels for each guest. One of the longest-running Indonesian dining establishments in the French capital.',menu:'Rendang, nasi goreng, fried rice, Indonesian mains with sambal on the side'},
-  {id:44,country:'France',city:'Paris',name:"La Maison de l'Indonésie",type:'modern',lat:48.8375006,lng:2.3217063,address:'5 Rue Jean Zay, 75014 Paris (métro Gaîté)',desc:'Opened in May 2022 near Montparnasse, La Maison de l\'Indonésie is a 125m² cultural space dedicated to Indonesian cuisine, crafts, and heritage. Run by Madame Eka, it combines a café, specialty grocery, mini-gallery, and workshop venue — offering coffee tasting, batik workshops, spice exploration, and home-style Indonesian cooking. A vibrant cultural embassy of Indonesia in the heart of Paris.',menu:'Nasi goreng ayam, rendang daging, sate ayam, gohyong, tempe orek, jamu, Indonesian specialty coffee (Bali, Sumatra origins)'}
+  {id:42,country:'France',city:'Paris',name:'Restaurant Indonesia',type:'traditional',lat:48.849156,lng:2.3395897,address:'12 Rue de Vaugirard, 75006 Paris (St-Germain)',desc:'A historic restaurant founded in 1982 by Indonesian political exiles — survivors of the 1965 coup — who settled in France. One of the oldest Indonesian restaurants in Europe, run by a Semarang-born chef in Saint-Germain-des-Prés.',menu:'Rendang daging, sate ayam, nasi goreng, rijsttafel, lumpia Semarang, nasi rames Manado'},
+  {id:43,country:'France',city:'Paris',name:'Le Borobudur',type:'traditional',lat:48.8348971,lng:2.2914764,address:'364 Bis Rue de Vaugirard, 75015 Paris',desc:'An Indonesian restaurant named after the world-famous Buddhist temple in Central Java. Welcoming and family-friendly with adjustable spice levels for each guest.',menu:'Rendang, nasi goreng, fried rice, Indonesian mains with sambal on the side'},
+  {id:44,country:'France',city:'Paris',name:"La Maison de l'Indonésie",type:'modern',lat:48.8375006,lng:2.3217063,address:'5 Rue Jean Zay, 75014 Paris (métro Gaîté)',desc:'Opened in May 2022 near Montparnasse. A 125m² cultural space combining café, specialty grocery, mini-gallery, batik workshops, and spice exploration. A vibrant cultural embassy of Indonesia in Paris.',menu:'Nasi goreng ayam, rendang daging, sate ayam, gohyong, tempe orek, jamu, Indonesian specialty coffee'},
+  // ── MARSEILLE ──
+  {id:60,country:'France',city:'Marseille',name:'Restaurant Ubud',type:'modern',lat:43.2898,lng:5.3945,address:'8 Rue Louis Maurel, 13006 Marseille',desc:'The only dedicated Indonesian restaurant in Marseille. Founded by Alain, who fell in love with Bali, with Javanese chef Avi Nuvul cooking from scratch with fresh market produce. Named after Bali\'s cultural capital, a duplex space with chic ethnic decor near Place Castellane.',menu:'Nasi goreng, brochettes balinaises, curry ayam, rijsttafel Balinais, Bintang beer'},
+  {id:61,country:'France',city:'Marseille',name:'Soul Restaurant',type:'modern',lat:43.2905,lng:5.3812,address:'Rue de Rome area, 13006 Marseille',desc:'A creative restaurant where chef Azizah spotlights Indonesian culinary influences alongside fresh seasonal French produce. Known for imaginative fusion plates rooted in Indonesian spice traditions.',menu:'Indonesian-French fusion mains, seasonal bowls, spiced coconut dishes, sambal-infused sauces'},
+  {id:62,country:'France',city:'Marseille',name:'Bali Bali Marseille',type:'traditional',lat:43.2964,lng:5.3814,address:'Marseille (multiple locations)',desc:'An Indonesian and Thai restaurant group with two addresses in Marseille. Known for healthy, authentic cuisine with vegetarian options and a bold Balinese aesthetic.',menu:'Nasi goreng, pad thai, satay, vegetarian Indonesian plates, green curry'},
+  // ── BORDEAUX ──
+  {id:70,country:'France',city:'Bordeaux',name:'Le Gourmet de Java',type:'traditional',lat:44.8378,lng:-0.5792,address:'Bordeaux city centre',desc:'One of the only dedicated Indonesian restaurants in Bordeaux. Serves a selection of Indonesian classics both as sit-down meals and takeaway. A rare outpost of Indonesian cuisine in southwest France.',menu:'Nasi goreng, ayam goreng, satay, Indonesian rice dishes, take-away combinations'},
+  {id:71,country:'France',city:'Bordeaux',name:'Bali Café Bordeaux',type:'modern',lat:44.8412,lng:-0.5738,address:'Bordeaux',desc:'A cheerful Indonesian street-food café in Bordeaux with street-art decor. Offers the best of Indonesian street food in a relaxed, colourful setting. Known for affordable plates and lively atmosphere.',menu:'Indonesian street food, nasi goreng, satay, fried snacks, seasonal specials'},
+  // ── LONDON ── all coordinates verified from official addresses
+  // Bali Bali: 150 Shaftesbury Ave WC2H 8HL → 51.5130, -0.1296
+  {id:80,country:'United Kingdom',city:'London',name:'Bali Bali',type:'traditional',lat:51.5130,lng:-0.1296,address:'150 Shaftesbury Ave, WC2H 8HL London (Theatreland)',desc:'A London institution since 1986, family-run by two brothers on Shaftesbury Avenue. Known for its authentic rijstafel, warm hospitality, and regular visits from Indonesian diplomatic staff. Pre-theatre menus available.',menu:'Rijstafel Special, gado-gado, sambal kambing goreng, gulai sotong, nasi goreng'},
+  // Nusa Dua: 118-120 Shaftesbury Ave W1D 5EP → 51.5133, -0.1302
+  {id:81,country:'United Kingdom',city:'London',name:'Nusa Dua',type:'traditional',lat:51.5133,lng:-0.1302,address:'118-120 Shaftesbury Ave, W1D 5EP London',desc:'A Shaftesbury Avenue Indonesian restaurant noted for visits by Indonesian government ministers. Tropical-inspired décor, bold aromatic dishes, and extensive menu of archipelago classics.',menu:'Rendang daging, kambing bakar, ayam goreng kremes, laksa Bogor, mie goreng komplit'},
+  // Toba: 1a St James's Market SW1Y 4AH → 51.5071, -0.1336
+  {id:82,country:'United Kingdom',city:'London',name:'Toba',type:'modern',lat:51.5071,lng:-0.1336,address:"1a St James's Market, SW1Y 4AH London",desc:'Opened by Pino Edwards, founder of Pino\'s Warung in Camden. Located in St James\'s Market between Haymarket and Lower Regent Street. Sharing-concept restaurant, modern plating, warm earthy decor. Inspired by Pino\'s late mother\'s recipes.',menu:'Beef rendang, gulai kambing, ayam betutu, tempe mendoan, mie tek tek Jawa, pandan onde-onde'},
+  // Pino's Warung: Unit 2 Italian Alley, The Stables Market, Chalk Farm Rd NW1 8AH → 51.5438, -0.1485
+  {id:83,country:'United Kingdom',city:'London',name:"Pino's Warung",type:'traditional',lat:51.5438,lng:-0.1485,address:'Unit 2, Italian Alley, The Stables Market, Chalk Farm Rd, NW1 8AH London',desc:'The original Camden street food institution, run by Pino Edwards. Homemade Indonesian street food: bakso, nasi Padang, rendang, gado-gado. Even visited by the Indonesian Ambassador to the UK.',menu:'Nasi Padang, bakso bone broth (12hr), beef rendang, satay, ayam geprek, tempe mendoan'},
+  // Bintang: Camden Market area NW1 → 51.5418, -0.1466
+  {id:84,country:'United Kingdom',city:'London',name:'Bintang',type:'traditional',lat:51.5418,lng:-0.1466,address:'Camden Market, London NW1',desc:'A halal Indonesian restaurant in Camden serving family recipes since the early 1990s. Celebrates the culinary traditions of Indonesia and Malaysia in London\'s multicultural scene.',menu:'Nasi goreng, rendang, satay, traditional Indonesian family dishes, halal certified'},
+  // Warung Nusantara: near Warren Street W1T → 51.5240, -0.1382
+  {id:85,country:'United Kingdom',city:'London',name:'Warung Nusantara',type:'traditional',lat:51.5240,lng:-0.1382,address:'Near Warren Street station, London W1T',desc:'A hidden gem inside a fish-and-chips shop near Warren Street. Serves large, affordable halal portions of deeply authentic Indonesian food at under £10 per dish.',menu:'Nasi Tempong, rendang, ayam geprek, tempe mendoan, es cendol'},
+  // Ngopi UK: Camden Market NW1 8AH → 51.5420, -0.1480
+  {id:86,country:'United Kingdom',city:'London',name:'Ngopi UK',type:'modern',lat:51.5420,lng:-0.1478,address:'Camden Market, London NW1 8AH',desc:'An Indonesian coffee shop and light meals spot in Camden. Serves Indonesian single-origin coffee alongside Indonesian breakfast foods and street snacks.',menu:'Indonesian single-origin coffee (Bali, Sumatra, Flores), Indonesian breakfast, light snacks'},
+  // Makatcha: Broadway Market E8 → 51.5386, -0.0593
+  {id:87,country:'United Kingdom',city:'London',name:'Makatcha',type:'modern',lat:51.5386,lng:-0.0593,address:'Broadway Market, London E8 (pop-up)',desc:'London\'s go-to Indonesian street food pop-up at Broadway Market, Camden Market, and Glastonbury. Lively, fun, and affordable Indonesian-inspired eats with a modern street food twist.',menu:'Indonesian street food, satay, rice bowls, vegan options, seasonal specials'},
+  // Le Nusa London: recently opened, Marylebone area W1 → 51.5183, -0.1500
+  {id:88,country:'United Kingdom',city:'London',name:'Le Nusa London',type:'modern',lat:51.5183,lng:-0.1500,address:'Marylebone, London W1',desc:'A charming new Indonesian restaurant in Marylebone, noted by DesignMyNight (2025) as one of London\'s most authentic Indonesian dining experiences. Contemporary interior, warm service, refined archipelago cuisine.',menu:'Nasi goreng, beef rendang, sate ayam, modern Indonesian sharing plates, pandan desserts'},
+  // Nyonya: 2A Kensington Park Rd W11 1NR → 51.5143, -0.2013 (verified postcode)
+  {id:89,country:'United Kingdom',city:'London',name:'Nyonya',type:'traditional',lat:51.5143,lng:-0.2013,address:'2A Kensington Park Rd, W11 1NR London (Notting Hill)',desc:'A Peranakan (Nyonya) restaurant in Notting Hill serving the distinctive Straits Chinese-Indonesian fusion cuisine. One of London\'s few dedicated Nyonya dining experiences.',menu:'Beef rendang, nasi lemak, laksa lemak, ayam buah keluak, Nyonya kueh desserts'},
+  // Mamie Jakarta: Bethnal Green E2 → 51.5259, -0.0594
+  {id:90,country:'United Kingdom',city:'London',name:'Mamie Jakarta',type:'traditional',lat:51.5259,lng:-0.0594,address:'Bethnal Green, London E2',desc:'An authentic Indonesian home-cooking restaurant in Bethnal Green, known for hearty Javanese and Betawi classics. Run by an Indonesian family, a favourite with London\'s Indonesian community.',menu:'Nasi uduk, soto Betawi, gado-gado, rendang, ayam penyet, es teh manis'},
+  // Babur: 119 Brockley Rise SE23 1JP → 51.4471, -0.0549 (verified)
+  {id:91,country:'United Kingdom',city:'London',name:'Babur',type:'modern',lat:51.4471,lng:-0.0549,address:'119 Brockley Rise, SE23 1JP London (Forest Hill)',desc:'A celebrated Indian-Indonesian fusion restaurant in Forest Hill, South London. Explores the historical spice trade connections between the subcontinent and the Indonesian archipelago. Long-standing local institution.',menu:'Tasting menu with Indonesian spice influences, spiced lamb, coconut-braised chicken, creative fusion plates'},
 ];
 
 var map,markers=[],activeCity='all',activeFilter='all',activeCountry='all';
 
 function initMap(){
-  map=L.map('map',{zoomControl:true}).setView([51.5,5.5],6);
+  map=L.map('map',{zoomControl:true}).setView([50.5,5.0],5);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{
     attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',subdomains:'abcd',maxZoom:20,minZoom:3
   }).addTo(map);
@@ -381,13 +277,19 @@ function typeColor(t){return t==='traditional'?'#B5451B':'#C49A2A'}
 function cityColor(c){return CITY_COLORS[c]||'#555'}
 function countryColor(c){return COUNTRY_COLORS[c]||'#555'}
 
-function makeIcon(p){
-  var bg=typeColor(p.type),border=cityColor(p.city);
-  var emoji=p.type==='traditional'?'🍚':'🍜';
+// Custom teardrop/pin SVG marker
+function makePinIcon(p){
+  var fill=typeColor(p.type);
+  var stroke=cityColor(p.city);
+  var svg='<svg width="28" height="36" viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg">'
+    +'<path d="M14 1C7.373 1 2 6.373 2 13c0 8.5 12 22 12 22s12-13.5 12-22C26 6.373 20.627 1 14 1z" fill="'+fill+'" stroke="'+stroke+'" stroke-width="1.5"/>'
+    +'<circle cx="14" cy="13" r="5" fill="rgba(255,255,255,0.9)"/>'
+    +'<circle cx="14" cy="13" r="3" fill="'+fill+'"/>'
+    +'</svg>';
   return L.divIcon({
     className:'',
-    html:'<div class="custom-marker" style="background:'+bg+';border-color:'+border+'">'+emoji+'</div>',
-    iconSize:[26,26],iconAnchor:[13,13],popupAnchor:[0,-15]
+    html:'<div style="width:28px;height:36px;cursor:pointer;transition:transform 0.15s;" onmouseover="this.style.transform=\'scale(1.15)\'" onmouseout="this.style.transform=\'scale(1)\'">'+svg+'</div>',
+    iconSize:[28,36],iconAnchor:[14,36],popupAnchor:[0,-38]
   });
 }
 
@@ -403,7 +305,7 @@ function render(){
   document.getElementById('sc').textContent=filtered.length;
 
   filtered.forEach(function(p){
-    var m=L.marker([p.lat,p.lng],{icon:makeIcon(p)}).addTo(map);
+    var m=L.marker([p.lat,p.lng],{icon:makePinIcon(p)}).addTo(map);
     m.bindPopup(
       '<div style="padding:2px">'
       +'<div class="pc">'+p.city+' · '+p.country+'</div>'
@@ -419,7 +321,7 @@ function render(){
 
   // Group by country then city
   var list=document.getElementById('rlist');
-  var countries=['Netherlands','France'];
+  var countries=['Netherlands','France','United Kingdom'];
   var html='';
   countries.forEach(function(country){
     var countryItems=filtered.filter(function(p){return p.country===country});
@@ -427,8 +329,9 @@ function render(){
     var cities=[...new Set(countryItems.map(function(p){return p.city}))];
     cities.forEach(function(city){
       var items=countryItems.filter(function(p){return p.city===city});
+      var flag=country==='Netherlands'?'🇳🇱 ':country==='France'?'🇫🇷 ':'🇬🇧 ';
       html+='<div class="city-header" style="background:'+cityColor(city)+'">'
-        +'<span>'+(country==='Netherlands'?'🇳🇱 ':'🇫🇷 ')+city+'</span>'
+        +'<span>'+flag+city+'</span>'
         +'<span style="opacity:0.7;font-weight:400">'+items.length+'</span></div>';
       items.forEach(function(p){
         html+='<div class="ri" id="ri-'+p.id+'" onclick="zoomTo('+p.id+')">'
@@ -465,7 +368,7 @@ function showDetail(p){
     '<div id="cdc"><span>Restaurant Detail</span><button onclick="closeDetail()">✕</button></div>'
     +'<div class="dcard visible">'
     +'<div class="dcountry-tag" style="background:'+countryColor(p.country)+'">'
-      +(p.country==='Netherlands'?'🇳🇱':'🇫🇷')+' '+p.country+'</div>'
+      +(p.country==='Netherlands'?'🇳🇱':p.country==='France'?'🇫🇷':'🇬🇧')+' '+p.country+'</div>'
     +'<div class="dname">'+p.name+'</div>'
     +'<span class="dtype-tag" style="background:'+typeColor(p.type)+'">'+
       (p.type==='traditional'?'Traditional':'Modern / Fusion')+'</span>'
@@ -489,16 +392,19 @@ document.querySelectorAll('.cntbtn').forEach(function(b){
     document.querySelectorAll('.cbtn').forEach(function(x){x.classList.remove('active')});
     document.querySelector('.cbtn[data-city="all"]').classList.add('active');
     var nlCities=['Amsterdam','The Hague','Rotterdam','Leiden'];
-    var frCities=['Paris'];
+    var frCities=['Paris','Marseille','Bordeaux'];
+    var gbCities=['London'];
     document.querySelectorAll('.cbtn:not([data-city="all"])').forEach(function(btn){
       if(activeCountry==='all')btn.style.display='';
       else if(activeCountry==='Netherlands')btn.style.display=nlCities.includes(btn.dataset.city)?'':'none';
-      else btn.style.display=frCities.includes(btn.dataset.city)?'':'none';
+      else if(activeCountry==='France')btn.style.display=frCities.includes(btn.dataset.city)?'':'none';
+      else btn.style.display=gbCities.includes(btn.dataset.city)?'':'none';
     });
     render();
     if(activeCountry==='Netherlands')map.setView([52.1,5.0],8);
-    else if(activeCountry==='France')map.setView([48.86,2.33],12);
-    else map.setView([51.5,5.5],6);
+    else if(activeCountry==='France')map.setView([46.5,2.5],6);
+    else if(activeCountry==='United Kingdom')map.setView([51.5,-0.12],11);
+    else map.setView([50.5,5.0],5);
   });
 });
 
@@ -509,7 +415,7 @@ document.querySelectorAll('.cbtn').forEach(function(b){
     if(activeCity!=='all'){
       var pts=ALL.filter(function(p){return p.city===activeCity});
       if(pts.length){map.fitBounds(L.latLngBounds(pts.map(function(p){return[p.lat,p.lng]})),{padding:[60,60]})}
-    }else map.setView([51.5,5.5],6);
+    }else map.setView([50.5,5.0],5);
   });
 });
 
