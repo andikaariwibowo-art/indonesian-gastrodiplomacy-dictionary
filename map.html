@@ -164,26 +164,15 @@
       <h3>Restaurant Directory</h3>
     </div>
     <div id="rlist"></div>
-    <div id="leg">
-      <div class="leg-title">Cuisine Type</div>
-      <div class="li"><div class="ld" style="background:#B5451B"></div>Traditional</div>
-      <div class="li"><div class="ld" style="background:#C49A2A"></div>Modern / Fusion</div>
-      <div class="leg-title" style="margin-top:0.55rem">Country</div>
-      <div class="leg-row">
-        <div class="li"><div class="ld" style="background:#1A6B8A"></div>Netherlands</div>
-        <div class="li"><div class="ld" style="background:#8B1A3A"></div>France</div>
-        <div class="li"><div class="ld" style="background:#2D5A1B"></div>UK</div>
-      </div>
-      <div style="margin-top:0.75rem;padding-top:0.6rem;border-top:1px solid var(--aged)">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:var(--muted);letter-spacing:0.03em;line-height:1.7;">
-          Data compiled by the Gastrodiplomacy Research Team,<br>
-          Research Centre for Area Studies,<br>
-          National Research and Innovation Agency (BRIN),<br>
-          Republic of Indonesia.
-        </div>
+    <div id="dc"></div>
+    <div style="padding:0.7rem 0.9rem;border-top:1px solid var(--aged);background:#F5F0E8;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.5rem;color:var(--muted);letter-spacing:0.03em;line-height:1.75;">
+        Data compiled by the Gastrodiplomacy Research Team,<br>
+        Research Centre for Area Studies,<br>
+        National Research and Innovation Agency (BRIN),<br>
+        Republic of Indonesia.
       </div>
     </div>
-    <div id="dc"></div>
   </div>
 </div>
 
@@ -207,6 +196,10 @@ var ALL=[
   {id:7,country:'Netherlands',city:'Amsterdam',name:'Toko Bersama',type:'traditional',lat:52.3662,lng:4.8720,address:'Bilderdijkstraat 116, 1053 KZ Amsterdam (Oud West)',desc:'A beloved cafeteria-style Indonesian toko in Amsterdam-West, run by an owner who has lived in the city since 1991. Known for generous portions of homemade Indonesian snacks and daily meals. Google rating 4.8 from 5,500+ reviews. Rijsttafel available.',menu:'Nasi rames, rendang, soto ayam, tempeh balado, loempia, nasi goreng, daily specials'},
   {id:9,country:'Netherlands',city:'Amsterdam',name:'Ron Gastrobar Indonesia',type:'modern',lat:52.2944,lng:4.9128,address:'Amstelzijde 51, 1184 TZ Ouderkerk aan de Amstel',desc:'Michelin-recognised Indonesian restaurant by top chef Ron Blaauw, set on a terrace along the River Amstel in Ouderkerk. Executive Chef Agus Hermawan — appointed ambassador for traditional Indonesian cuisine by Indonesia\'s Ministry of Tourism — leads the kitchen. A landmark of high-end gastrodiplomacy in the Netherlands.',menu:'Rijsttafel Agus (15 dishes), rijsttafel Guillaume (12 dishes), satay kambing, udang laut peteh, tahu telor, satasting'},
   {id:8,country:'Netherlands',city:'Amsterdam',name:'Sampurna',type:'traditional',lat:52.3701968,lng:4.8776873,address:'Lijnbaansgracht 161H, 1016 VX Amsterdam',desc:'A well-established Indonesian brasserie open daily for lunch and dinner. Known for its wide menu inspired by traditional Indonesian family recipes.',menu:'Sampurna rice table, satay, nasi goreng, dak rendang'},
+  {id:11,country:'Netherlands',city:'Amsterdam',name:"Made's Warung Amsterdam",type:'traditional',lat:52.3498,lng:4.8689,address:'Cornelis Krusemanstraat 3, 1075 NB Amsterdam (Oud Zuid)',desc:'Amsterdam outpost of the legendary Made\'s Warung, founded in Kuta, Bali in 1969 by Ibu Made\'s family — one of Bali\'s oldest and most celebrated warungs. Known for absolute freshness of ingredients, Balinese-style goat satay made from organic young male goat, tuna satay lilit, and black rice dessert. Vegetarian and vegan-friendly.',menu:'Satay kambing (organic goat), tuna satay lilit, nasi campur, gado-gado, risolles, black rice dessert'},
+  {id:12,country:'Netherlands',city:'Amsterdam',name:'Waroeng Adji',type:'traditional',lat:52.3748,lng:4.8270,address:'Johan Huizingalaan 264, 1065 JM Amsterdam (Nieuw-West)',desc:'A beloved neighbourhood Indonesian warung in Amsterdam Nieuw-West, celebrated for authentic home-style Indonesian cooking. Cafeteria-style with daily changing dishes, housemade sambal sold in jars. A hidden gem for the local Indonesian diaspora community.',menu:'Rendang sapi, kolokay (sweet-sour chicken), sambal telur, sambal tempe goreng, mihoen, begedel, homemade sambal badjak'},
+  {id:13,country:'Netherlands',city:'Amsterdam',name:'Indrapura',type:'traditional',lat:52.3660,lng:4.8967,address:'Rembrandtplein 40-42, 1017 CV Amsterdam (Centrum)',desc:'An Amsterdam institution serving authentic Indonesian food for over 30 years at the historic Rembrandtplein. Known for its extensive rijsttafel, specialty Udang Gala (whole lobster with Indonesian sauce), and wide variety of satay. Open daily.',menu:'Rijsttafel, udang gala (lobster), nasi rames, satay selection, gado-gado, seafood Indonesian dishes'},
+  {id:14,country:'Netherlands',city:'Amsterdam',name:'Sama Sebo',type:'traditional',lat:52.3583,lng:4.8794,address:'P.C. Hooftstraat 27, 1071 BL Amsterdam (Oud Zuid)',desc:'One of Amsterdam\'s oldest and most iconic Indonesian restaurants, established in the building of De Posthoorn (dating from 1894) on the prestigious P.C. Hooftstraat. Freddy Heineken had his own regular table here. Javanese-rooted chefs only. Rijsttafel served in the classic Dutch-Indonesian style with bodega and restaurant areas.',menu:'Rijsttafel, ikan bumbu Bali (grilled mackerel), gado-gado, bami goreng, serundeng, nasi goreng with beef rendang'},
   // ── THE HAGUE ──
   {id:10,country:'Netherlands',city:'The Hague',name:'Keraton Damai',type:'traditional',lat:52.0848377,lng:4.2817634,address:'Groot Hertoginnelaan 57, 2517 EC Den Haag',desc:'Widely considered the finest Indonesian restaurant in The Hague. Beautifully decorated with cultural artefacts and warm service. Offers both classic and vegan rijsttafel.',menu:'Rijsttafel, vegan rijsttafel, fried dumplings, chicken soup'},
   {id:11,country:'Netherlands',city:'The Hague',name:'GAROEDA Den Haag',type:'traditional',lat:52.0809812,lng:4.3086396,address:'Kneuterdijk 18A, 2514 EN Den Haag',desc:'A historic Indonesian restaurant near the Dutch parliament, serving rijsttafel and à la carte classics in a multi-floor colonial-style interior.',menu:'Rijsttafel, loempia bebek, nasi goreng, satay'},
