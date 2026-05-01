@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Gastrodiplomacy Map">
+<meta name="theme-color" content="#2D1B0E">
+<meta name="description" content="Interactive map of Indonesian restaurants in Europe — Netherlands, France & United Kingdom. Gastrodiplomacy Research Team, BRIN.">
+<link rel="manifest" id="pwa-manifest">
 <title>Indonesian Gastrodiplomacy — Culinary Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -93,10 +100,91 @@
   .pn{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--spice);margin-bottom:4px}
   .pb{font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 6px;border-radius:10px;display:inline-block;color:white;font-weight:600;letter-spacing:0.04em}
 
-  @media(max-width:640px){
-    #wrap{flex-direction:column;height:auto}
-    #map{height:55vw;min-height:240px}
-    #panel{width:100%;height:auto;max-height:50vh}
+  /* ── MOBILE RESPONSIVE ── */
+  @media(max-width:768px){
+
+    /* Header */
+    #hdr{padding:0.6rem 0.9rem;gap:0.6rem;}
+    .htitle-main{font-size:0.82rem;}
+    .htitle-sub{display:none;}
+    .back{font-size:0.58rem;padding:0.25rem 0.55rem;}
+    .logo-svg{width:30px;height:30px;}
+    .hsource{display:none;}
+
+    /* Filter bar — horizontally scrollable */
+    #ctrl{
+      padding:0.45rem 0.7rem;
+      flex-wrap:nowrap;
+      overflow-x:auto;
+      overflow-y:hidden;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      gap:0.3rem;
+    }
+    #ctrl::-webkit-scrollbar{display:none;}
+    .clabel{display:none;}
+    .sep{display:none;}
+    .spill{display:none;}
+    .cbtn,.fbtn,.cntbtn{
+      font-size:0.68rem;
+      padding:0.3rem 0.7rem;
+      flex-shrink:0;
+      touch-action:manipulation;
+    }
+
+    /* Layout — stacked vertical */
+    #wrap{
+      flex-direction:column;
+      height:calc(100vh - 88px);
+    }
+
+    /* Map takes top 55% */
+    #map{
+      height:55vh;
+      min-height:220px;
+      flex-shrink:0;
+    }
+
+    /* Panel bottom sheet style */
+    #panel{
+      width:100%;
+      flex:1;
+      min-height:0;
+      border-left:none;
+      border-top:2px solid var(--aged);
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+
+    .phdr h3{font-size:0.85rem;}
+    .phdr p{display:none;}
+
+    /* List items bigger touch targets */
+    .ri{padding:0.7rem 0.9rem;min-height:56px;}
+    .ri-name{font-size:0.82rem;}
+    .ri-addr{font-size:0.62rem;}
+    .ri-tag{font-size:0.58rem;}
+    .city-header{padding:0.4rem 0.9rem;font-size:0.6rem;}
+
+    /* Detail card full width */
+    .dcard{padding:0.7rem 0.9rem 1.2rem;}
+    .dname{font-size:0.95rem;}
+    .ddesc{font-size:0.8rem;}
+    .dmenu{font-size:0.78rem;}
+    .daddr{font-size:0.68rem;}
+
+    /* Leaflet popup smaller */
+    .leaflet-popup-content-wrapper{max-width:220px!important;}
+    .pn{font-size:12px;}
+
+    /* BRIN footer */
+    #brin-footer{font-size:0.5rem!important;}
+  }
+
+  /* Extra small phones */
+  @media(max-width:380px){
+    #map{height:45vh;}
+    .htitle-main{font-size:0.72rem;}
   }
 </style>
 </head>
@@ -129,32 +217,80 @@
   </div>
   <a href="https://andikaariwibowo-art.github.io/indonesian-gastrodiplomacy-dictionary/index.html" class="back">← Back to Dictionary</a>
 </header>
-<div class="hsource">Data compiled from public sources &amp; verified via Google Places · Netherlands, France &amp; United Kingdom · 2025–2026</div>
+<div class="hsource">Data compiled from publicly available restaurant websites, Google Maps listings, and review platforms · Netherlands, France &amp; United Kingdom · 2025–2026</div>
 
 <div id="ctrl">
-  <span class="clabel">Country:</span>
-  <button class="cntbtn active" data-country="all">All</button>
-  <button class="cntbtn" data-country="Netherlands">🇳🇱 Netherlands</button>
-  <button class="cntbtn" data-country="France">🇫🇷 France</button>
-  <button class="cntbtn" data-country="United Kingdom">🇬🇧 UK</button>
-  <div class="sep"></div>
-  <span class="clabel">City:</span>
-  <button class="cbtn active" data-city="all">All Cities</button>
-  <button class="cbtn" data-city="Amsterdam">Amsterdam</button>
-  <button class="cbtn" data-city="The Hague">The Hague</button>
-  <button class="cbtn" data-city="Rotterdam">Rotterdam</button>
-  <button class="cbtn" data-city="Leiden">Leiden</button>
-  <button class="cbtn" data-city="Paris">Paris</button>
-  <button class="cbtn" data-city="Marseille">Marseille</button>
-  <button class="cbtn" data-city="Bordeaux">Bordeaux</button>
-  <button class="cbtn" data-city="London">London</button>
-  <div class="sep"></div>
-  <span class="clabel">Type:</span>
-  <button class="fbtn active" data-filter="all">All</button>
-  <button class="fbtn" data-filter="traditional">Traditional</button>
-  <button class="fbtn" data-filter="modern">Modern/Fusion</button>
-  <div class="sep"></div>
-  <div class="spill">Showing: <strong id="sc">0</strong></div>
+  <!-- DESKTOP: button style (hidden on mobile) -->
+  <div id="ctrl-desktop" style="display:flex;align-items:center;flex-wrap:wrap;gap:0.38rem;width:100%;">
+    <span class="clabel">Country:</span>
+    <button class="cntbtn active" data-country="all">All</button>
+    <button class="cntbtn" data-country="Netherlands">🇳🇱 Netherlands</button>
+    <button class="cntbtn" data-country="France">🇫🇷 France</button>
+    <button class="cntbtn" data-country="United Kingdom">🇬🇧 UK</button>
+    <div class="sep"></div>
+    <span class="clabel">City:</span>
+    <button class="cbtn active" data-city="all">All Cities</button>
+    <button class="cbtn" data-city="Amsterdam">Amsterdam</button>
+    <button class="cbtn" data-city="The Hague">The Hague</button>
+    <button class="cbtn" data-city="Rotterdam">Rotterdam</button>
+    <button class="cbtn" data-city="Leiden">Leiden</button>
+    <button class="cbtn" data-city="Paris">Paris</button>
+    <button class="cbtn" data-city="Marseille">Marseille</button>
+    <button class="cbtn" data-city="Bordeaux">Bordeaux</button>
+    <button class="cbtn" data-city="London">London</button>
+    <div class="sep"></div>
+    <div class="spill">Showing: <strong id="sc">0</strong></div>
+  </div>
+
+  <!-- MOBILE: dropdown style (hidden on desktop) -->
+  <div id="ctrl-mobile" style="display:none;width:100%;gap:0.35rem;align-items:center;flex-wrap:nowrap;">
+
+    <!-- Country: globe SVG + select -->
+    <div style="display:flex;align-items:center;flex:1;min-width:0;background:white;border:1.5px solid #d4c4a0;border-radius:6px;overflow:hidden;">
+      <span style="padding:0 0.3rem 0 0.45rem;flex-shrink:0;display:flex;align-items:center;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9.5" stroke="#C9941A" stroke-width="1.7"/>
+          <path d="M12 2.5C12 2.5 8.5 7 8.5 12s3.5 9.5 3.5 9.5" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M12 2.5C12 2.5 15.5 7 15.5 12s-3.5 9.5-3.5 9.5" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M2.5 12h19M4 7.5h16M4 16.5h16" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <select id="sel-country" style="font-family:'JetBrains Mono',monospace;font-size:0.66rem;padding:0.34rem 1.2rem 0.34rem 0.1rem;border:none;background:transparent;color:#3D2B0F;flex:1;min-width:0;appearance:none;-webkit-appearance:none;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path fill=%22%236b5240%22 d=%22M7 10l5 5 5-5z%22/></svg>');background-repeat:no-repeat;background-position:right 0.15rem center;background-size:14px;outline:none;cursor:pointer;">
+        <option value="all">All</option>
+        <option value="Netherlands">🇳🇱 NL</option>
+        <option value="France">🇫🇷 FR</option>
+        <option value="United Kingdom">🇬🇧 UK</option>
+      </select>
+    </div>
+
+    <!-- City: dynamic landmark SVG + select -->
+    <div style="display:flex;align-items:center;flex:1.3;min-width:0;background:white;border:1.5px solid #d4c4a0;border-radius:6px;overflow:hidden;">
+      <span id="city-icon-wrap" style="padding:0 0.28rem 0 0.45rem;flex-shrink:0;display:flex;align-items:center;">
+        <!-- Default windmill icon for NL cities -->
+        <svg id="city-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="12" y1="5" x2="12" y2="20" stroke="#C9941A" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M12 10 L5 7 L9 10" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 10 L19 6 L15 10" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 10 L15 17 L12 15" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 10 L9 17 L12 15" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="10" r="1.5" fill="#C9941A"/>
+        </svg>
+      </span>
+      <select id="sel-city" style="font-family:'JetBrains Mono',monospace;font-size:0.66rem;padding:0.34rem 1.2rem 0.34rem 0.1rem;border:none;background:transparent;color:#3D2B0F;flex:1;min-width:0;appearance:none;-webkit-appearance:none;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><path fill=%22%236b5240%22 d=%22M7 10l5 5 5-5z%22/></svg>');background-repeat:no-repeat;background-position:right 0.15rem center;background-size:14px;outline:none;cursor:pointer;">
+        <option value="all">All Cities</option>
+        <option value="Amsterdam">Amsterdam</option>
+        <option value="The Hague">The Hague</option>
+        <option value="Rotterdam">Rotterdam</option>
+        <option value="Leiden">Leiden</option>
+        <option value="Paris">Paris</option>
+        <option value="Marseille">Marseille</option>
+        <option value="Bordeaux">Bordeaux</option>
+        <option value="London">London</option>
+      </select>
+    </div>
+
+    <span style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:#8B5E2A;white-space:nowrap;flex-shrink:0;font-weight:700;"><strong id="sc-mobile">0</strong></span>
+  </div>
 </div>
 
 <div id="wrap">
@@ -196,10 +332,10 @@ var ALL=[
   {id:7,country:'Netherlands',city:'Amsterdam',name:'Toko Bersama',type:'traditional',lat:52.3662,lng:4.8720,address:'Bilderdijkstraat 116, 1053 KZ Amsterdam (Oud West)',desc:'A beloved cafeteria-style Indonesian toko in Amsterdam-West, run by an owner who has lived in the city since 1991. Known for generous portions of homemade Indonesian snacks and daily meals. Google rating 4.8 from 5,500+ reviews. Rijsttafel available.',menu:'Nasi rames, rendang, soto ayam, tempeh balado, loempia, nasi goreng, daily specials'},
   {id:9,country:'Netherlands',city:'Amsterdam',name:'Ron Gastrobar Indonesia',type:'modern',lat:52.2944,lng:4.9128,address:'Amstelzijde 51, 1184 TZ Ouderkerk aan de Amstel',desc:'Michelin-recognised Indonesian restaurant by top chef Ron Blaauw, set on a terrace along the River Amstel in Ouderkerk. Executive Chef Agus Hermawan — appointed ambassador for traditional Indonesian cuisine by Indonesia\'s Ministry of Tourism — leads the kitchen. A landmark of high-end gastrodiplomacy in the Netherlands.',menu:'Rijsttafel Agus (15 dishes), rijsttafel Guillaume (12 dishes), satay kambing, udang laut peteh, tahu telor, satasting'},
   {id:8,country:'Netherlands',city:'Amsterdam',name:'Sampurna',type:'traditional',lat:52.3701968,lng:4.8776873,address:'Lijnbaansgracht 161H, 1016 VX Amsterdam',desc:'A well-established Indonesian brasserie open daily for lunch and dinner. Known for its wide menu inspired by traditional Indonesian family recipes.',menu:'Sampurna rice table, satay, nasi goreng, dak rendang'},
-  {id:11,country:'Netherlands',city:'Amsterdam',name:"Made's Warung Amsterdam",type:'traditional',lat:52.3498,lng:4.8689,address:'Cornelis Krusemanstraat 3, 1075 NB Amsterdam (Oud Zuid)',desc:'Amsterdam outpost of the legendary Made\'s Warung, founded in Kuta, Bali in 1969 by Ibu Made\'s family — one of Bali\'s oldest and most celebrated warungs. Known for absolute freshness of ingredients, Balinese-style goat satay made from organic young male goat, tuna satay lilit, and black rice dessert. Vegetarian and vegan-friendly.',menu:'Satay kambing (organic goat), tuna satay lilit, nasi campur, gado-gado, risolles, black rice dessert'},
-  {id:12,country:'Netherlands',city:'Amsterdam',name:'Waroeng Adji',type:'traditional',lat:52.3748,lng:4.8270,address:'Johan Huizingalaan 264, 1065 JM Amsterdam (Nieuw-West)',desc:'A beloved neighbourhood Indonesian warung in Amsterdam Nieuw-West, celebrated for authentic home-style Indonesian cooking. Cafeteria-style with daily changing dishes, housemade sambal sold in jars. A hidden gem for the local Indonesian diaspora community.',menu:'Rendang sapi, kolokay (sweet-sour chicken), sambal telur, sambal tempe goreng, mihoen, begedel, homemade sambal badjak'},
-  {id:13,country:'Netherlands',city:'Amsterdam',name:'Indrapura',type:'traditional',lat:52.3660,lng:4.8967,address:'Rembrandtplein 40-42, 1017 CV Amsterdam (Centrum)',desc:'An Amsterdam institution serving authentic Indonesian food for over 30 years at the historic Rembrandtplein. Known for its extensive rijsttafel, specialty Udang Gala (whole lobster with Indonesian sauce), and wide variety of satay. Open daily.',menu:'Rijsttafel, udang gala (lobster), nasi rames, satay selection, gado-gado, seafood Indonesian dishes'},
-  {id:14,country:'Netherlands',city:'Amsterdam',name:'Sama Sebo',type:'traditional',lat:52.3583,lng:4.8794,address:'P.C. Hooftstraat 27, 1071 BL Amsterdam (Oud Zuid)',desc:'One of Amsterdam\'s oldest and most iconic Indonesian restaurants, established in the building of De Posthoorn (dating from 1894) on the prestigious P.C. Hooftstraat. Freddy Heineken had his own regular table here. Javanese-rooted chefs only. Rijsttafel served in the classic Dutch-Indonesian style with bodega and restaurant areas.',menu:'Rijsttafel, ikan bumbu Bali (grilled mackerel), gado-gado, bami goreng, serundeng, nasi goreng with beef rendang'},
+  {id:101,country:'Netherlands',city:'Amsterdam',name:"Made's Warung Amsterdam",type:'traditional',lat:52.3498,lng:4.8689,address:'Cornelis Krusemanstraat 3, 1075 NB Amsterdam (Oud Zuid)',desc:'Amsterdam outpost of Made\'s Warung, a family-run Balinese warung founded in Kuta in 1969. Known for its commitment to fresh ingredients and Balinese home cooking, including goat satay and tuna satay lilit. Vegetarian and vegan-friendly.',menu:'Satay kambing, tuna satay lilit, nasi campur, gado-gado, risolles, black rice dessert'},
+  {id:102,country:'Netherlands',city:'Amsterdam',name:'Waroeng Adji',type:'traditional',lat:52.3748,lng:4.8270,address:'Johan Huizingalaan 264, 1065 JM Amsterdam (Nieuw-West)',desc:'A neighbourhood Indonesian warung in Amsterdam Nieuw-West serving authentic home-style Indonesian cooking. Cafeteria-style with daily changing dishes and housemade sambal sold in jars.',menu:'Rendang sapi, kolokay, sambal telur, sambal tempe goreng, mihoen, begedel, homemade sambal badjak'},
+  {id:103,country:'Netherlands',city:'Amsterdam',name:'Indrapura',type:'traditional',lat:52.3660,lng:4.8967,address:'Rembrandtplein 40-42, 1017 CV Amsterdam (Centrum)',desc:'A long-established Indonesian restaurant at the historic Rembrandtplein, serving rijsttafel and Indonesian classics including a specialty whole lobster dish with Indonesian sauce.',menu:'Rijsttafel, udang gala (lobster), nasi rames, satay selection, gado-gado, seafood Indonesian dishes'},
+  {id:104,country:'Netherlands',city:'Amsterdam',name:'Sama Sebo',type:'traditional',lat:52.3583,lng:4.8794,address:'P.C. Hooftstraat 27, 1071 BL Amsterdam (Oud Zuid)',desc:'One of Amsterdam\'s oldest Indonesian restaurants, located in a heritage building on P.C. Hooftstraat. Serves rijsttafel in the classic Dutch-Indonesian style with separate bodega and restaurant areas.',menu:'Rijsttafel, ikan bumbu Bali, gado-gado, bami goreng, serundeng, nasi goreng with beef rendang'},
   // ── THE HAGUE ──
   {id:10,country:'Netherlands',city:'The Hague',name:'Keraton Damai',type:'traditional',lat:52.0848377,lng:4.2817634,address:'Groot Hertoginnelaan 57, 2517 EC Den Haag',desc:'Widely considered the finest Indonesian restaurant in The Hague. Beautifully decorated with cultural artefacts and warm service. Offers both classic and vegan rijsttafel.',menu:'Rijsttafel, vegan rijsttafel, fried dumplings, chicken soup'},
   {id:11,country:'Netherlands',city:'The Hague',name:'GAROEDA Den Haag',type:'traditional',lat:52.0809812,lng:4.3086396,address:'Kneuterdijk 18A, 2514 EN Den Haag',desc:'A historic Indonesian restaurant near the Dutch parliament, serving rijsttafel and à la carte classics in a multi-floor colonial-style interior.',menu:'Rijsttafel, loempia bebek, nasi goreng, satay'},
@@ -223,9 +359,9 @@ var ALL=[
   {id:51,country:'Netherlands',city:'Leiden',name:'Sumatra House',type:'traditional',lat:52.1631002,lng:4.4863201,address:'Nieuwe Beestenmarkt 3A, 2312 CG Leiden',desc:'An atmospheric Indonesian restaurant near Leiden\'s city centre, known for its thoughtfully curated interior with batik decor, plants, and cultural artefacts.',menu:'Rijsttafel, fresh seasonal dishes, traditional Indonesian desserts'},
   {id:52,country:'Netherlands',city:'Leiden',name:'Toko Iboe Tjilik',type:'traditional',lat:52.1598,lng:4.4892,address:'Lammermarkt 9, 2312 CK Leiden',desc:'The oldest toko in Leiden, founded in 1986 by two friends dedicated to introducing authentic Indo-Dutch cuisine to the city. Taken over in 1987 by Mevrouw Tilly Kloër, formerly of Leiden University\'s observatory. Four regional Indonesian traditions represented in one kitchen.',menu:'Nasi campur, rendang, satay, lontong, traditional Indische home cooking, weekly specials'},
   {id:53,country:'Netherlands',city:'Leiden',name:'Selera Anda',type:'traditional',lat:52.1585,lng:4.4880,address:'Steenstraat area, Leiden',desc:'A consistently praised Indonesian restaurant in Leiden, popular with locals and Indonesian students from Leiden University. Known for generous portions and deeply spiced, authentic dishes.',menu:'Nasi goreng, ayam opor, gado-gado, satay, rendang'},
-  {id:54,country:'Netherlands',city:'Leiden',name:'Toko Bu Dewi',type:'traditional',lat:52.1614,lng:4.4877,address:'Janvossensteeg 61A, 2312 WC Leiden',desc:'Authentic Indonesian toko in central Leiden, formerly known as Toko Bunga Mas. Run by Dewi, specialising in Surabaya-style home cooking. Celebrated as one of the most authentic Indonesian tocos in the Netherlands. Limited seating, takeaway-oriented. Vegetarian and vegan-friendly, Too Good To Go partner.',menu:'Rendang, opor ayam, tempeh belado, satay kambing, sambal goreng telor, jackfruit curry, caramelized tempe'},
-  {id:55,country:'Netherlands',city:'Leiden',name:'Toko Haven',type:'traditional',lat:52.1618,lng:4.4858,address:'Haven 6, 2312 KE Leiden',desc:'A well-regarded halal Indonesian toko and takeaway restaurant in central Leiden. All dishes freshly prepared daily. Open Tuesday through Sunday. Popular with local Indonesian community and students from Leiden University.',menu:'Nasi goreng rames, bami goreng, ayam, soto, daily Indonesian specials, halal certified'},
-  {id:56,country:'Netherlands',city:'Leiden',name:'Toko Mini XL',type:'traditional',lat:52.1510,lng:4.5030,address:'Dr. de Bruijnestraat 2, 2351 PC Leiderdorp',desc:'A large Indonesian toko and catering service in Leiderdorp, just outside Leiden. Specialises in authentic Indonesian takeaway meals and rijsttafel catering for events and parties. Known for generous portions at affordable prices.',menu:'Nasi rames, bami goreng, saté, rijsttafel catering, vegetarian options, daily fresh specials'},
+  {id:54,country:'Netherlands',city:'Leiden',name:'Toko Bu Dewi',type:'traditional',lat:52.1614,lng:4.4877,address:'Janvossensteeg 61A, 2312 WC Leiden',desc:'A small Indonesian takeaway toko near the Wall Poems of Leiden, known for authentic Surabaya-style home cooking. Previously operated as Bungamas at the same address. Takeaway-focused with minimal seating (around two tables). Praised by Indonesian visitors as one of the most authentic Indonesian tocos in the Netherlands. Vegetarian-friendly with wide daily variety.',menu:'Rendang, opor ayam, caramelised tempe, satay kambing, sambal goreng telor, jackfruit curry, terong balado, aubergine dishes'},
+  {id:55,country:'Netherlands',city:'Leiden',name:'Toko Haven',type:'traditional',lat:52.1618,lng:4.4858,address:'Haven 6, 2312 KE Leiden',desc:'A halal Indonesian toko and takeaway restaurant in central Leiden. All dishes freshly prepared daily. Open Tuesday through Sunday. Popular with the local Indonesian community and students from Leiden University.',menu:'Nasi goreng rames, bami goreng, ayam, soto, daily Indonesian specials, halal certified'},
+  {id:56,country:'Netherlands',city:'Leiden',name:'Toko Mini',type:'traditional',lat:52.1510,lng:4.5030,address:'Dr. de Bruijnestraat 2, 2351 PC Leiderdorp',desc:'An Indonesian toko and catering service in Leiderdorp, just outside Leiden. Specialises in authentic Indonesian takeaway meals and rijsttafel catering for events and parties.',menu:'Nasi rames, bami goreng, saté, rijsttafel catering, vegetarian options, daily fresh specials'},
   {id:57,country:'Netherlands',city:'Leiden',name:'Toko Pak Camat',type:'traditional',lat:52.1241,lng:4.4446,address:'Schoolstraat 97, 2251 AX Voorschoten (near Leiden)',desc:'A celebrated Javanese toko-restaurant in Voorschoten, founded by Budi Cahyono from Surabaya whose grandmother\'s recipes form the basis of the menu. Draws guests from across the Netherlands. Owner worked his way up from dishwasher to manager at Soeboer Den Haag before opening his own toko.',menu:'Iga bakar (kalfsspareribs), satay kambing, sajoer lodeh, fresh Javanese daily specials, rijsttafel by request'},
   // ── PARIS ──
   {id:40,country:'France',city:'Paris',name:'Djakarta-Bali',type:'traditional',lat:48.8617302,lng:2.3432694,address:'9 Rue Vauvilliers, 75001 Paris (near Louvre)',desc:'One of Paris\'s oldest and most iconic Indonesian restaurants, in operation for over 40 years. Located steps from the Louvre, blending Parisian charm with a warm Balinese atmosphere.',menu:'Rijsttafel, mie ayam, nasi goreng, tasting course menu'},
@@ -277,7 +413,7 @@ function initMap(){
   render();
 }
 
-function typeColor(t){return t==='traditional'?'#B5451B':'#C49A2A'}
+function typeColor(t){ return '#B5451B'; }  // single unified color for all venues
 function cityColor(c){return CITY_COLORS[c]||'#555'}
 function countryColor(c){return COUNTRY_COLORS[c]||'#555'}
 
@@ -306,7 +442,7 @@ function render(){
     if(activeFilter!=='all'&&p.type!==activeFilter)return false;
     return true;
   });
-  document.getElementById('sc').textContent=filtered.length;
+  syncCount(filtered.length);
 
   filtered.forEach(function(p){
     var m=L.marker([p.lat,p.lng],{icon:makePinIcon(p)}).addTo(map);
@@ -314,8 +450,7 @@ function render(){
       '<div style="padding:2px">'
       +'<div class="pc">'+p.city+' · '+p.country+'</div>'
       +'<div class="pn">'+p.name+'</div>'
-      +'<span class="pb" style="background:'+typeColor(p.type)+'">'+
-        (p.type==='traditional'?'Traditional':'Modern/Fusion')+'</span>'
+      +'<span class="pb" style="background:#B5451B">Indonesian Restaurant</span>'
       +'</div>',
       {maxWidth:210,closeButton:false}
     );
@@ -339,12 +474,11 @@ function render(){
         +'<span style="opacity:0.7;font-weight:400">'+items.length+'</span></div>';
       items.forEach(function(p){
         html+='<div class="ri" id="ri-'+p.id+'" onclick="zoomTo('+p.id+')">'
-          +'<div class="ri-dot" style="background:'+typeColor(p.type)+'"></div>'
+          +'<div class="ri-dot" style="background:#B5451B"></div>'
           +'<div class="ri-info">'
           +'<div class="ri-name">'+p.name+'</div>'
           +'<div class="ri-addr">'+p.address.split(',')[0]+'</div>'
-          +'<span class="ri-tag" style="background:'+typeColor(p.type)+'">'+
-            (p.type==='traditional'?'Traditional':'Modern/Fusion')+'</span>'
+          +'<span class="ri-tag" style="background:#B5451B">Indonesian Restaurant</span>'
           +'</div></div>';
       });
     });
@@ -375,8 +509,7 @@ function showDetail(p){
     +'<div class="dcountry-tag" style="background:'+countryColor(p.country)+'">'
       +(p.country==='Netherlands'?'🇳🇱':p.country==='France'?'🇫🇷':'🇬🇧')+' '+p.country+'</div>'
     +'<div class="dname">'+p.name+'</div>'
-    +'<span class="dtype-tag" style="background:'+typeColor(p.type)+'">'+
-      (p.type==='traditional'?'Traditional':'Modern / Fusion')+'</span>'
+    +'<span class="dtype-tag" style="background:#B5451B">Indonesian Restaurant</span>'
     +'<div class="dsl">About</div><div class="ddesc">'+p.desc+'</div>'
     +'<div class="dsl">Signature Dishes</div><div class="dmenu">'+p.menu+'</div>'
     +'<div class="dsl">Address</div><div class="daddr">'+p.address+'</div>'
@@ -392,6 +525,77 @@ function showDetail(p){
     +'</div>';
 }
 
+// ── CITY LANDMARK ICONS ──
+// Each city gets its own SVG landmark, all stroke #C9941A
+var CITY_ICONS = {
+  'all': '<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="20" stroke="#C9941A" stroke-width="1.8" stroke-linecap="round"/><path d="M12 10 L5 7 L9 10" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 10 L19 6 L15 10" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 10 L15 17 L12 15" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 10 L9 17 L12 15" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="1.5" fill="#C9941A"/></svg>',
+  // Amsterdam: canal house gable
+  'Amsterdam': '<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M4 20 L4 11 L8 7 L12 4 L16 7 L20 11 L20 20 Z" stroke="#C9941A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="9" y="14" width="6" height="6" stroke="#C9941A" stroke-width="1.4"/><line x1="12" y1="2" x2="12" y2="5" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round"/><line x1="4" y1="20" x2="20" y2="20" stroke="#C9941A" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  // The Hague: parliament/Binnenhof tower
+  'The Hague': '<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" stroke="#C9941A" stroke-width="1.6"/><path d="M5 10 L12 4 L19 10" stroke="#C9941A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="2" x2="12" y2="4" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round"/><rect x="10" y="14" width="4" height="6" stroke="#C9941A" stroke-width="1.3"/><line x1="3" y1="20" x2="21" y2="20" stroke="#C9941A" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  // Rotterdam: Erasmus Bridge
+  'Rotterdam': '<svg width="14" height="13" viewBox="0 0 28 24" fill="none"><line x1="2" y1="18" x2="26" y2="18" stroke="#C9941A" stroke-width="1.8" stroke-linecap="round"/><line x1="18" y1="4" x2="18" y2="18" stroke="#C9941A" stroke-width="1.8" stroke-linecap="round"/><line x1="18" y1="4" x2="6" y2="18" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round"/><line x1="18" y1="4" x2="26" y2="18" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round"/><line x1="18" y1="4" x2="12" y2="18" stroke="#C9941A" stroke-width="1.1" stroke-linecap="round" stroke-dasharray="2 1.5"/></svg>',
+  // Leiden: windmill (De Valk)
+  'Leiden': '<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="20" stroke="#C9941A" stroke-width="1.8" stroke-linecap="round"/><path d="M12 10 L5 7 L9 10" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 10 L19 6 L15 10" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 10 L15 17 L12 15" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 10 L9 17 L12 15" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="1.5" fill="#C9941A"/></svg>',
+  // Paris: Eiffel Tower
+  'Paris': '<svg width="10" height="14" viewBox="0 0 20 28" fill="none"><path d="M10 1 L6.5 11 L3 27" stroke="#C9941A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 1 L13.5 11 L17 27" stroke="#C9941A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><line x1="10" y1="1" x2="10" y2="27" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round"/><line x1="5.5" y1="10.5" x2="14.5" y2="10.5" stroke="#C9941A" stroke-width="1.6" stroke-linecap="round"/><line x1="4" y1="17" x2="16" y2="17" stroke="#C9941A" stroke-width="1.6" stroke-linecap="round"/><line x1="2.5" y1="27" x2="17.5" y2="27" stroke="#C9941A" stroke-width="2" stroke-linecap="round"/></svg>',
+  // Marseille: sailboat (Vieux-Port)
+  'Marseille': '<svg width="14" height="13" viewBox="0 0 28 24" fill="none"><path d="M14 2 L14 18" stroke="#C9941A" stroke-width="1.7" stroke-linecap="round"/><path d="M14 3 L6 16 L14 16 Z" fill="none" stroke="#C9941A" stroke-width="1.5" stroke-linejoin="round"/><path d="M14 3 L22 16 L14 16 Z" fill="none" stroke="#C9941A" stroke-width="1.2" stroke-linejoin="round"/><path d="M4 20 Q14 18 24 20" stroke="#C9941A" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  // Bordeaux: wine glass
+  'Bordeaux': '<svg width="12" height="14" viewBox="0 0 22 26" fill="none"><path d="M5 2 Q5 12 11 14 Q17 12 17 2 Z" stroke="#C9941A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><line x1="11" y1="14" x2="11" y2="22" stroke="#C9941A" stroke-width="1.6" stroke-linecap="round"/><line x1="7" y1="22" x2="15" y2="22" stroke="#C9941A" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  // London: Tower Bridge
+  'London': '<svg width="15" height="13" viewBox="0 0 30 24" fill="none"><line x1="1" y1="14" x2="29" y2="14" stroke="#C9941A" stroke-width="1.8" stroke-linecap="round"/><rect x="5" y="6" width="6" height="8" stroke="#C9941A" stroke-width="1.5"/><rect x="19" y="6" width="6" height="8" stroke="#C9941A" stroke-width="1.5"/><line x1="8" y1="4" x2="8" y2="6" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round"/><line x1="22" y1="4" x2="22" y2="6" stroke="#C9941A" stroke-width="1.4" stroke-linecap="round"/><path d="M11 10 Q15 8 19 10" stroke="#C9941A" stroke-width="1.3" stroke-linecap="round"/><line x1="1" y1="20" x2="29" y2="20" stroke="#C9941A" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="3 2"/></svg>'
+};
+
+function updateCityIcon(city){
+  var wrap = document.getElementById('city-icon-wrap');
+  if(wrap && CITY_ICONS[city]) wrap.innerHTML = CITY_ICONS[city];
+}
+
+// ── MOBILE / DESKTOP FILTER SWITCHER ──
+function isMobile(){ return window.innerWidth <= 768; }
+function syncCount(n){
+  var sc=document.getElementById('sc');
+  var scm=document.getElementById('sc-mobile');
+  if(sc)sc.textContent=n;
+  if(scm)scm.textContent=n;
+}
+function switchFilterMode(){
+  var desktop=document.getElementById('ctrl-desktop');
+  var mobile=document.getElementById('ctrl-mobile');
+  if(isMobile()){desktop.style.display='none';mobile.style.display='flex';}
+  else{desktop.style.display='flex';mobile.style.display='none';}
+}
+window.addEventListener('resize',function(){switchFilterMode();setTimeout(function(){if(map)map.invalidateSize();},200);});
+
+document.getElementById('sel-country').addEventListener('change',function(){
+  activeCountry=this.value;activeCity='all';
+  var selCity=document.getElementById('sel-city');
+  var nlCities=['Amsterdam','The Hague','Rotterdam','Leiden'];
+  var frCities=['Paris','Marseille','Bordeaux'];
+  var gbCities=['London'];
+  Array.from(selCity.options).forEach(function(opt){
+    if(opt.value==='all'){opt.style.display='';return;}
+    if(activeCountry==='all')opt.style.display='';
+    else if(activeCountry==='Netherlands')opt.style.display=nlCities.includes(opt.value)?'':'none';
+    else if(activeCountry==='France')opt.style.display=frCities.includes(opt.value)?'':'none';
+    else opt.style.display=gbCities.includes(opt.value)?'':'none';
+  });
+  selCity.value='all'; updateCityIcon('all'); render();
+  if(activeCountry==='Netherlands')map.setView([52.1,5.0],8);
+  else if(activeCountry==='France')map.setView([46.5,2.5],6);
+  else if(activeCountry==='United Kingdom')map.setView([51.5,-0.12],11);
+  else map.setView([50.5,5.0],5);
+});
+document.getElementById('sel-city').addEventListener('change',function(){
+  activeCity=this.value;
+  updateCityIcon(this.value);
+  render();
+  if(activeCity!=='all'){
+    var pts=ALL.filter(function(p){return p.city===activeCity;});
+    if(pts.length)map.fitBounds(L.latLngBounds(pts.map(function(p){return[p.lat,p.lng];})),{padding:[40,40]});
+  }else map.setView([50.5,5.0],5);
+});
 // Controls
 function closeDetail(){
   document.getElementById('dc').innerHTML='';
@@ -434,14 +638,63 @@ document.querySelectorAll('.cbtn').forEach(function(b){
   });
 });
 
-document.querySelectorAll('.fbtn').forEach(function(b){
-  b.addEventListener('click',function(){
-    document.querySelectorAll('.fbtn').forEach(function(x){x.classList.remove('active')});
-    b.classList.add('active');activeFilter=b.dataset.filter;render();
+window.addEventListener('load',function(){initMap();switchFilterMode();});
+
+// ── PWA MANIFEST (injected inline) ──
+var manifestData = {
+  name: 'Indonesian Gastrodiplomacy — Culinary Map',
+  short_name: 'Gastrodiplomacy',
+  description: 'Interactive map of Indonesian restaurants in Europe. Gastrodiplomacy Research Team, BRIN.',
+  start_url: './',
+  display: 'standalone',
+  background_color: '#2D1B0E',
+  theme_color: '#2D1B0E',
+  orientation: 'any',
+  icons: [
+    { src: 'https://andikaariwibowo-art.github.io/indonesian-gastrodiplomacy-dictionary/favicon.ico', sizes: '64x64', type: 'image/x-icon' },
+    { src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><circle cx="96" cy="96" r="90" fill="%232D1B0E" stroke="%23C9941A" stroke-width="6"/><ellipse cx="96" cy="120" rx="42" ry="10" fill="%23C9941A"/><path d="M54 120 Q54 72 96 66 Q138 72 138 120 Z" fill="%23E8B84B"/><circle cx="96" cy="66" r="6" fill="%23C9941A"/></svg>', sizes: '192x192', type: 'image/svg+xml' },
+    { src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><circle cx="256" cy="256" r="240" fill="%232D1B0E" stroke="%23C9941A" stroke-width="12"/><ellipse cx="256" cy="320" rx="112" ry="28" fill="%23C9941A"/><path d="M144 320 Q144 192 256 176 Q368 192 368 320 Z" fill="%23E8B84B"/><circle cx="256" cy="176" r="16" fill="%23C9941A"/></svg>', sizes: '512x512', type: 'image/svg+xml' }
+  ]
+};
+var blob = new Blob([JSON.stringify(manifestData)], {type:'application/json'});
+var manifestUrl = URL.createObjectURL(blob);
+document.getElementById('pwa-manifest').setAttribute('href', manifestUrl);
+
+// ── PWA INSTALL PROMPT ──
+var deferredPrompt;
+var installBanner = null;
+window.addEventListener('beforeinstallprompt', function(e){
+  e.preventDefault();
+  deferredPrompt = e;
+  // Show install banner
+  installBanner = document.createElement('div');
+  installBanner.id = 'install-banner';
+  installBanner.innerHTML =
+    '<span style="font-family:\'JetBrains Mono\',monospace;font-size:0.65rem;color:#FDF6E8;letter-spacing:0.04em;">'
+    +'📲 Install as app on your phone</span>'
+    +'<button id="install-yes" style="font-family:\'JetBrains Mono\',monospace;font-size:0.62rem;'
+    +'background:#C9941A;color:#1A0E06;border:none;border-radius:3px;padding:0.28rem 0.65rem;'
+    +'cursor:pointer;font-weight:700;letter-spacing:0.04em;margin-left:0.6rem;">Install</button>'
+    +'<button id="install-no" style="font-family:\'JetBrains Mono\',monospace;font-size:0.62rem;'
+    +'background:transparent;color:var(--muted);border:none;cursor:pointer;padding:0.28rem 0.4rem;'
+    +'margin-left:0.3rem;">✕</button>';
+  installBanner.style.cssText =
+    'position:fixed;bottom:0;left:0;right:0;z-index:9999;'
+    +'background:linear-gradient(135deg,#1a0e06,#2d1b0e);'
+    +'border-top:1px solid rgba(201,148,26,0.4);'
+    +'padding:0.6rem 1rem;display:flex;align-items:center;'
+    +'box-shadow:0 -2px 12px rgba(0,0,0,0.3);';
+  document.body.appendChild(installBanner);
+  document.getElementById('install-yes').addEventListener('click', function(){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function(){ installBanner.remove(); });
+  });
+  document.getElementById('install-no').addEventListener('click', function(){
+    installBanner.remove();
   });
 });
 
-window.addEventListener('load',initMap);
+// Fix map tiles after any resize — handled by switchFilterMode listener above
 </script>
 </body>
 </html>
